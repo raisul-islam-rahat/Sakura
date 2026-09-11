@@ -54,3 +54,11 @@ dialog{position:fixed;left:0;right:0;top:var(--dialog-top,50%);bottom:auto;margi
 @media(prefers-reduced-motion:reduce){#letter-gift *{animation:none!important;transition:none!important}}
 .gift-bow::before{left:0}
 #letter-gift.unwrapped .gift-box{height:180px}
+/* Separate die-cut gifts, with real alpha instead of rectangular photo cards. */
+#gift-reveal{animation:none;overflow:visible}
+.gift-stickers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:center;justify-items:center;gap:14px;padding:16px 10px 8px}
+.gift-stickers[data-count="1"]{grid-template-columns:1fr}
+#gift-reveal .gift-sticker{display:block;width:100%;height:auto;max-height:240px;object-fit:contain;border:0;border-radius:0;box-shadow:none;background:transparent;filter:drop-shadow(0 5px 5px #75536628);animation:sticker-unbox .9s cubic-bezier(.18,.8,.25,1) var(--sticker-delay) both;--sticker-turn:-4deg;transform:rotate(var(--sticker-turn))}
+#gift-reveal .gift-sticker:nth-child(even){--sticker-turn:4deg}
+#gift-reveal .gift-stickers[data-count="1"] .gift-sticker{max-width:285px;max-height:300px;--sticker-turn:-2deg}
+@keyframes sticker-unbox{0%{opacity:0;transform:translateY(-28px) scale(.3) rotate(-12deg)}65%{opacity:1;transform:translateY(0) scale(1.05) rotate(var(--sticker-turn))}100%{opacity:1;transform:translateY(0) scale(1) rotate(var(--sticker-turn))}}

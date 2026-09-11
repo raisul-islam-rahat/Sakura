@@ -1,9 +1,11 @@
 # Birthday gifts
 
-Eleven freshly generated high-detail WebP gifts, shown only for challenge letters 5 and 10–19. Letter 20 deliberately has no gift. Direct-open letters have no gift. Completing a challenge opens the diary with a wrapped gift; clicking or keyboard-activating it opens the lid and reveals its image and dedication. Reopening a letter wraps its gift again. Reduced motion skips animation.
+Eleven gift boxes now reveal 22 individual transparent, white-outlined WebP stickers. Gifts appear only for challenge letters 5 and 10–19. Letter 20 and direct-open letters have no gift. Clicking or keyboard-activating a box opens the lid and reveals each sticker with a staggered animation and dedication. Reopening wraps the gift again. Reduced motion skips animation.
 
-Mapping and copy: `letter-gifts.js`. Artwork source manifest and subject prompts: `tools/gift-art-sources.json`. Export: `tools/build-letter-gifts.cjs`. Preview: `output/gift-gallery.png`.
+Active assets: `assets/gifts/stickers/gift-NN-I.webp`. Mapping and copy: `letter-gifts.js`. Artwork sources and individual subject prompts: `tools/gift-sticker-sources.json`. Export: `tools/build-gift-stickers.cjs`. Preview: `output/gift-sticker-gallery.png`. Older rectangular gift images remain as unused originals.
 
-Generated with built-in imagegen. Shared prompt: one exquisite photorealistic romantic birthday gift arrangement; square high-definition macro product photograph, intricate material textures, warm soft cinematic lighting, pale blush/ivory silk, subtle roses and gold bokeh, central framing, no people or hands. Subject prompts in the manifest cover chocolates, white teddy, hair accessories, fantasy mirror, personalized bottle/mug, sunglasses/case, pen/diary, moon pendant, perfume/lipstick, September sapphire necklace/bracelet, and romantic music globe.
+Generated with built-in imagegen. Shared prompt: separate isolated high-definition romantic gift objects, one per cell, refined ivory/blush/rose-gold materials, crisp realistic texture, complete silhouettes, white die-cut border, no surface/scenery/props or rectangular photo frame. Production matte requested for reliable extraction; generated alpha is preserved when present. Export splits each object, removes disconnected specks, adds a continuous white silhouette border, pads the transparent edges, and saves lossless WebP.
 
-Validated with `node tests/verify-letter-gifts.cjs`: challenge completion, every gift mapping, unwrapping, exclusion of direct letters and 20, reopening, reduced motion, and browser errors.
+Counts: 5 four chocolates; 10 teddy; 11 four hair accessories; 12 mirror; 13 bottle and mug; 14 sunglasses and case; 15 pen and diary; 16 moon pendant; 17 perfume and lipstick; 18 sapphire necklace and bracelet; 19 music globe.
+
+Validated with `node tests/verify-gift-stickers.cjs` (22 separate alpha WebPs, white edges and clear padding) and `node tests/verify-letter-gifts.cjs` (challenge completion, item counts and mappings, unwrapping, exclusions, reopening, reduced motion and browser errors).
