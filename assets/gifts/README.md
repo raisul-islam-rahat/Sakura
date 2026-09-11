@@ -9,3 +9,5 @@ Generated with built-in imagegen. Shared prompt: separate isolated high-definiti
 Counts: 5 four chocolates; 10 teddy; 11 four hair accessories; 12 mirror; 13 bottle and mug; 14 sunglasses and case; 15 pen and diary; 16 moon pendant; 17 perfume and lipstick; 18 sapphire necklace and bracelet; 19 music globe.
 
 Validated with `node tests/verify-gift-stickers.cjs` (22 separate alpha WebPs, white edges and clear padding) and `node tests/verify-letter-gifts.cjs` (challenge completion, item counts and mappings, unwrapping, exclusions, reopening, reduced motion and browser errors).
+
+Reading/unwrapping update: the message uses its full natural height with horizontal scrolling, and the diary dialog owns vertical scrolling. Gifts follow the signature so unopened boxes never gate reading. Red/gold boxes have an animated tapping hand. Clicking triggers a sparkle burst, then individually staggered stickers scale from 6% at measured box coordinates to full size. Reduced motion reveals immediately. tests/verify-gift-scroll.cjs verifies a 50-line diary can reach its final line with a closed gift, plus the red box, hint and launch effects.
