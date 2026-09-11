@@ -16,7 +16,7 @@
  const stickerNames={5:['Heart chocolate','Gold-wrapped chocolate','Rose bonbon','Chocolate praline'],10:['White teddy bear'],11:['Pearl barrette','Satin bow clip','Silk scrunchie','Floral hair comb'],12:['Enchanted handheld mirror'],13:['Personalized water bottle','Personalized coffee mug'],14:['Pink sunglasses','Floral sunglasses case'],15:['Rose gold fountain pen','Floral diary'],16:['Moon pendant'],17:['Perfume','Lipstick'],18:['Sapphire necklace','Sapphire bracelet'],19:['Romantic music globe']};
  let section;
  window.showLetterGift=(number,eligible)=>{
-  if(!section){section=document.createElement('section');section.id='letter-gift';section.setAttribute('aria-label','Your birthday gift');document.getElementById('signature').after(section);}
+  if(!section){section=document.createElement('section');section.id='letter-gift';section.setAttribute('aria-label','Your birthday gift');document.getElementById('message').before(section);}
   section.replaceChildren();section.className='';section.hidden=!eligible||!gifts[number];if(section.hidden)return;
   const [title,note]=gifts[number],hint=document.createElement('p'),button=document.createElement('button'),art=document.createElement('figure'),tray=document.createElement('div'),caption=document.createElement('figcaption');
   hint.className='gift-invitation';hint.textContent='A little surprise, just for you ♡';

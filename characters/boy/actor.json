@@ -239,7 +239,7 @@
       ]
     },
     "couple-dance": {
-      "image": "dance-new-16.webp",
+      "image": "dance-aligned-16.webp",
       "fixedScale": true,
       "referenceHeight": 600,
       "frames": [
@@ -248,144 +248,144 @@
           "y": 0,
           "w": 700,
           "h": 700,
-          "anchorX": 353.5,
+          "anchorX": 420,
           "anchorY": 671,
-          "referenceHeight": 589.9499999999999
+          "referenceHeight": 540
         },
         {
           "x": 700,
           "y": 0,
           "w": 700,
           "h": 700,
-          "anchorX": 1043,
+          "anchorX": 1120,
           "anchorY": 671,
-          "referenceHeight": 589.9499999999999
+          "referenceHeight": 540
         },
         {
           "x": 1400,
           "y": 0,
           "w": 700,
           "h": 700,
-          "anchorX": 1742.5,
+          "anchorX": 1820,
           "anchorY": 671,
-          "referenceHeight": 590.9
+          "referenceHeight": 540
         },
         {
           "x": 2100,
           "y": 0,
           "w": 700,
           "h": 700,
-          "anchorX": 2428.5,
+          "anchorX": 2520,
           "anchorY": 671,
-          "referenceHeight": 590.9
+          "referenceHeight": 540
         },
         {
           "x": 0,
           "y": 700,
           "w": 700,
           "h": 700,
-          "anchorX": 340,
+          "anchorX": 420,
           "anchorY": 1371,
-          "referenceHeight": 595.65
+          "referenceHeight": 540
         },
         {
           "x": 700,
           "y": 700,
           "w": 700,
           "h": 700,
-          "anchorX": 1017,
+          "anchorX": 1120,
           "anchorY": 1371,
-          "referenceHeight": 595.65
+          "referenceHeight": 540
         },
         {
           "x": 1400,
           "y": 700,
           "w": 700,
           "h": 700,
-          "anchorX": 1748.5,
+          "anchorX": 1820,
           "anchorY": 1371,
-          "referenceHeight": 595.65
+          "referenceHeight": 540
         },
         {
           "x": 2100,
           "y": 700,
           "w": 700,
           "h": 700,
-          "anchorX": 2438,
+          "anchorX": 2520,
           "anchorY": 1371,
-          "referenceHeight": 595.65
+          "referenceHeight": 540
         },
         {
           "x": 0,
           "y": 1400,
           "w": 700,
           "h": 700,
-          "anchorX": 347.5,
+          "anchorX": 420,
           "anchorY": 2071,
-          "referenceHeight": 589
+          "referenceHeight": 540
         },
         {
           "x": 700,
           "y": 1400,
           "w": 700,
           "h": 700,
-          "anchorX": 1032,
+          "anchorX": 1120,
           "anchorY": 2071,
-          "referenceHeight": 589
+          "referenceHeight": 540
         },
         {
           "x": 1400,
           "y": 1400,
           "w": 700,
           "h": 700,
-          "anchorX": 1755,
+          "anchorX": 1820,
           "anchorY": 2071,
-          "referenceHeight": 589
+          "referenceHeight": 540
         },
         {
           "x": 2100,
           "y": 1400,
           "w": 700,
           "h": 700,
-          "anchorX": 2453,
+          "anchorX": 2520,
           "anchorY": 2071,
-          "referenceHeight": 589
+          "referenceHeight": 540
         },
         {
           "x": 0,
           "y": 2100,
           "w": 700,
           "h": 700,
-          "anchorX": 359,
+          "anchorX": 420,
           "anchorY": 2771,
-          "referenceHeight": 591.85
+          "referenceHeight": 540
         },
         {
           "x": 700,
           "y": 2100,
           "w": 700,
           "h": 700,
-          "anchorX": 1032.5,
+          "anchorX": 1120,
           "anchorY": 2771,
-          "referenceHeight": 591.85
+          "referenceHeight": 540
         },
         {
           "x": 1400,
           "y": 2100,
           "w": 700,
           "h": 700,
-          "anchorX": 1727,
+          "anchorX": 1820,
           "anchorY": 2771,
-          "referenceHeight": 592.8
+          "referenceHeight": 540
         },
         {
           "x": 2100,
           "y": 2100,
           "w": 700,
           "h": 700,
-          "anchorX": 2385,
+          "anchorX": 2520,
           "anchorY": 2771,
-          "referenceHeight": 592.8
+          "referenceHeight": 540
         }
       ]
     },
@@ -454,32 +454,36 @@
           "y": 0,
           "w": 543,
           "h": 724,
-          "anchorX": 271.5,
-          "anchorY": 690
+          "anchorX": 320,
+          "anchorY": 690,
+          "referenceHeight": 635
         },
         {
           "x": 543,
           "y": 0,
           "w": 543,
           "h": 724,
-          "anchorX": 814.5,
-          "anchorY": 690
+          "anchorX": 863,
+          "anchorY": 690,
+          "referenceHeight": 635
         },
         {
           "x": 1086,
           "y": 0,
           "w": 543,
           "h": 724,
-          "anchorX": 1357.5,
-          "anchorY": 690
+          "anchorX": 1406,
+          "anchorY": 690,
+          "referenceHeight": 635
         },
         {
           "x": 1629,
           "y": 0,
           "w": 543,
           "h": 724,
-          "anchorX": 1900.5,
-          "anchorY": 690
+          "anchorX": 1949,
+          "anchorY": 690,
+          "referenceHeight": 635
         }
       ]
     },

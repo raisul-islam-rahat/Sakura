@@ -317,7 +317,7 @@ function romanceCamera(){
  const leaving=phase==='release'?1-ease((clock-.6)/2.6):1;
  const strength=entering*leaving;
  // Keep both full silhouettes visible even in portrait while centering their faces.
- const wide=clamp(V*.86/285,1.12,2.15),tight=clamp(V*.86/240,1.12,2.6);
+ const wide=clamp(V*.86/285,1.12,1.4),tight=clamp(V*.86/240,1.12,2.6);
  if(phase==='handKiss'){const close=ease(clock/.65)*(1-ease((clock-5.7)/.7));return {strength,zoom:reduce?1.08:mix(Math.min(wide,1.4),1.5,close)};}
  const intimacy=phase==='embrace'?ease(clock/1.8):['loveQuestion','kiss','release'].includes(phase)?1:0;
  return {strength,zoom:mix(1,reduce?1.08:mix(wide,tight,intimacy),strength)};
