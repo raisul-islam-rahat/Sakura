@@ -1,4 +1,6 @@
 {
   "effect": "stars",
-  "file": null
+  "file": null,
+  "paper": 2,
+  "writing": true
 }

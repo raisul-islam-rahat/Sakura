@@ -1,11 +1,11 @@
 {
-  "title": "Happy birthday, my Muno",
-  "caption": "My favourite person. Always.",
+  "title": "Twenty, and here you are",
+  "caption": "27 September 2026 · Birthday 20",
   "text": "message.txt",
-  "picture": "picture.webp",
+  "picture": null,
   "music": "music.wav",
   "animation": "animation.json",
-  "signature": "With all my love, your person ♡",
+  "signature": "All my love, your person ♡",
   "imageAlt": "Moonlit cherry blossoms reflected on a quiet lake",
   "challenge": "challenge.json",
   "challengeEnabled": true

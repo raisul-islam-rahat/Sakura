@@ -121,8 +121,8 @@ function pickupPose(){
  const bend=t<.45?ease(t/.45):t<.6?1:1-ease((t-.6)/.4);
  return Math.round(bend*7);
 }
-function openLetter(i){stop();modalLetter={...letters[i],i};const l=modalLetter;collected.add(i);passed.add(i);$('letter-number').textContent=`${String(i+1).padStart(2,'0')} / ${letters.length} · FOR ${C.nickname.toUpperCase()}`;$('letter-title').textContent=l.title;$('message').textContent=l.message.replaceAll('{{nickname}}',C.nickname).replaceAll('{{name}}',C.recipientName).replaceAll('{{sender}}',C.senderName);$('signature').textContent=l.signature||`With love, ${C.senderName}`;$('photo').hidden=!l.picture;if(l.picture){$('photo-img').src=l.picture;$('photo-img').alt=l.imageAlt||'Our little memory';}$('caption').textContent=l.caption||'';$('letter-animation').hidden=!l.animation.file;if(l.animation.file)$('letter-animation').src=`${l.folder}/${l.animation.file}`;$('continue').textContent=i===letters.length-1?'A little further… ♡':'Keep it in my heart ♡';$('letter').showModal();$('letter').scrollTop=0;if(l.music){song.src=l.music;song.load();}soundSync();burst(V/2,450,35,l.animation.effect);updateCount();updateAction();}
-function closeLetter(){$('letter').close();}$('close-letter').onclick=closeLetter;$('continue').onclick=closeLetter;$('letter').addEventListener('close',()=>{modalLetter=null;soundSync();updateAction();});$('photo-img').onerror=()=>{$('photo').hidden=true;};$('letter-animation').onerror=()=>{$('letter-animation').hidden=true;};song.onerror=()=>{if(modalLetter){modalLetter.music=null;soundSync();}};
+function openLetter(i){stop();modalLetter={...letters[i],i};const l=modalLetter;collected.add(i);passed.add(i);$('letter-number').textContent=`${String(i+1).padStart(2,'0')} / ${letters.length} · FOR ${C.nickname.toUpperCase()}`;$('letter-title').textContent=l.title;$('message').textContent=l.message.replaceAll('{{nickname}}',C.nickname).replaceAll('{{name}}',C.recipientName).replaceAll('{{sender}}',C.senderName);$('signature').textContent=l.signature||`With love, ${C.senderName}`;$('photo').hidden=!l.picture;if(l.picture){$('photo-img').src=l.picture;$('photo-img').alt=l.imageAlt||'Our little memory';}$('caption').textContent=l.caption||'';$('letter-animation').hidden=!l.animation.file;if(l.animation.file)$('letter-animation').src=`${l.folder}/${l.animation.file}`;$('continue').textContent=i===letters.length-1?'A little further… ♡':'Keep it in my heart ♡';$('letter').showModal();$('letter').scrollTop=0;window.writeBirthdayLetter?.($('message').textContent,i);if(l.music){song.src=l.music;song.load();}soundSync();updateCount();updateAction();}
+function closeLetter(){$('letter').close();}$('close-letter').onclick=closeLetter;$('continue').onclick=closeLetter;$('letter').addEventListener('close',()=>{if(letter.open)return;modalLetter=null;soundSync();updateAction();});$('photo-img').onerror=()=>{$('photo').hidden=true;};$('letter-animation').onerror=()=>{$('letter-animation').hidden=true;};song.onerror=()=>{if(modalLetter){modalLetter.music=null;soundSync();}};
 function showJournal(){stop();$('journal-title').textContent=`${letters.length} little letters`;$('journal-list').replaceChildren();letters.forEach((l,i)=>{const b=document.createElement('button');b.disabled=!collected.has(i);b.textContent=collected.has(i)?`♡  ${l.title}`:`✧  Letter ${i+1}`;b.onclick=()=>{$('journal').close();openLetter(i);};$('journal-list').append(b);});$('reset-confirm').hidden=true;$('journal').showModal();updateAction();}
 $('journal-button').onclick=showJournal;$('ending-journal').onclick=showJournal;$('close-journal').onclick=()=>$('journal').close();$('journal').addEventListener('close',updateAction);$('restart').onclick=()=>{$('reset-confirm').hidden=false;};$('reset-no').onclick=()=>{$('reset-confirm').hidden=true;};$('reset-yes').onclick=()=>{collected.clear();passed.clear();carrying=false;completed=false;x=START;camera=0;bg.src=C.backgroundMusic;bg.load();$('journal').close();setPhase('explore');updateCount();soundSync();};$('replay').onclick=()=>{completed=false;beginCinema();};
 function togglePause(){manualPause=!manualPause;$('pause-screen').hidden=!manualPause;$('pause').setAttribute('aria-pressed',String(manualPause));$('pause').setAttribute('aria-label',manualPause?'Continue adventure':'Pause adventure');stop();soundSync();updateAction();}$('pause').onclick=togglePause;$('resume').onclick=togglePause;
@@ -145,7 +145,7 @@ function tick(dt){if(blocked())return;const previousBoy=cinematic.boy,previousPh
  else if(phase==='kneel'){if(clock>=1.5){cinematic.startGirl=cinematic.girl;setPhase('approach');}}
  else if(phase==='approach'){const duration=Math.max(.85,Math.abs(cinematic.boy-148-cinematic.startGirl)/115),old=cinematic.girl;cinematic.girl=mix(cinematic.startGirl,cinematic.boy-148,stroll(clock/duration));gait+=Math.abs(cinematic.girl-old)/210;if(clock>=duration+.1){setPhase('offer');$('live').textContent='He offers his hand.';}}
  else if(phase==='hold'){if(clock>=3.2)setPhase('danceRise');}
- else if(phase==='danceRise'){if(clock>=1.6){setPhase('dance');$('live').textContent='Together, they dance beneath the blossoms.';}}
+ else if(phase==='danceRise'){if(clock>=1.6){setPhase('dance');$('live').textContent="Together, they dance beneath the Moon's sakura tree.";}}
  else if(phase==='dance'){if(clock>=danceSettings().duration){setPhase('embrace');chime('heart');}}
  else if(phase==='embrace'){if(clock>=1.8){askLove();}}
  else if(phase==='kiss'){if(clock>=3.6)setPhase('release');}
@@ -162,7 +162,39 @@ function tick(dt){if(blocked())return;const previousBoy=cinematic.boy,previousPh
 
 }
 function makePetal(rain=false){const z=Math.random();return {x:Math.random()*V,y:rain?-Math.random()*700:Math.random()*1000,z,r:z>.84?19+Math.random()*16:z>.45?9+Math.random()*8:3+Math.random()*5,rotation:Math.random()*6.28,turn:Math.random()*6.28,speed:(rain?90:20)+z*(rain?130:55),rain,phase:Math.random()*6.28,variant:Math.floor(Math.random()*6)};}
-function paintPetal(p,now){ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rotation);ctx.scale(1,reduce?1:.28+Math.abs(Math.cos(now*.8+p.turn))*.72);const alpha=.4+p.z*.4;if(assets.petals){prop(p.variant,0,0,p.r*2,0,alpha,'petals');}else{ctx.globalAlpha=alpha;ctx.fillStyle='#ffcddd';ctx.beginPath();ctx.ellipse(0,0,p.r,p.r*.45,0,0,Math.PI*2);ctx.fill();}ctx.restore();}
+function moonGardenAt(worldX){return worldX>=6*(segmentWidth-overlap)+overlap;}
+const atmosphereNames=['rain','stars','crystals','hearts','snow','moondust','sakura'];
+function atmosphereState(worldX=x){
+ const stride=segmentWidth-overlap,section=clamp(Math.floor((worldX-overlap)/stride),0,6);
+ const blend=section===0?1:ease((worldX-(section*stride+overlap))/180);
+ return {section,previous:Math.max(0,section-1),blend};
+}
+function paintAtmosphere(p,now,section,opacity){
+ if(opacity<=0)return;ctx.save();ctx.translate(p.x,p.y);ctx.globalAlpha=opacity*(.35+p.z*.5);const r=Math.max(2,p.r*.48);
+ const colors=['#bdeaff','#fff0bd','#bdf9ed','#ffc4dd','#f2f7ff','#e8d8ff','#ffcddd'];ctx.fillStyle=ctx.strokeStyle=colors[section];ctx.lineWidth=1.2;
+ if(section===0){ // Fine luminous rain, angled slightly by the breeze.
+  ctx.globalAlpha*=.65;ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(-3-p.z*3,12+p.z*20);ctx.stroke();
+ }else if(section===1){ // Five-point falling stars with delicate tails.
+  ctx.globalAlpha*=.8+.2*Math.sin(now*2+p.phase);ctx.beginPath();ctx.moveTo(-r*1.8,-r*2.5);ctx.lineTo(0,0);ctx.stroke();ctx.rotate(p.rotation*.25);ctx.beginPath();for(let j=0;j<10;j++){const a=j*Math.PI/5-Math.PI/2,rr=j%2?r*.42:r;j?ctx.lineTo(Math.cos(a)*rr,Math.sin(a)*rr):ctx.moveTo(Math.cos(a)*rr,Math.sin(a)*rr);}ctx.closePath();ctx.fill();
+ }else if(section===2){ // Faceted mint and lavender crystal flakes.
+  ctx.rotate(p.rotation);ctx.beginPath();ctx.moveTo(0,-r*1.5);ctx.lineTo(r*.6,0);ctx.lineTo(0,r*1.5);ctx.lineTo(-r*.6,0);ctx.closePath();ctx.fill();ctx.strokeStyle='#ffffff';ctx.globalAlpha*=.7;ctx.beginPath();ctx.moveTo(0,-r*1.5);ctx.lineTo(0,r*1.5);ctx.stroke();
+ }else if(section===3){ // Soft rose hearts drifting through the nebula.
+  ctx.rotate(Math.sin(now*.8+p.phase)*.35);ctx.beginPath();ctx.moveTo(0,r*.8);ctx.bezierCurveTo(-r*1.8,-r*.25,-r*.8,-r*1.4,0,-r*.45);ctx.bezierCurveTo(r*.8,-r*1.4,r*1.8,-r*.25,0,r*.8);ctx.fill();
+ }else if(section===4){ // Six-armed snowflakes, with smaller soft snow grains.
+  ctx.rotate(p.rotation*.3);if(p.z<.35){ctx.beginPath();ctx.arc(0,0,1.6+p.z*2,0,Math.PI*2);ctx.fill();}else{for(let j=0;j<6;j++){ctx.save();ctx.rotate(j*Math.PI/3);ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(0,-r);ctx.moveTo(-r*.28,-r*.65);ctx.lineTo(0,-r*.42);ctx.lineTo(r*.28,-r*.65);ctx.stroke();ctx.restore();}}
+ }else if(section===5){ // Pearly lunar motes: glowing round dust and tiny crescents.
+  ctx.globalAlpha*=.6+.4*Math.sin(now+p.phase)**2;if(p.variant%3===0){ctx.rotate(p.rotation*.2);ctx.beginPath();ctx.arc(0,0,r,-Math.PI/2,Math.PI/2);ctx.quadraticCurveTo(-r*.1,0,0,-r);ctx.fill();}else{const g=ctx.createRadialGradient(0,0,0,0,0,r);g.addColorStop(0,'#fffbea');g.addColorStop(.3,'#e9dcffa0');g.addColorStop(1,'#ddd0ff00');ctx.fillStyle=g;ctx.fillRect(-r,-r,r*2,r*2);}
+ }else{
+  ctx.rotate(p.rotation);ctx.scale(1,reduce?1:.28+Math.abs(Math.cos(now*.8+p.turn))*.72);if(assets.petals)prop(p.variant,0,0,p.r*2,0,opacity*(.4+p.z*.4),'petals');else{ctx.beginPath();ctx.ellipse(0,0,p.r,p.r*.45,0,0,Math.PI*2);ctx.fill();}
+ }ctx.restore();
+}
+function paintPetal(p,now){const a=atmosphereState();paintAtmosphere(p,now,a.previous,1-a.blend);paintAtmosphere(p,now,a.section,a.blend);}
+function moveAtmosphere(p,dt,now,deltaCamera){
+ if(reduce)return;const a=atmosphereState(),fall=[4.5,1.25,.85,.65,.7,.4,1],sway=[5,10,20,35,28,18,35];
+ const speed=mix(fall[a.previous],fall[a.section],a.blend),drift=mix(sway[a.previous],sway[a.section],a.blend);
+ p.y+=p.speed*speed*dt;p.x+=(8+Math.sin(now*.8+p.phase)*drift+wind*260)*dt-deltaCamera*(.08+p.z*.3);p.rotation+=dt*(.4+p.z);
+ if(p.y>1030){if(p.rain){p.dead=true;return;}p.y=-35;p.x=Math.random()*V;}if(p.x>V+45)p.x=-35;if(p.x< -60)p.x=V+30;
+}
 function resize(){W=$('app').clientWidth;H=$('app').clientHeight;S=H/1000;V=W/S;const dpr=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(W*dpr);canvas.height=Math.round(H*dpr);ctx.setTransform(dpr*S,0,0,dpr*S,0,0);petals=Array.from({length:Math.round(140*density)},()=>makePetal());stars=Array.from({length:90},()=>({x:Math.random(),y:Math.random()*.75,r:.5+Math.random()*1.6,p:Math.random()*6.28}));if(active&&phase!=='explore'&&phase!=='pickup'&&!['video','finished'].includes(phase)){cinematic.girl=V*.72-148;cinematic.boy=V*.72;}if(active)camera=clamp(x-V*.32,0,WORLD-V);}
 window.addEventListener('resize',resize);
 function fitDialogs(){const viewport=window.visualViewport;$('app').style.setProperty('--visible-height',`${viewport?.height||H}px`);$('app').style.setProperty('--dialog-top',`${(viewport?.offsetTop||0)+(viewport?.height||H)/2}px`);}
@@ -201,16 +233,24 @@ function drawGirl(px,walking,now){
   }
  }
 }
+let dreamPointer=0;
+window.addEventListener('pointermove',e=>{dreamPointer=clamp(e.clientX/Math.max(1,W)*2-1,-1,1);},{passive:true});
+window.addEventListener('deviceorientation',e=>{if(Number.isFinite(e.gamma))dreamPointer=clamp(e.gamma/30,-1,1);},{passive:true});
+function drawDreamPanorama(im,...a){
+ if(a.length===4)a=[0,0,im.width,im.height,...a];const [sx,sy,sw,sh,dx,dy,dw,dh]=a;
+ const drift=reduce?0:Math.sin(total*.22)*2+dreamPointer*4;
+ ctx.save();ctx.beginPath();ctx.rect(-20,0,V+40,BASE);ctx.clip();ctx.transform(1,0,-drift/BASE,1,drift,0);ctx.drawImage(im,sx,sy,sw,sh,dx,dy,dw,dh);ctx.restore();ctx.save();ctx.beginPath();ctx.rect(-20,BASE,V+40,1000-BASE);ctx.clip();ctx.drawImage(im,sx,sy,sw,sh,dx,dy,dw,dh);ctx.restore();
+}
 function drawWorld(now){
  const sky=ctx.createLinearGradient(0,0,0,1000);sky.addColorStop(0,'#040b20');sky.addColorStop(.65,'#142041');sky.addColorStop(1,'#261b38');ctx.fillStyle=sky;ctx.fillRect(0,0,V,1000);
  for(const s of stars){ctx.globalAlpha=.25+.5*(.5+.5*Math.sin(now*.8+s.p));ctx.fillStyle='#e7ddff';ctx.beginPath();ctx.arc(s.x*V,s.y*1000,s.r,0,Math.PI*2);ctx.fill();}ctx.globalAlpha=1;
  const tilt=phase==='tilt'?ease(clock/3.8):['video','finished'].includes(phase)?1:0;
  ctx.save();applyRomanceCamera();ctx.translate(0,tilt*1100);
  const cam=phase==='entrance'?200+Math.sin(now*.07)*70:camera;
- for(let i=0;i<backgrounds.length;i++){const im=assets[`garden-${i+1}`];if(!im)continue;const dx=i*(segmentWidth-overlap)-cam;if(dx>V||dx+segmentWidth<0)continue;if(i===0)ctx.drawImage(im,dx,0,segmentWidth,1000);else{
+ for(let i=0;i<backgrounds.length;i++){const im=assets[`garden-${i+1}`];if(!im)continue;const dx=i*(segmentWidth-overlap)-cam;if(dx>V||dx+segmentWidth<0)continue;if(i===0)drawDreamPanorama(im,dx,0,segmentWidth,1000);else{
   const fade=overlap,steps=24,sw=im.width*fade/segmentWidth;
-  for(let j=0;j<steps;j++){ctx.globalAlpha=(j+.5)/steps;ctx.drawImage(im,j*sw/steps,0,sw/steps,im.height,dx+j*fade/steps,0,fade/steps+.2,1000);}
-  ctx.globalAlpha=1;ctx.drawImage(im,sw,0,im.width-sw,im.height,dx+fade,0,segmentWidth-fade,1000);
+  for(let j=0;j<steps;j++){ctx.globalAlpha=(j+.5)/steps;drawDreamPanorama(im,j*sw/steps,0,sw/steps,im.height,dx+j*fade/steps,0,fade/steps+.2,1000);}
+  ctx.globalAlpha=1;drawDreamPanorama(im,sw,0,im.width-sw,im.height,dx+fade,0,segmentWidth-fade,1000);
  }}
  // Subtle environmental motion: drifting light, water glints and low mist.
  ctx.globalCompositeOperation='screen';
@@ -225,7 +265,7 @@ function drawWorld(now){
  }else if(active&&!['video','finished'].includes(phase))drawCinema(now);
  ctx.restore();
  // The moon is independent of the painted layers and stays visible in portrait.
- const moonY=mix(135,170,tilt),moonX=mix(V*.78,V*.74,tilt);glow(moonX,moonY,92+Math.sin(now*.7)*4,'#ced6ff20');prop(3,moonX,moonY,95);
+ // Celestial bodies are painted into each scene; no duplicate Moon above the lunar garden.
  // Slow shooting stars; no full-screen flashes.
  if(!reduce){const q=(now%13)/2;if(q<1){ctx.strokeStyle=`rgba(226,225,255,${Math.sin(q*Math.PI)*.6})`;ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(V*.12+q*V*.7,70+q*110);ctx.lineTo(V*.12+q*V*.7-45,70+q*110-12);ctx.stroke();}}
  if(phase==='entrance'){const shade=ctx.createLinearGradient(0,0,0,1000);shade.addColorStop(0,'#08102033');shade.addColorStop(1,'#07112755');ctx.fillStyle=shade;ctx.fillRect(0,0,V,1000);}
@@ -309,7 +349,7 @@ function detonate(r){
 }
 function effects(dt,now){
  const deltaCamera=phase==='explore'?camera-lastEffectCamera:0;lastEffectCamera=camera;
- for(const p of petals){if(!reduce){p.y+=p.speed*dt;p.x+=(22+Math.sin(now*.8+p.phase)*35+wind*260)*dt-deltaCamera*(.08+p.z*.3);p.rotation+=dt*(.4+p.z);if(p.y>1030){if(p.rain){p.dead=true;continue;}p.y=-25;p.x=Math.random()*V;}if(p.x>V+45)p.x=-35;if(p.x< -60)p.x=V+30;}if(p.z>=.65)paintPetal(p,now);}
+ for(const p of petals){moveAtmosphere(p,dt,now,deltaCamera);if(p.z>=.65)paintPetal(p,now);}
  petals=petals.filter(p=>!p.dead);
  for(let i=0;i<18*density;i++){const px=(Math.sin(now*.1+i*13)*.5+.5)*V,py=450+(Math.sin(now*.23+i*3)*.5+.5)*440;glow(px,py,6,'#e4fca546');}
  ctx.save();ctx.globalCompositeOperation='lighter';

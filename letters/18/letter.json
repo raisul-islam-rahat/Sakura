@@ -1,11 +1,11 @@
 {
-  "title": "All the tomorrows",
-  "caption": "This is only the beginning.",
+  "title": "Eighteen open doors",
+  "caption": "27 September 2024 · Birthday 18",
   "text": "message.txt",
-  "picture": "picture.webp",
+  "picture": null,
   "music": "music.wav",
   "animation": "animation.json",
-  "signature": "With all my love, your person ♡",
+  "signature": "A birthday wish sent through time ♡",
   "imageAlt": "Moonlit cherry blossoms reflected on a quiet lake",
   "challenge": "challenge.json",
   "challengeEnabled": true

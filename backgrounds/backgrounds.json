@@ -3,42 +3,49 @@
   "overlap": 200,
   "panoramas": [
     {
-      "file": "01.webp",
+      "file": "cosmic-01.webp",
       "nativeWidth": 2172,
-      "nativeHeight": 724
+      "nativeHeight": 724,
+      "theme": "earth"
     },
     {
-      "file": "02.webp",
+      "file": "cosmic-02.webp",
       "nativeWidth": 2172,
-      "nativeHeight": 724
+      "nativeHeight": 724,
+      "theme": "space"
     },
     {
-      "file": "03.webp",
+      "file": "cosmic-03.webp",
       "nativeWidth": 2172,
-      "nativeHeight": 724
+      "nativeHeight": 724,
+      "theme": "crystals"
     },
     {
-      "file": "04.webp",
+      "file": "cosmic-04.webp",
       "nativeWidth": 2172,
-      "nativeHeight": 724
+      "nativeHeight": 724,
+      "theme": "nebula"
     },
     {
-      "file": "05.webp",
+      "file": "cosmic-05.webp",
       "nativeWidth": 2172,
-      "nativeHeight": 724
+      "nativeHeight": 724,
+      "theme": "premoon"
     },
     {
-      "file": "06.webp",
+      "file": "cosmic-06.webp",
       "nativeWidth": 2172,
-      "nativeHeight": 724
+      "nativeHeight": 724,
+      "theme": "premoon"
     },
     {
-      "file": "07.webp",
+      "file": "cosmic-07.webp",
       "nativeWidth": 2172,
-      "nativeHeight": 724
+      "nativeHeight": 724,
+      "theme": "moon"
     }
   ],
-  "resolutionNote": "Native generated sources are 2172 x 724 pixels, not 4K. No upscaling applied.",
+  "resolutionNote": "Seven generated cosmic panoramas fitted to 2172×724 with walking surface aligned at y=628.",
   "petals": {
     "image": "petals.webp",
     "frames": [

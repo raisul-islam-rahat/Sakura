@@ -1,7 +1,6 @@
-My dear {{nickname}},
+27 September 2019
+Your 13th birthday
 
-It is not only the big moments I want with you.
+Dear {{nickname}},
 
-I want the silly conversations, the random pictures, the stories about your day. The comfortable silences. The laughter over something that was not even that funny.
-
-All those tiny, ordinary things become my favourite memories when you are in them.
+Happy thirteenth birthday. Being a teenager comes with plenty of advice, so here is my birthday wish instead: may you have space to discover what you actually like. Change your mind. Try the new thing. Keep the old favourite. You do not owe anyone a finished version of yourself. I am glad every version helped bring you here.

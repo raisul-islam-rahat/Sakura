@@ -1,7 +1,6 @@
-On your birthday, {{nickname}},
+27 September 2020
+Your 14th birthday
 
-I wish you days that feel lighter. Dreams that feel closer. People who see how much you matter.
+Dear {{nickname}},
 
-I hope you laugh without holding back, rest without feeling guilty, and find a thousand little reasons to smile.
-
-And when a day is difficult, I hope you remember that you do not have to be perfect to be loved.
+Fourteen candles, and so many things still waiting to become your favourites. May you try something that scares you a little and discover that you can do it. May a disappointing day end with comfort instead of more pressure. You do not have to earn tenderness by being perfect. Even on the messy days, I hope life treats you softly.

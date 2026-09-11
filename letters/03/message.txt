@@ -1,7 +1,6 @@
-My dear {{nickname}},
+27 September 2009
+Your 3rd birthday
 
-It is not only the big moments I want with you.
+Dear {{nickname}},
 
-I want the silly conversations, the random pictures, the stories about your day. The comfortable silences. The laughter over something that was not even that funny.
-
-All those tiny, ordinary things become my favourite memories when you are in them.
+You are three today! My wish is that your pockets find treasures: a smooth stone, a funny leaf, a sweet saved for later. May laughter arrive easily and bedtime stories last a little longer. You do not have to do anything extraordinary to deserve love. Being your wonderfully small, wonderfully curious self is already quite enough.

@@ -1,7 +1,6 @@
-{{nickname}},
+27 September 2017
+Your 11th birthday
 
-There are so many names in the world. But this little name of yours has become one of my favourite things to say.
+Dear {{nickname}},
 
-It makes ordinary messages feel warmer. It turns a simple hello into something that belongs only to us.
-
-I hope you always hear a little love inside it. Because that is exactly what I put there.
+Happy eleventh birthday. As your world grows wider, may you find people who like the real you, without asking you to become smaller or quieter. I wish you a year with more belonging than comparison. And when you have a good story to tell, may somebody put everything down and listen. One day, I hope to be very good at being that somebody.

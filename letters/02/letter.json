@@ -1,11 +1,11 @@
 {
-  "title": "My favourite little name",
-  "caption": "Some names feel like home.",
+  "title": "Two small steps",
+  "caption": "27 September 2008 · Birthday 2",
   "text": "message.txt",
-  "picture": "picture.webp",
+  "picture": null,
   "music": "music.wav",
   "animation": "animation.json",
-  "signature": "With all my love, your person ♡",
+  "signature": "A birthday wish sent through time ♡",
   "imageAlt": "Moonlit cherry blossoms reflected on a quiet lake",
   "challenge": "challenge.json",
   "challengeEnabled": false

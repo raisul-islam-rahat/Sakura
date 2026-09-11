@@ -1,0 +1,12 @@
+const fs=require('fs'),sharp=require('C:/Users/Raisul/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/sharp');
+const source=["C:\\Users\\Raisul\\.codex\\generated_images\\01a08a2f-b023-70b3-9dbe-4aac1d6174c1\\exec-b030fd31-5615-47cb-9201-c58ae08a851b.png","C:\\Users\\Raisul\\.codex\\generated_images\\01a08a2f-b023-70b3-9dbe-4aac1d6174c1\\exec-10220140-7825-4896-ba9f-8f6581c9ddfb.png","C:\\Users\\Raisul\\.codex\\generated_images\\01a08a2f-b023-70b3-9dbe-4aac1d6174c1\\exec-71f47757-e89d-4569-8026-f2834d2a097b.png","C:\\Users\\Raisul\\.codex\\generated_images\\01a08a2f-b023-70b3-9dbe-4aac1d6174c1\\exec-bc0a8f8e-6833-408c-9360-e1a9f1eb5596.png","C:\\Users\\Raisul\\.codex\\generated_images\\01a08a2f-b023-70b3-9dbe-4aac1d6174c1\\exec-793ac75a-c793-4600-adec-2af3a9967e32.png","C:\\Users\\Raisul\\.codex\\generated_images\\01a08a2f-b023-70b3-9dbe-4aac1d6174c1\\exec-44e2c509-e7d2-47d4-972e-3c441b4a75a3.png","C:\\Users\\Raisul\\.codex\\generated_images\\01a08a2f-b023-70b3-9dbe-4aac1d6174c1\\exec-7e4c2b3c-285d-48cd-8e6e-90966e942afb.png"];
+const cuts=[570,544,539,563,574,574,565];
+(async()=>{const p='backgrounds/backgrounds.json',b=JSON.parse(fs.readFileSync(p)),thumbs=[];for(let i=0;i<7;i++){
+const m=await sharp(source[i]).metadata(),cut=cuts[i];
+const sky=await sharp(source[i]).extract({left:0,top:0,width:m.width,height:cut}).resize(2172,628,{fit:'fill'}).toBuffer();
+const ground=await sharp(source[i]).extract({left:0,top:cut,width:m.width,height:m.height-cut}).resize(2172,96,{fit:'fill'}).toBuffer();
+const file=`cosmic-${String(i+1).padStart(2,'0')}.webp`;
+await sharp({create:{width:2172,height:724,channels:3,background:'#10172f'}}).composite([{input:sky,left:0,top:0},{input:ground,left:0,top:628}]).webp({quality:92}).toFile('backgrounds/'+file);
+b.panoramas[i]={file,nativeWidth:2172,nativeHeight:724,theme:['earth','space','crystals','nebula','premoon','premoon','moon'][i]};
+thumbs.push({input:await sharp('backgrounds/'+file).resize(900,300).png().toBuffer(),left:0,top:i*300});
+}b.resolutionNote='Seven generated cosmic panoramas fitted to 2172×724 with walking surface aligned at y=628.';fs.writeFileSync(p,JSON.stringify(b,null,2)+'\n');await sharp({create:{width:900,height:2100,channels:3,background:'#10172f'}}).composite(thumbs).png().toFile('output/cosmic-journey-preview.png');console.log('Seven WebP backgrounds installed with a stable path.');})();

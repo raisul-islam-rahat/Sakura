@@ -1,11 +1,11 @@
 {
-  "title": "The night I made for you",
-  "caption": "A little piece of our sky.",
+  "title": "Eight, with room to dream",
+  "caption": "27 September 2014 · Birthday 8",
   "text": "message.txt",
-  "picture": "picture.webp",
+  "picture": null,
   "music": "music.wav",
   "animation": "animation.json",
-  "signature": "With all my love, your person ♡",
+  "signature": "A birthday wish sent through time ♡",
   "imageAlt": "Moonlit cherry blossoms reflected on a quiet lake",
   "challenge": "challenge.json",
   "challengeEnabled": false

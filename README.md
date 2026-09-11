@@ -137,3 +137,11 @@ The finale now pauses in the close-up embrace for 'Do you love me?'. Each No add
 
 Current dance: anime-spin-dip-16.png is an 8-column, 2-row sheet. Frames 0–7 spin, frames 8–15 supported dip and recovery; plays once at 4 poses per second. Current gates: questions 5, 10, 18, 19, 20; unique playable games 11–17; other letters open directly. Edit questions/answers in the corresponding letters/NN/challenge.json.
 
+
+Cosmic birthday journey: backgrounds/cosmic-01.webp through cosmic-07.webp replace the active scenery. Stages are Earth departure, quiet space, crystals, nebula, two Moon approaches, and a lunar sakura garden. All are 2172×724; the walking surface is aligned at y=628. Sky-only pointer/available orientation motion respects reduced-motion settings. Atmospheric particles become sakura only in the final garden.
+Twenty wishes cover 27 September 2007 (first birthday) through 27 September 2026 (twentieth birthday), following the requested timeline. Each letter has its own paper palette and a pen-following text reveal. Read the whole letter skips the animation; reduced-motion users see the complete letter immediately. Edit text in letters/NN/message.txt and stationery/reveal behavior in letter-writing.js. The challenge pattern remains questions 5,10,18,19,20 and games11–17.
+Validated in headless Edge at a phone viewport: all twenty letters, pen reveal, skip controls, dates, background assets, and no JavaScript errors. Screenshots are in output/.
+
+
+Seven atmosphere effects follow the girl's scene position: glowing rain, falling stars, crystal flakes, rose hearts, six-armed snowflakes, glowing moon dust/crescents, and sakura petals. Shapes and fall speeds differ, with a 180-world-unit crossfade across boundaries in either direction. The walking path is unaffected. Reduced motion freezes particle movement. Verified with tests/verify-atmospheres.cjs.
+

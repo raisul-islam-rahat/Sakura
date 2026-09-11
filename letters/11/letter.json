@@ -1,11 +1,11 @@
 {
-  "title": "My favourite little name",
-  "caption": "Some names feel like home.",
+  "title": "Eleven little lights",
+  "caption": "27 September 2017 · Birthday 11",
   "text": "message.txt",
-  "picture": "picture.webp",
+  "picture": null,
   "music": "music.wav",
   "animation": "animation.json",
-  "signature": "With all my love, your person ♡",
+  "signature": "A birthday wish sent through time ♡",
   "imageAlt": "Moonlit cherry blossoms reflected on a quiet lake",
   "challenge": "challenge.json",
   "challengeEnabled": true
