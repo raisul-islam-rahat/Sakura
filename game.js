@@ -47,12 +47,18 @@ const ready=Promise.all([
 ]).then(()=>{letters.forEach((l,i)=>l.x=1300+i*(END-2200)/Math.max(1,letters.length-1));END=Math.min(END,letters.at(-1).x+4*210*(meta['girl-walk'].cycleSeconds||.96)/2);loaded=true;return true;}).catch(e=>{loadError=e;console.error(e);return false;});
 $('recipient').textContent=C.recipientName;document.title=C.title;$('birthday-title').textContent=C.finale.birthdayTitle;$('birthday-line').textContent=C.finale.birthdayLine;
 $('yes').onclick=()=>{$('greeting').hidden=true;$('secret').hidden=false;$('answer').focus();};$('no').onclick=()=>{$('no-message').textContent='This little world is waiting for someone special. ♡';};$('back').onclick=()=>{$('secret').hidden=true;$('greeting').hidden=false;$('yes').focus();};
-$('secret').onsubmit=async e=>{e.preventDefault();if(norm($('answer').value)!==norm(C.secretAnswer)){$('answer-message').textContent='Try that little name he calls you. ♡';$('answer').setAttribute('aria-invalid','true');return;}$('answer').removeAttribute('aria-invalid');$('enter').disabled=true;$('answer-message').textContent='Gathering moonlight…';play(bg);if(!await ready){bg.pause();$('answer-message').textContent=location.protocol==='file:'?'Upload the extracted website to GitHub Pages to open the letter folders.':'Something could not load. Check all uploaded folders, then refresh.';$('enter').disabled=false;return;}active=true;$('entrance').hidden=true;$('hud').hidden=false;updateCount();updateSound();setPhase('explore');camera=clamp(x-V*.3,0,WORLD-V);soundSync();};
+$('secret').onsubmit=async e=>{e.preventDefault();if(norm($('answer').value)!==norm(C.secretAnswer)){$('answer-message').textContent='Try that little name he calls you. ♡';$('answer').setAttribute('aria-invalid','true');return;}$('answer').removeAttribute('aria-invalid');$('enter').disabled=true;$('answer-message').textContent='Gathering moonlight…';play(bg);if(!await ready){bg.pause();$('answer-message').textContent=location.protocol==='file:'?'Upload the extracted website to GitHub Pages to open the letter folders.':'Something could not load. Check all uploaded folders, then refresh.';$('enter').disabled=false;return;}active=true;$('entrance').hidden=true;$('hud').hidden=false;updateCount();updateSound();setPhase('explore');camera=clamp(x-V*.3,0,WORLD-V);soundSync();showJourneyHelp();};
+function positionJourneyPointer(){const r=$('joystick').getBoundingClientRect();$('joystick-pointer').style.left=(r.left+r.width/2)+'px';$('joystick-pointer').style.top=(r.top-83)+'px';}
+function showJourneyHelp(){stop();$('journey-help').showModal();positionJourneyPointer();$('help-start').focus();updateAction();}
+$('help-start').onclick=()=>{$('journey-help').close();};
+$('journey-help').addEventListener('close',()=>{stop();updateAction();$('right').focus({preventScroll:true});});
+window.addEventListener('resize',()=>{if($('journey-help').open)positionJourneyPointer();});
+window.visualViewport?.addEventListener('resize',()=>{if($('journey-help').open)positionJourneyPointer();});
 function updateCount(){$('letter-count').textContent=`${collected.size}/${letters.length}`;$('journal-button').setAttribute('aria-label',`Your letters: ${collected.size} of ${letters.length} collected`);}
 function updateSound(){$('sound').textContent=muted?'♪̸':'♫';$('sound').setAttribute('aria-label',muted?'Play music':'Mute music');$('sound').setAttribute('aria-pressed',String(muted));}
 $('sound').onclick=()=>{muted=!muted;updateSound();soundSync();};
 function stop(){input=0;velocity=0;keys.clear();pointer=null;$('stick').style.transform='';}
-function blocked(){return $('love-question').open||manualPause||document.hidden||$('letter').open||$('journal').open||$('challenge').open;}
+function blocked(){return $('journey-help').open||$('love-question').open||manualPause||document.hidden||$('letter').open||$('journal').open||$('challenge').open;}
 function setPhase(p){
  if(phase==='video'&&p!=='video')finaleVideo.pause();
  phase=p;clock=0;stop();$('end-reminder').hidden=true;cutHeld=false;$('cake-cutting').hidden=p!=='cutCake';if(p!=='loveQuestion'&&$('love-question').open)$('love-question').close();$('controls').hidden=p!=='explore';$('action').hidden=true;$('speech').hidden=true;
@@ -100,7 +106,7 @@ finaleVideo.addEventListener('error',()=>{if(phase!=='video')return;$('video-sta
 function updateAction(){let text=null;if(phase==='explore'&&near==='bouquet')text='Pick up roses ♡';if(phase==='offer')text=C.finale.handButton;if(phase==='cake')text=C.finale.candleButton;$('action').hidden=!text||blocked();if(text)$('action').textContent=text;$('action').classList.toggle('cinematic',phase!=='explore');}
 function findNear(){near=null;if(!carrying&&Math.abs(x-BOUQUET)<155)near='bouquet';else{let d=140;letters.forEach((l,i)=>{if(Math.abs(x-l.x)<d){near=i;d=Math.abs(x-l.x);}});}updateAction();}
 $('action').onclick=()=>{if(blocked())return;if(phase==='explore'&&near==='bouquet'){beginPickup('bouquet');}else if(phase==='explore'&&Number.isInteger(near)){requestLetter(near);}else if(phase==='offer'){setPhase('hold');chime('win');for(let i=0;i<160*density;i++)petals.push(makePetal(true));}else if(phase==='cake'){setPhase('blow');chime('wind');wind=1;}};
-function requestLetter(i){if(phase!=='explore'||blocked())return;if(collected.has(i)||passed.has(i)||letters[i].challengeEnabled===false)openLetter(i);else startChallenge(i);}
+function requestLetter(i){if(phase!=='explore'||blocked())return;beginPickup(i);}
 function beginPickup(target){
  if(phase!=='explore'||blocked())return;
  const itemX=target==='bouquet'?BOUQUET:letters[target].x;
