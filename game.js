@@ -35,7 +35,7 @@ function actorSurface(im,settings){
  if(settings.chromaKey!=='green')return im;
  const layer=document.createElement('canvas');layer.width=im.width;layer.height=im.height;
  const gc=layer.getContext('2d');gc.drawImage(im,0,0);const pixels=gc.getImageData(0,0,layer.width,layer.height),d=pixels.data;
- for(let i=0;i<d.length;i+=4){const neutral=Math.max(d[i],d[i+2]),excess=d[i+1]-neutral;if(settings.cleanEdges){
+ for(let i=0;i<d.length;i+=4){const neutral=Math.max(d[i],d[i+2]),excess=d[i+1]-neutral;if(settings.cleanEdges!==false){
   // Remove the green matte and its antialiased spill before canvas scaling.
   if(excess>8)d[i+3]*=1-clamp((excess-8)/77,0,1);
   if(excess>0)d[i+1]=neutral;
@@ -318,7 +318,7 @@ function romanceCamera(){
  const strength=entering*leaving;
  // Keep both full silhouettes visible even in portrait while centering their faces.
  const wide=clamp(V*.86/285,1.12,2.15),tight=clamp(V*.86/240,1.12,2.6);
- if(phase==='handKiss'){const close=ease(clock/.65)*(1-ease((clock-5.7)/.7));return {strength,zoom:reduce?1.08:mix(wide,clamp(V*.88/150,1.8,3.4),close)};}
+ if(phase==='handKiss'){const close=ease(clock/.65)*(1-ease((clock-5.7)/.7));return {strength,zoom:reduce?1.08:mix(Math.min(wide,1.4),1.5,close)};}
  const intimacy=phase==='embrace'?ease(clock/1.8):['loveQuestion','kiss','release'].includes(phase)?1:0;
  return {strength,zoom:mix(1,reduce?1.08:mix(wide,tight,intimacy),strength)};
 }
@@ -329,7 +329,7 @@ function applyRomanceCamera(){
 }
 function romancePose(){
  if(phase==='hold')return {sheet:'couple-rise',frame:0};
- if(phase==='handKiss'){const ends=[.65,1.3,2.05,2.95,4.05,4.95,5.65,6.4];return {sheet:'couple-hand-kiss',frame:reduce?4:Math.min(7,ends.findIndex(t=>clock<t)<0?7:ends.findIndex(t=>clock<t))};}
+ if(phase==='handKiss')return {sheet:'couple-hand-kiss-hd',frame:0};
  if(phase==='danceRise')return {sheet:'couple-rise',frame:Math.min(3,Math.floor(clock/1.6*4))};
  if(phase==='dance'){const d=danceSettings();return {sheet:'couple-dance',frame:reduce?0:Math.floor(clock*d.fps)%d.frames};}
  if(phase==='embrace')return {sheet:'couple-embrace',frame:Math.min(2,Math.floor(clock/1.8*3))};
@@ -469,3 +469,4 @@ function frame(ms){
 requestAnimationFrame(frame);
 if(document.modelContext?.registerTool){const lifecycle=new AbortController();try{Promise.resolve(document.modelContext.registerTool({name:'read_birthday_adventure',title:'Read adventure progress',description:'Read the current birthday adventure stage and completed letter challenges.',inputSchema:{type:'object',properties:{},additionalProperties:false},annotations:{readOnlyHint:true},execute(input){if(!input||typeof input!=='object'||Array.isArray(input)||Object.keys(input).length)throw new Error('Expected an empty object.');return {started:active,stage:phase,collected:collected.size,letters:letters.length,bouquet:carrying,completed};}},{signal:lifecycle.signal})).catch(()=>{});}catch{}window.addEventListener('pagehide',()=>lifecycle.abort(),{once:true});}
 })();
+

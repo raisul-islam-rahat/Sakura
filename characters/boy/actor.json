@@ -1,6 +1,5 @@
 {
-  "image": "anime-poses.png",
-  "chromaKey": "green",
+  "image": "anime-poses-alpha.png",
   "displayHeight": 260,
   "fixedScale": true,
   "referenceHeight": 685,
@@ -42,8 +41,7 @@
   ],
   "sheets": {
     "boy-walk": {
-      "image": "anime-walk.png",
-      "chromaKey": "green",
+      "image": "anime-walk-alpha.png",
       "fixedScale": true,
       "referenceHeight": 480,
       "cycleSeconds": 1,
@@ -142,8 +140,7 @@
       ]
     },
     "boy-carry": {
-      "image": "anime-carry.png",
-      "chromaKey": "green",
+      "image": "anime-carry-alpha.png",
       "fixedScale": true,
       "referenceHeight": 480,
       "cycleSeconds": 1,
@@ -242,8 +239,7 @@
       ]
     },
     "couple-dance": {
-      "image": "anime-spin-dip-16.png",
-      "chromaKey": "green",
+      "image": "anime-spin-dip-16-alpha.png",
       "fixedScale": true,
       "referenceHeight": 288,
       "frames": [
@@ -378,8 +374,7 @@
       ]
     },
     "couple-embrace": {
-      "image": "anime-embrace-kiss.png",
-      "chromaKey": "green",
+      "image": "anime-embrace-kiss-alpha.png",
       "fixedScale": true,
       "referenceHeight": 480,
       "frames": [
@@ -434,8 +429,7 @@
       ]
     },
     "couple-rise": {
-      "image": "anime-rise.png",
-      "chromaKey": "green",
+      "image": "anime-rise-alpha.png",
       "fixedScale": true,
       "referenceHeight": 665,
       "frames": [
@@ -474,8 +468,7 @@
       ]
     },
     "couple-hand-kiss": {
-      "image": "anime-hand-kiss-contact.png",
-      "chromaKey": "green",
+      "image": "anime-hand-kiss-polished-alpha.png",
       "fixedScale": true,
       "referenceHeight": 424,
       "frames": [
@@ -546,8 +539,7 @@
       ]
     },
     "intro-boy": {
-      "image": "intro-black-roses.png",
-      "chromaKey": "green",
+      "image": "intro-black-roses-alpha.png",
       "fixedScale": true,
       "referenceHeight": 400,
       "frames": [
@@ -650,8 +642,7 @@
       ]
     },
     "intro-giving": {
-      "image": "intro-rose-handover.png",
-      "chromaKey": "green",
+      "image": "intro-rose-handover-alpha.png",
       "fixedScale": true,
       "referenceHeight": 424,
       "frames": [
@@ -720,11 +711,25 @@
           "anchorY": 880
         }
       ]
+    },
+    "couple-hand-kiss-hd": {
+      "image": "hand-kiss-hd.webp",
+      "fixedScale": true,
+      "referenceHeight": 1225,
+      "frames": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1254,
+          "h": 1254,
+          "anchorX": 627,
+          "anchorY": 1233
+        }
+      ]
     }
   },
-  "coupleImage": "anime-hands.png",
+  "coupleImage": "anime-hands-alpha.png",
   "couple": {
-    "chromaKey": "green",
     "frames": [
       {
         "x": 18,
@@ -733,6 +738,7 @@
         "h": 1220
       }
     ],
-    "referenceHeight": 1220
+    "referenceHeight": 1220,
+    "image": "anime-hands-alpha.png"
   }
 }
