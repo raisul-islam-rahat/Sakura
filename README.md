@@ -145,3 +145,6 @@ Validated in headless Edge at a phone viewport: all twenty letters, pen reveal, 
 
 Seven atmosphere effects follow the girl's scene position: glowing rain, falling stars, crystal flakes, rose hearts, six-armed snowflakes, glowing moon dust/crescents, and sakura petals. Shapes and fall speeds differ, with a 180-world-unit crossfade across boundaries in either direction. The walking path is unaffected. Reduced motion freezes particle movement. Verified with tests/verify-atmospheres.cjs.
 
+
+Princess celebration update: assets/princess-cake.png is a transparent rose-and-pearl cake with crown and the inscription Happy birthday my princess. The cutting card uses the Moon garden, rose/gold lighting, and completion confetti. Hold/release and the sky/video transition remain unchanged. After holding hands, couple-hand-kiss plays eight poses across 6.4 seconds, lingering at actual hand contact with a closer camera before danceRise. Verified via tests/verify-celebration.cjs and tests/verify-romance.cjs.
+

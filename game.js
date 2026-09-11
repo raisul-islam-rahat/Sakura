@@ -144,7 +144,8 @@ function tick(dt){if(blocked())return;const previousBoy=cinematic.boy,previousPh
  else if(phase==='arrival'){const duration=strollDuration(V+180,V*.72);cinematic.boy=mix(V+180,V*.72,stroll(clock/duration));if(clock>=duration+.2)setPhase('kneel');}
  else if(phase==='kneel'){if(clock>=1.5){cinematic.startGirl=cinematic.girl;setPhase('approach');}}
  else if(phase==='approach'){const duration=Math.max(.85,Math.abs(cinematic.boy-148-cinematic.startGirl)/115),old=cinematic.girl;cinematic.girl=mix(cinematic.startGirl,cinematic.boy-148,stroll(clock/duration));gait+=Math.abs(cinematic.girl-old)/210;if(clock>=duration+.1){setPhase('offer');$('live').textContent='He offers his hand.';}}
- else if(phase==='hold'){if(clock>=3.2)setPhase('danceRise');}
+ else if(phase==='hold'){if(clock>=3.2){setPhase('handKiss');$('live').textContent='He gently lifts her hand and kisses it.'}}
+ else if(phase==='handKiss'){if(clock>=6.4)setPhase('danceRise');}
  else if(phase==='danceRise'){if(clock>=1.6){setPhase('dance');$('live').textContent="Together, they dance beneath the Moon's sakura tree.";}}
  else if(phase==='dance'){if(clock>=danceSettings().duration){setPhase('embrace');chime('heart');}}
  else if(phase==='embrace'){if(clock>=1.8){askLove();}}
@@ -270,7 +271,7 @@ function drawWorld(now){
  if(!reduce){const q=(now%13)/2;if(q<1){ctx.strokeStyle=`rgba(226,225,255,${Math.sin(q*Math.PI)*.6})`;ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(V*.12+q*V*.7,70+q*110);ctx.lineTo(V*.12+q*V*.7-45,70+q*110-12);ctx.stroke();}}
  if(phase==='entrance'){const shade=ctx.createLinearGradient(0,0,0,1000);shade.addColorStop(0,'#08102033');shade.addColorStop(1,'#07112755');ctx.fillStyle=shade;ctx.fillRect(0,0,V,1000);}
 }
-function romancePhase(p=phase){return ['hold','danceRise','dance','embrace','loveQuestion','kiss','release'].includes(p);}
+function romancePhase(p=phase){return ['hold','handKiss','danceRise','dance','embrace','loveQuestion','kiss','release'].includes(p);}
 function danceSettings(){
  const frames=meta['couple-dance']?.frames.length||20;
  const fps=clamp(Number(C.finale.danceFPS)||8,2,30),cycles=clamp(Math.round(Number(C.finale.danceCycles)||20),1,100);
@@ -283,6 +284,7 @@ function romanceCamera(){
  const strength=entering*leaving;
  // Keep both full silhouettes visible even in portrait while centering their faces.
  const wide=clamp(V*.86/285,1.12,2.15),tight=clamp(V*.86/240,1.12,2.6);
+ if(phase==='handKiss'){const close=ease(clock/.65)*(1-ease((clock-5.7)/.7));return {strength,zoom:reduce?1.08:mix(wide,clamp(V*.88/150,1.8,3.4),close)};}
  const intimacy=phase==='embrace'?ease(clock/1.8):['loveQuestion','kiss','release'].includes(phase)?1:0;
  return {strength,zoom:mix(1,reduce?1.08:mix(wide,tight,intimacy),strength)};
 }
@@ -293,6 +295,7 @@ function applyRomanceCamera(){
 }
 function romancePose(){
  if(phase==='hold')return {sheet:'couple-rise',frame:0};
+ if(phase==='handKiss'){const ends=[.65,1.3,2.05,2.95,4.05,4.95,5.65,6.4];return {sheet:'couple-hand-kiss',frame:reduce?4:Math.min(7,ends.findIndex(t=>clock<t)<0?7:ends.findIndex(t=>clock<t))};}
  if(phase==='danceRise')return {sheet:'couple-rise',frame:Math.min(3,Math.floor(clock/1.6*4))};
  if(phase==='dance'){const d=danceSettings();return {sheet:'couple-dance',frame:reduce?0:Math.floor(clock*d.fps)%d.frames};}
  if(phase==='embrace')return {sheet:'couple-embrace',frame:Math.min(2,Math.floor(clock/1.8*3))};

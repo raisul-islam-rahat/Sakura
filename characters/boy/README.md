@@ -42,3 +42,6 @@ Built-in image generation prompt set:
 
 Latest replacement: anime-spin-dip-16.png supersedes the 36-pose sheet. Built-in imagegen prompt: same couple, eight full-turn orientations in top row and eight supported backward-lean/recovery poses in bottom row, green background, exactly two arms and legs each, fixed full-body scale. Padded 320x384 cells share a fixed ground baseline.
 
+
+Hand kiss: anime-hand-kiss-8.png, generated with built-in imagegen using anime-hands.png as identity reference. Prompt: eight sequential poses, standing girl left, kneeling white-suit boy right, lifting her hand, bowing, lips contacting the back of her hand, lingering, looking up; exactly two arms and legs each, no bouquet, green background. Asset uses 4 columns x2 rows. Cake generated with built-in imagegen: transparent romantic blush/ivory cake, roses, pearl piping, golden crown and exact Happy birthday my princess inscription.
+

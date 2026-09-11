@@ -472,6 +472,78 @@
           "anchorY": 690
         }
       ]
+    },
+    "couple-hand-kiss": {
+      "image": "anime-hand-kiss-8.png",
+      "chromaKey": "green",
+      "fixedScale": true,
+      "referenceHeight": 424,
+      "frames": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 443,
+          "h": 443,
+          "anchorX": 222,
+          "anchorY": 437
+        },
+        {
+          "x": 443,
+          "y": 0,
+          "w": 444,
+          "h": 443,
+          "anchorX": 665,
+          "anchorY": 437
+        },
+        {
+          "x": 887,
+          "y": 0,
+          "w": 443,
+          "h": 443,
+          "anchorX": 1109,
+          "anchorY": 437
+        },
+        {
+          "x": 1330,
+          "y": 0,
+          "w": 444,
+          "h": 443,
+          "anchorX": 1552,
+          "anchorY": 437
+        },
+        {
+          "x": 0,
+          "y": 443,
+          "w": 443,
+          "h": 444,
+          "anchorX": 222,
+          "anchorY": 880
+        },
+        {
+          "x": 443,
+          "y": 443,
+          "w": 444,
+          "h": 444,
+          "anchorX": 665,
+          "anchorY": 880
+        },
+        {
+          "x": 887,
+          "y": 443,
+          "w": 443,
+          "h": 444,
+          "anchorX": 1109,
+          "anchorY": 880
+        },
+        {
+          "x": 1330,
+          "y": 443,
+          "w": 444,
+          "h": 444,
+          "anchorX": 1552,
+          "anchorY": 880
+        }
+      ]
     }
   },
   "coupleImage": "anime-hands.png",
