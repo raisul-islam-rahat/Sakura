@@ -151,3 +151,6 @@ Princess celebration update: assets/princess-cake.png is a transparent rose-and-
 
 Latest polish: realistic-jaan-cake.png replaces the illustrated cake with photorealistic buttercream/roses and clean Happy Birthday Amar Jaan Tah lettering. Built-in imagegen prompt: real luxury two-tier ivory buttercream cake, blush roses, restrained gold leaf, clean upright dark chocolate lettering, transparent background. Hand-kiss-contact artwork corrects face/wrist overlap while keeping the eight-pose timing. Letter text is 14px, preserves line breaks without wrapping, and scrolls on both axes as needed. Existing message files were preserved. Tap a nearby letter to open its challenge or message immediately; no bottom letter action. Missing letters at the endpoint show a persistent reminder and block the finale. Browser checks: verify-letter-controls.cjs and verify-celebration.cjs passed.
 
+
+Opening bouquet scene: after the welcome instructions, the boy arrives in black, kneels, and waits for the girl. Walk close and choose Accept his flowers to play the handover. Letter collection unlocks after the handover. Restarting repeats this scene. Verified with tests/verify-flower-intro.cjs.
+

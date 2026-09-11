@@ -45,3 +45,6 @@ Latest replacement: anime-spin-dip-16.png supersedes the 36-pose sheet. Built-in
 
 Hand kiss: anime-hand-kiss-8.png, generated with built-in imagegen using anime-hands.png as identity reference. Prompt: eight sequential poses, standing girl left, kneeling white-suit boy right, lifting her hand, bowing, lips contacting the back of her hand, lingering, looking up; exactly two arms and legs each, no bouquet, green background. Asset uses 4 columns x2 rows. Cake generated with built-in imagegen: transparent romantic blush/ivory cake, roses, pearl piping, golden crown and exact Happy birthday my princess inscription.
 
+
+Opening scene assets: intro-black-roses.png (12 poses, 4x3) and intro-rose-handover.png (8 poses, 4x2), with frame bounds in actor.json. Created using built-in imagegen with existing character references. Prompt: preserve the adult anime characters; boy in an elegant black suit walks with roses then kneels and offers them; separate sequential handover sheet with pink-dressed girl accepting the bouquet; exactly two arms per character, consistent full-body scale, solid green background. Runtime removes green and crops grid borders. Timing and scene transitions are in beginFlowerIntro, tickFlowerIntro and drawFlowerIntro in game.js.
+

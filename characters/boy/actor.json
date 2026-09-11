@@ -544,6 +544,182 @@
           "anchorY": 880
         }
       ]
+    },
+    "intro-boy": {
+      "image": "intro-black-roses.png",
+      "chromaKey": "green",
+      "fixedScale": true,
+      "referenceHeight": 400,
+      "frames": [
+        {
+          "x": 3,
+          "y": 3,
+          "w": 307,
+          "h": 412,
+          "anchorX": 160,
+          "anchorY": 405
+        },
+        {
+          "x": 316,
+          "y": 3,
+          "w": 308,
+          "h": 412,
+          "anchorX": 473,
+          "anchorY": 405
+        },
+        {
+          "x": 630,
+          "y": 3,
+          "w": 307,
+          "h": 412,
+          "anchorX": 787,
+          "anchorY": 405
+        },
+        {
+          "x": 943,
+          "y": 3,
+          "w": 308,
+          "h": 412,
+          "anchorX": 1100,
+          "anchorY": 405
+        },
+        {
+          "x": 3,
+          "y": 421,
+          "w": 307,
+          "h": 412,
+          "anchorX": 160,
+          "anchorY": 823
+        },
+        {
+          "x": 316,
+          "y": 421,
+          "w": 308,
+          "h": 412,
+          "anchorX": 473,
+          "anchorY": 823
+        },
+        {
+          "x": 630,
+          "y": 421,
+          "w": 307,
+          "h": 412,
+          "anchorX": 787,
+          "anchorY": 823
+        },
+        {
+          "x": 943,
+          "y": 421,
+          "w": 308,
+          "h": 412,
+          "anchorX": 1100,
+          "anchorY": 823
+        },
+        {
+          "x": 3,
+          "y": 839,
+          "w": 307,
+          "h": 412,
+          "anchorX": 160,
+          "anchorY": 1241
+        },
+        {
+          "x": 316,
+          "y": 839,
+          "w": 308,
+          "h": 412,
+          "anchorX": 473,
+          "anchorY": 1241
+        },
+        {
+          "x": 630,
+          "y": 839,
+          "w": 307,
+          "h": 412,
+          "anchorX": 787,
+          "anchorY": 1241
+        },
+        {
+          "x": 943,
+          "y": 839,
+          "w": 308,
+          "h": 412,
+          "anchorX": 1100,
+          "anchorY": 1241
+        }
+      ]
+    },
+    "intro-giving": {
+      "image": "intro-rose-handover.png",
+      "chromaKey": "green",
+      "fixedScale": true,
+      "referenceHeight": 424,
+      "frames": [
+        {
+          "x": 3,
+          "y": 3,
+          "w": 437,
+          "h": 437,
+          "anchorX": 246,
+          "anchorY": 437
+        },
+        {
+          "x": 446,
+          "y": 3,
+          "w": 438,
+          "h": 437,
+          "anchorX": 689,
+          "anchorY": 437
+        },
+        {
+          "x": 890,
+          "y": 3,
+          "w": 437,
+          "h": 437,
+          "anchorX": 1133,
+          "anchorY": 437
+        },
+        {
+          "x": 1333,
+          "y": 3,
+          "w": 438,
+          "h": 437,
+          "anchorX": 1576,
+          "anchorY": 437
+        },
+        {
+          "x": 3,
+          "y": 446,
+          "w": 437,
+          "h": 438,
+          "anchorX": 246,
+          "anchorY": 880
+        },
+        {
+          "x": 446,
+          "y": 446,
+          "w": 438,
+          "h": 438,
+          "anchorX": 689,
+          "anchorY": 880
+        },
+        {
+          "x": 890,
+          "y": 446,
+          "w": 437,
+          "h": 438,
+          "anchorX": 1133,
+          "anchorY": 880
+        },
+        {
+          "x": 1333,
+          "y": 446,
+          "w": 438,
+          "h": 438,
+          "anchorX": 1576,
+          "anchorY": 880
+        }
+      ]
     }
   },
   "coupleImage": "anime-hands.png",

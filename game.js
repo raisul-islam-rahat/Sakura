@@ -11,6 +11,7 @@ let W=390,H=844,V=462,S=.844,assets={},meta={},backgrounds=[],letters=[],loaded=
 let WORLD=19800,END=19150,segmentWidth=3000,overlap=200;
 const START=125,BOUQUET=340,BASE=867;
 let phase='entrance',clock=0,total=0,x=START,velocity=0,input=0,camera=0,gait=0,face=1,carrying=false,collected=new Set(),passed=new Set(),completed=false,manualPause=false,muted=false,active=false,near=null;
+let flowerIntro={state:'idle',boy:0,start:0,from:START};
 let pointer=null,keys=new Set(),modalLetter=null,toastTimer,pickup=null;
 let cinematic={girl:0,boy:0,startGirl:0,boyStart:0},petals=[],stars=[],sparks=[],rockets=[],fireworkTimer=0,wind=0,mini=null,fireworkBeat=0,blooms=[],petalBursts=[],lastEffectCamera=0;
 const finaleVideo=$('finale-video');
@@ -51,7 +52,7 @@ $('secret').onsubmit=async e=>{e.preventDefault();if(norm($('answer').value)!==n
 function positionJourneyPointer(){const r=$('joystick').getBoundingClientRect();$('joystick-pointer').style.left=(r.left+r.width/2)+'px';$('joystick-pointer').style.top=(r.top-83)+'px';}
 function showJourneyHelp(){stop();$('journey-help').showModal();positionJourneyPointer();$('help-start').focus();updateAction();}
 $('help-start').onclick=()=>{$('journey-help').close();};
-$('journey-help').addEventListener('close',()=>{stop();updateAction();$('right').focus({preventScroll:true});});
+$('journey-help').addEventListener('close',()=>{stop();updateAction();$('right').focus({preventScroll:true});if(active&&!carrying&&flowerIntro.state==='idle')beginFlowerIntro();});
 window.addEventListener('resize',()=>{if($('journey-help').open)positionJourneyPointer();});
 window.visualViewport?.addEventListener('resize',()=>{if($('journey-help').open)positionJourneyPointer();});
 function updateCount(){$('letter-count').textContent=`${collected.size}/${letters.length}`;$('journal-button').setAttribute('aria-label',`Your letters: ${collected.size} of ${letters.length} collected`);}
@@ -103,10 +104,10 @@ $('video-play').onclick=playFinaleVideo;
 $('video-continue').onclick=finishFinaleVideo;
 finaleVideo.addEventListener('ended',finishFinaleVideo);
 finaleVideo.addEventListener('error',()=>{if(phase!=='video')return;$('video-status').textContent='The video could not load. You can try again or continue.';$('video-play').hidden=false;});
-function updateAction(){let text=null;if(phase==='explore'&&near==='bouquet')text='Pick up roses ♡';if(phase==='offer')text=C.finale.handButton;if(phase==='cake')text=C.finale.candleButton;$('action').hidden=!text||blocked();if(text)$('action').textContent=text;$('action').classList.toggle('cinematic',phase!=='explore');}
-function findNear(){near=null;if(!carrying&&Math.abs(x-BOUQUET)<155)near='bouquet';else{let d=140;letters.forEach((l,i)=>{if(Math.abs(x-l.x)<d){near=i;d=Math.abs(x-l.x);}});}updateAction();}
-$('action').onclick=()=>{if(blocked())return;if(phase==='explore'&&near==='bouquet'){beginPickup('bouquet');}else if(phase==='explore'&&Number.isInteger(near)){requestLetter(near);}else if(phase==='offer'){setPhase('hold');chime('win');for(let i=0;i<160*density;i++)petals.push(makePetal(true));}else if(phase==='cake'){setPhase('blow');chime('wind');wind=1;}};
-function requestLetter(i){if(phase!=='explore'||blocked())return;beginPickup(i);}
+function updateAction(){let text=null;if(phase==='explore'&&near==='bouquet')text='Accept his flowers ♡';if(phase==='offer')text=C.finale.handButton;if(phase==='cake')text=C.finale.candleButton;$('action').hidden=!text||blocked();if(text)$('action').textContent=text;$('action').classList.toggle('cinematic',phase!=='explore');}
+function findNear(){near=null;if(!carrying&&flowerIntro.state==='waiting'&&Math.abs(x-(BOUQUET-75))<50)near='bouquet';else{let d=140;letters.forEach((l,i)=>{if(Math.abs(x-l.x)<d){near=i;d=Math.abs(x-l.x);}});}updateAction();}
+$('action').onclick=()=>{if(blocked())return;if(phase==='explore'&&near==='bouquet'){acceptIntroFlowers();}else if(phase==='explore'&&Number.isInteger(near)){requestLetter(near);}else if(phase==='offer'){setPhase('hold');chime('win');for(let i=0;i<160*density;i++)petals.push(makePetal(true));}else if(phase==='cake'){setPhase('blow');chime('wind');wind=1;}};
+function requestLetter(i){if(phase!=='explore'||blocked()||!carrying)return;beginPickup(i);}
 function beginPickup(target){
  if(phase!=='explore'||blocked())return;
  const itemX=target==='bouquet'?BOUQUET:letters[target].x;
@@ -130,19 +131,35 @@ function pickupPose(){
 function openLetter(i){stop();modalLetter={...letters[i],i};const l=modalLetter;collected.add(i);passed.add(i);$('letter-number').textContent=`${String(i+1).padStart(2,'0')} / ${letters.length} · FOR ${C.nickname.toUpperCase()}`;$('letter-title').textContent=l.title;$('message').textContent=l.message.replaceAll('{{nickname}}',C.nickname).replaceAll('{{name}}',C.recipientName).replaceAll('{{sender}}',C.senderName);$('signature').textContent=l.signature||`With love, ${C.senderName}`;$('photo').hidden=!l.picture;if(l.picture){$('photo-img').src=l.picture;$('photo-img').alt=l.imageAlt||'Our little memory';}$('caption').textContent=l.caption||'';$('letter-animation').hidden=!l.animation.file;if(l.animation.file)$('letter-animation').src=`${l.folder}/${l.animation.file}`;$('continue').textContent=i===letters.length-1?'A little further… ♡':'Keep it in my heart ♡';$('letter').showModal();$('letter').scrollTop=0;window.writeBirthdayLetter?.($('message').textContent,i);if(l.music){song.src=l.music;song.load();}soundSync();updateCount();updateAction();}
 function closeLetter(){$('letter').close();}$('close-letter').onclick=closeLetter;$('continue').onclick=closeLetter;$('letter').addEventListener('close',()=>{if($('letter').open)return;modalLetter=null;soundSync();updateAction();});$('photo-img').onerror=()=>{$('photo').hidden=true;};$('letter-animation').onerror=()=>{$('letter-animation').hidden=true;};song.onerror=()=>{if(modalLetter){modalLetter.music=null;soundSync();}};
 function showJournal(){stop();$('journal-title').textContent=`${letters.length} little letters`;$('journal-list').replaceChildren();letters.forEach((l,i)=>{const b=document.createElement('button');b.disabled=!collected.has(i);b.textContent=collected.has(i)?`♡  ${l.title}`:`✧  Letter ${i+1}`;b.onclick=()=>{$('journal').close();openLetter(i);};$('journal-list').append(b);});$('reset-confirm').hidden=true;$('journal').showModal();updateAction();}
-$('journal-button').onclick=showJournal;$('ending-journal').onclick=showJournal;$('close-journal').onclick=()=>$('journal').close();$('journal').addEventListener('close',updateAction);$('restart').onclick=()=>{$('reset-confirm').hidden=false;};$('reset-no').onclick=()=>{$('reset-confirm').hidden=true;};$('reset-yes').onclick=()=>{collected.clear();passed.clear();carrying=false;completed=false;x=START;camera=0;bg.src=C.backgroundMusic;bg.load();$('journal').close();setPhase('explore');updateCount();soundSync();};$('replay').onclick=()=>{completed=false;beginCinema();};
+$('journal-button').onclick=showJournal;$('ending-journal').onclick=showJournal;$('close-journal').onclick=()=>$('journal').close();$('journal').addEventListener('close',updateAction);$('restart').onclick=()=>{$('reset-confirm').hidden=false;};$('reset-no').onclick=()=>{$('reset-confirm').hidden=true;};$('reset-yes').onclick=()=>{collected.clear();passed.clear();carrying=false;completed=false;x=START;camera=0;bg.src=C.backgroundMusic;bg.load();$('journal').close();setPhase('explore');updateCount();soundSync();beginFlowerIntro();};$('replay').onclick=()=>{completed=false;beginCinema();};
 function togglePause(){manualPause=!manualPause;$('pause-screen').hidden=!manualPause;$('pause').setAttribute('aria-pressed',String(manualPause));$('pause').setAttribute('aria-label',manualPause?'Continue adventure':'Pause adventure');stop();soundSync();updateAction();}$('pause').onclick=togglePause;$('resume').onclick=togglePause;
 function setInput(n){input=n;$('stick').style.transform=`translateX(${n*22}px)`;}
 function touchMove(e){if(e.pointerId!==pointer)return;const r=$('joystick').getBoundingClientRect(),dx=e.clientX-r.left-r.width/2;setInput(Math.abs(dx)<7?0:Math.sign(dx));}
 $('joystick').addEventListener('pointerdown',e=>{if(phase!=='explore'||blocked())return;pointer=e.pointerId;$('joystick').setPointerCapture(pointer);touchMove(e);e.preventDefault();});$('joystick').addEventListener('pointermove',touchMove);['pointerup','pointercancel','lostpointercapture'].forEach(n=>$('joystick').addEventListener(n,stop));
 window.addEventListener('keydown',e=>{if(!active||blocked())return;if(phase==='explore'&&['arrowright','arrowleft','a','d'].includes(e.key.toLowerCase())){e.preventDefault();keys.add(e.key.toLowerCase());setInput((keys.has('arrowright')||keys.has('d')?1:0)-(keys.has('arrowleft')||keys.has('a')?1:0));}if(e.key.toLowerCase()==='e'){if(phase==='explore'&&Number.isInteger(near))requestLetter(near);else if(!$('action').hidden)$('action').click();}});window.addEventListener('keyup',e=>{keys.delete(e.key.toLowerCase());if(pointer===null)setInput((keys.has('arrowright')||keys.has('d')?1:0)-(keys.has('arrowleft')||keys.has('a')?1:0));});['left','right'].forEach((id,i)=>{$(id).addEventListener('keydown',e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();setInput(i?1:-1);}});$(id).addEventListener('keyup',e=>{if(e.key===' '||e.key==='Enter')stop();});});window.addEventListener('blur',()=>{stop();});document.addEventListener('visibilitychange',()=>{stop();soundSync();});
+function beginFlowerIntro(){flowerIntro={state:'arriving',boy:camera+V+160,start:camera+V+160,from:x};setPhase('flowerArrival');$('live').textContent='He arrives with roses, dressed in black.';}
+function acceptIntroFlowers(){if(flowerIntro.state!=='waiting'||blocked())return;flowerIntro.from=x;flowerIntro.state='giving';setPhase('flowerAccept');}
+function tickFlowerIntro(dt){
+ if(phase==='flowerArrival'){flowerIntro.boy=mix(flowerIntro.start,BOUQUET+45,stroll(clock/3.8));if(clock>=3.8)setPhase('flowerKneel');}
+ else if(phase==='flowerKneel'){if(clock>=1.6){flowerIntro.state='waiting';setPhase('explore');toast('Come closer, my precious girl. These roses are for you. ♡');}}
+ else if(phase==='flowerAccept'){const old=x;x=mix(flowerIntro.from,BOUQUET-75,ease(clock/.5));gait+=Math.abs(x-old)/210;if(clock>=4.8){carrying=true;flowerIntro.state='farewell';setPhase('flowerFarewell');chime('win');}}
+ else if(phase==='flowerFarewell'&&clock>=1.3){flowerIntro.state='done';setPhase('explore');toast('Keep these roses close. Your letter journey begins now. ♡');}
+}
+function drawFlowerIntro(now){
+ if(phase==='flowerArrival'||phase==='flowerKneel'){drawGirl(x-camera,false,now);const frame=phase==='flowerArrival'?Math.floor(clock*6)%8:Math.min(11,8+Math.floor(clock/1.6*4));sprite('intro-boy',frame,flowerIntro.boy-camera,BASE,260,true);return;}
+ if(phase==='flowerAccept'&&clock<.5){drawGirl(x-camera,true,now);sprite('intro-boy',11,flowerIntro.boy-camera,BASE,260,true);return;}
+ const center=(BOUQUET-75+flowerIntro.boy)/2-camera;
+ if(phase==='flowerAccept')sprite('intro-giving',Math.min(7,Math.floor((clock-.5)/4.3*8)),center,BASE,260);
+ else{const fade=ease(clock/1.3);sprite('intro-giving',7,center,BASE,260,false,0,1-fade);ctx.save();ctx.globalAlpha=fade;drawGirl(x-camera,false,now);ctx.restore();}
+}
 function strollDuration(a,b){return Math.max(2.8,Math.abs(b-a)/(C.boyWalkSpeed||135));}
 function stroll(t){t=clamp(t,0,1);const r=.15;if(t<r)return t*t/(2*r*(1-r));if(t>1-r)return 1-(1-t)*(1-t)/(2*r*(1-r));return (t-r/2)/(1-r);}
 function beginCinema(){if(collected.size!==letters.length)return;stop();x=END;camera=clamp(END-V*.24,0,WORLD-V);cinematic={girl:x-camera,boy:V+180,startGirl:x-camera,boyStart:V+180,boyGait:0};setPhase('arrival');$('live').textContent='A boy approaches through the blossoms.';}
 function tick(dt){if(blocked())return;const previousBoy=cinematic.boy,previousPhase=phase;clock+=dt;total+=dt;wind=Math.max(0,wind-dt*.38);
- if(phase==='explore'){
+ if(phase.startsWith('flower')){tickFlowerIntro(dt);}
+ else if(phase==='explore'){
   velocity=mix(velocity,input*210,Math.min(1,dt*10));if(Math.abs(velocity)<1)velocity=0;
-  const limit=!carrying?BOUQUET+80:END;
+  const limit=!carrying?BOUQUET-75:END;
   x=clamp(x+velocity*dt,START,limit);if(input)face=input;if(velocity)gait+=dt*Math.abs(velocity)/210;
   camera=mix(camera,clamp(x-V*.32,0,WORLD-V),1-Math.exp(-dt*5));findNear();
   const missingAtEnd=x>=END-2&&collected.size<letters.length;$('end-reminder').hidden=!missingAtEnd;
@@ -266,7 +283,7 @@ function drawWorld(now){
  for(let i=0;i<3;i++){const px=((now*(i+1)*8+i*V*.4)%(V+600))-300;glow(px,690+i*25,230,'#cbbced09');}ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';
  for(const p of petals){if(p.z<.65)paintPetal(p,now);}
  if(active&&['explore','pickup'].includes(phase)){
-  if(!carrying&&!(phase==='pickup'&&pickup?.target==='bouquet')){glow(BOUQUET-camera,BASE-40,70,'#ffb0c640');prop(0,BOUQUET-camera,BASE-43,100,Math.sin(now*2)*.04);}
+  if(!carrying&&flowerIntro.state==='waiting')sprite('intro-boy',11,flowerIntro.boy-camera,BASE,260,true);
   letters.forEach((l,i)=>{if(phase==='pickup'&&pickup?.target===i)return;const px=l.x-camera;if(px< -100||px>V+100)return;const done=collected.has(i);glow(px,BASE-40,55,done?'#ffdca41c':'#ffbedf3d');prop(2,px,BASE-45+Math.sin(now*2+i)*5,done?52:68,Math.sin(now+i)*.07,done?.5:1);});
   if(collected.size<letters.length&&x>letters.at(-1).x-100){for(let i=0;i<25;i++){const py=500+i*14;glow(letters.at(-1).x+200-camera+Math.sin(now+i)*6,py,10,'#f2b9d554');}}
   drawGirl(x-camera,Math.abs(velocity)>5,now);
@@ -321,6 +338,7 @@ function drawRomance(now){
  if(entry<1||release>0){ctx.save();ctx.globalAlpha=1-alpha;drawGirl(cinematic.girl,false,now);sprite('gentleman',phase==='hold'?2:0,cinematic.boy,BASE,260,true);ctx.restore();}
 }
 function drawCinema(now){
+ if(phase.startsWith('flower')){drawFlowerIntro(now);return;}
  if(romancePhase()){drawRomance(now);return;}
  const travel=['arrival','walkAway','return'].includes(phase),cakeVisible=['return','cakeReveal','cake','blow','cutCake','tilt'].includes(phase);
  let sheet='gentleman',boyFrame=0;const boyFlip=phase!=='walkAway';
