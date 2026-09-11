@@ -1,0 +1,10 @@
+{
+  "type": "question",
+  "title": "A name only we know",
+  "hint": "",
+  "question": "What little name does he call you?",
+  "answers": [
+    "muno"
+  ],
+  "wrongMessage": "Think of your special little name. ♡"
+}

@@ -1,0 +1,13 @@
+{
+  "type": "question",
+  "title": "A little memory from tonight",
+  "hint": "",
+  "question": "Which flowers did you pick at the beginning?",
+  "answers": [
+    "rose",
+    "roses",
+    "a rose",
+    "a bouquet of roses"
+  ],
+  "wrongMessage": "The flowers you are holding. ♡"
+}

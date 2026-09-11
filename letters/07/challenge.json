@@ -1,0 +1,10 @@
+{
+  "type": "question",
+  "title": "One last secret",
+  "hint": "",
+  "question": "Complete this: Under the same ___ .",
+  "answers": [
+    "moon"
+  ],
+  "wrongMessage": "Look up at our little sky. ♡"
+}

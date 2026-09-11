@@ -1,0 +1,426 @@
+{
+  "image": "walk-padded.png",
+  "columns": 4,
+  "rows": 2,
+  "displayHeight": 245,
+  "fixedScale": true,
+  "referenceHeight": 380,
+  "cycleSeconds": 0.96,
+  "walkFrames": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "idleFrame": 0,
+  "bouquetOffset": {
+    "x": 25,
+    "y": -152,
+    "size": 70
+  },
+  "frames": [
+    {
+      "x": 0,
+      "y": 0,
+      "w": 443,
+      "h": 443,
+      "anchorX": 270,
+      "anchorY": 425
+    },
+    {
+      "x": 443,
+      "y": 0,
+      "w": 444,
+      "h": 443,
+      "anchorX": 713,
+      "anchorY": 425
+    },
+    {
+      "x": 887,
+      "y": 0,
+      "w": 443,
+      "h": 443,
+      "anchorX": 1157,
+      "anchorY": 425
+    },
+    {
+      "x": 1330,
+      "y": 0,
+      "w": 444,
+      "h": 443,
+      "anchorX": 1600,
+      "anchorY": 425
+    },
+    {
+      "x": 0,
+      "y": 443,
+      "w": 443,
+      "h": 444,
+      "anchorX": 270,
+      "anchorY": 863
+    },
+    {
+      "x": 443,
+      "y": 443,
+      "w": 444,
+      "h": 444,
+      "anchorX": 713,
+      "anchorY": 863
+    },
+    {
+      "x": 887,
+      "y": 443,
+      "w": 443,
+      "h": 444,
+      "anchorX": 1157,
+      "anchorY": 863
+    },
+    {
+      "x": 1330,
+      "y": 443,
+      "w": 444,
+      "h": 444,
+      "anchorX": 1600,
+      "anchorY": 863
+    }
+  ],
+  "pickup": {
+    "image": "pickup.png",
+    "removeNeutralBackdrop": true,
+    "referenceHeight": 525,
+    "duration": 2.3,
+    "frames": [
+      {
+        "x": 0,
+        "y": 0,
+        "w": 384,
+        "h": 550,
+        "anchorX": 225,
+        "anchorY": 527,
+        "handX": 264,
+        "handY": 275
+      },
+      {
+        "x": 384,
+        "y": 0,
+        "w": 384,
+        "h": 550,
+        "anchorX": 585,
+        "anchorY": 527,
+        "handX": 672,
+        "handY": 298
+      },
+      {
+        "x": 768,
+        "y": 0,
+        "w": 384,
+        "h": 550,
+        "anchorX": 968,
+        "anchorY": 527,
+        "handX": 1080,
+        "handY": 335
+      },
+      {
+        "x": 1152,
+        "y": 0,
+        "w": 384,
+        "h": 550,
+        "anchorX": 1365,
+        "anchorY": 527,
+        "handX": 1492,
+        "handY": 417
+      },
+      {
+        "x": 0,
+        "y": 560,
+        "w": 384,
+        "h": 464,
+        "anchorX": 220,
+        "anchorY": 985,
+        "handX": 310,
+        "handY": 913
+      },
+      {
+        "x": 384,
+        "y": 560,
+        "w": 384,
+        "h": 464,
+        "anchorX": 655,
+        "anchorY": 985,
+        "handX": 704,
+        "handY": 962
+      },
+      {
+        "x": 768,
+        "y": 560,
+        "w": 384,
+        "h": 464,
+        "anchorX": 1040,
+        "anchorY": 985,
+        "handX": 1142,
+        "handY": 956
+      },
+      {
+        "x": 1152,
+        "y": 560,
+        "w": 384,
+        "h": 464,
+        "anchorX": 1420,
+        "anchorY": 985,
+        "handX": 1520,
+        "handY": 976
+      }
+    ]
+  },
+  "chromaKey": "green",
+  "sheets": {
+    "girl-bouquet-walk": {
+      "image": "bouquet-walk-fixed.png",
+      "chromaKey": "green",
+      "fixedScale": true,
+      "referenceHeight": 280,
+      "cycleSeconds": 1.28,
+      "walkFrames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "frames": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 313,
+          "h": 313,
+          "anchorX": 190,
+          "anchorY": 310
+        },
+        {
+          "x": 313,
+          "y": 0,
+          "w": 314,
+          "h": 313,
+          "anchorX": 503,
+          "anchorY": 310
+        },
+        {
+          "x": 627,
+          "y": 0,
+          "w": 313,
+          "h": 313,
+          "anchorX": 817,
+          "anchorY": 310
+        },
+        {
+          "x": 940,
+          "y": 0,
+          "w": 314,
+          "h": 313,
+          "anchorX": 1130,
+          "anchorY": 310
+        },
+        {
+          "x": 0,
+          "y": 313,
+          "w": 313,
+          "h": 314,
+          "anchorX": 190,
+          "anchorY": 623
+        },
+        {
+          "x": 313,
+          "y": 313,
+          "w": 314,
+          "h": 314,
+          "anchorX": 503,
+          "anchorY": 623
+        },
+        {
+          "x": 627,
+          "y": 313,
+          "w": 313,
+          "h": 314,
+          "anchorX": 817,
+          "anchorY": 623
+        },
+        {
+          "x": 940,
+          "y": 313,
+          "w": 314,
+          "h": 314,
+          "anchorX": 1130,
+          "anchorY": 623
+        },
+        {
+          "x": 0,
+          "y": 627,
+          "w": 313,
+          "h": 313,
+          "anchorX": 190,
+          "anchorY": 936
+        },
+        {
+          "x": 313,
+          "y": 627,
+          "w": 314,
+          "h": 313,
+          "anchorX": 503,
+          "anchorY": 936
+        },
+        {
+          "x": 627,
+          "y": 627,
+          "w": 313,
+          "h": 313,
+          "anchorX": 817,
+          "anchorY": 936
+        },
+        {
+          "x": 940,
+          "y": 627,
+          "w": 314,
+          "h": 313,
+          "anchorX": 1130,
+          "anchorY": 936
+        },
+        {
+          "x": 0,
+          "y": 940,
+          "w": 313,
+          "h": 314,
+          "anchorX": 190,
+          "anchorY": 1237
+        },
+        {
+          "x": 313,
+          "y": 940,
+          "w": 314,
+          "h": 314,
+          "anchorX": 503,
+          "anchorY": 1237
+        },
+        {
+          "x": 627,
+          "y": 940,
+          "w": 313,
+          "h": 314,
+          "anchorX": 817,
+          "anchorY": 1237
+        },
+        {
+          "x": 940,
+          "y": 940,
+          "w": 314,
+          "h": 314,
+          "anchorX": 1130,
+          "anchorY": 1237
+        }
+      ]
+    },
+    "girl-bouquet-pickup": {
+      "image": "bouquet-pickup-standing-fixed.png",
+      "fixedScale": true,
+      "referenceHeight": 458,
+      "duration": 2.3,
+      "frames": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 443,
+          "h": 520,
+          "anchorX": 280,
+          "anchorY": 484,
+          "handX": 330,
+          "handY": 280
+        },
+        {
+          "x": 443,
+          "y": 0,
+          "w": 444,
+          "h": 520,
+          "anchorX": 720,
+          "anchorY": 484,
+          "handX": 770,
+          "handY": 300
+        },
+        {
+          "x": 887,
+          "y": 0,
+          "w": 443,
+          "h": 520,
+          "anchorX": 1165,
+          "anchorY": 484,
+          "handX": 1200,
+          "handY": 322
+        },
+        {
+          "x": 1330,
+          "y": 0,
+          "w": 444,
+          "h": 520,
+          "anchorX": 1605,
+          "anchorY": 484,
+          "handX": 1670,
+          "handY": 340
+        },
+        {
+          "x": 0,
+          "y": 520,
+          "w": 443,
+          "h": 367,
+          "anchorX": 265,
+          "anchorY": 854,
+          "handX": 394,
+          "handY": 822
+        },
+        {
+          "x": 443,
+          "y": 520,
+          "w": 444,
+          "h": 367,
+          "anchorX": 715,
+          "anchorY": 854,
+          "handX": 833,
+          "handY": 810
+        },
+        {
+          "x": 887,
+          "y": 520,
+          "w": 443,
+          "h": 367,
+          "anchorX": 1170,
+          "anchorY": 854,
+          "handX": 1298,
+          "handY": 835
+        },
+        {
+          "x": 1330,
+          "y": 520,
+          "w": 444,
+          "h": 367,
+          "anchorX": 1608,
+          "anchorY": 854,
+          "handX": 1735,
+          "handY": 843
+        }
+      ],
+      "chromaKey": "green"
+    }
+  }
+}

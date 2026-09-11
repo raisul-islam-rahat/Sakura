@@ -1,0 +1,15 @@
+{
+  "type": "question",
+  "title": "A wish just for you",
+  "hint": "A special day, a cake, and twenty little letters.",
+  "question": "What special day are we celebrating?",
+  "answers": [
+    "birthday",
+    "my birthday",
+    "your birthday",
+    "muno birthday",
+    "muno’s birthday",
+    "muno's birthday"
+  ],
+  "wrongMessage": "It is your special day. ♡"
+}

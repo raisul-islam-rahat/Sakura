@@ -1,0 +1,7 @@
+{
+  "type": "treasure",
+  "title": "A secret sealed with love",
+  "hint": "Tap the treasure until it opens.",
+  "minTaps": 8,
+  "maxTaps": 13
+}

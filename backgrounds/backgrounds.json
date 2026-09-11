@@ -1,0 +1,83 @@
+{
+  "segmentWidth": 3000,
+  "overlap": 200,
+  "panoramas": [
+    {
+      "file": "01.webp",
+      "nativeWidth": 2172,
+      "nativeHeight": 724
+    },
+    {
+      "file": "02.webp",
+      "nativeWidth": 2172,
+      "nativeHeight": 724
+    },
+    {
+      "file": "03.webp",
+      "nativeWidth": 2172,
+      "nativeHeight": 724
+    },
+    {
+      "file": "04.webp",
+      "nativeWidth": 2172,
+      "nativeHeight": 724
+    },
+    {
+      "file": "05.webp",
+      "nativeWidth": 2172,
+      "nativeHeight": 724
+    },
+    {
+      "file": "06.webp",
+      "nativeWidth": 2172,
+      "nativeHeight": 724
+    },
+    {
+      "file": "07.webp",
+      "nativeWidth": 2172,
+      "nativeHeight": 724
+    }
+  ],
+  "resolutionNote": "Native generated sources are 2172 x 724 pixels, not 4K. No upscaling applied.",
+  "petals": {
+    "image": "petals.webp",
+    "frames": [
+      {
+        "x": 75,
+        "y": 80,
+        "w": 384,
+        "h": 429
+      },
+      {
+        "x": 596,
+        "y": 71,
+        "w": 332,
+        "h": 431
+      },
+      {
+        "x": 1074,
+        "y": 84,
+        "w": 312,
+        "h": 390
+      },
+      {
+        "x": 53,
+        "y": 722,
+        "w": 410,
+        "h": 211
+      },
+      {
+        "x": 570,
+        "y": 647,
+        "w": 366,
+        "h": 351
+      },
+      {
+        "x": 1059,
+        "y": 619,
+        "w": 342,
+        "h": 384
+      }
+    ]
+  }
+}

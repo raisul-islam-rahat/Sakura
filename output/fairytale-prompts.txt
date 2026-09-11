@@ -1,0 +1,11 @@
+Generated with the built-in image generation tool, using each previous scene as a continuity/style reference.
+Shared prompt: Cinematic painterly fairy-tale realism; full-bleed 3:1 panorama; consistent level horizontal earth-and-stone walking path near 86.7% height; detailed layered scenery behind path; no people, text, UI or borders.
+01: Stormy ancient forest, rain, lightning, dark indigo and teal, right edge opening into mist.
+02: Clearing enchanted woodland, luminous moss, fireflies, stream, distant foothills.
+03: Waterfall foothill valley, silver waterfalls, blue pools, lush cliffs transitioning to mountain terrace.
+04: Mountain terrace, Himalayan-like peaks, mist-filled ravines, cloud seas, alpine flowers.
+05: Alpine meadow, wildflowers, winding background stream, lavender mountains, first flowering trees and lake.
+06: Blossom-lined lake, turquoise reflections, mountain silhouettes, roses, first warm lanterns.
+07: Hidden romantic garden, cascading sakura, roses, wisteria, golden lights and a flowering arch framing the lake.
+Final files normalized to exactly 2172 x 724 and encoded as WebP quality 95. Original generated dimensions varied by up to two pixels.
+Designed for sequential scrolling with the game's existing background overlap; not guaranteed pixel-perfect seamless tiles.

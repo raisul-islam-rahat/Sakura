@@ -1,0 +1,13 @@
+{
+  "type": "question",
+  "title": "Our moonlit garden",
+  "hint": "Look around our little world.",
+  "question": "Which flowers are falling around us?",
+  "answers": [
+    "sakura",
+    "cherry blossom",
+    "cherry blossoms",
+    "sakura flowers"
+  ],
+  "wrongMessage": "Think of the pink blossoms around you. ♡"
+}

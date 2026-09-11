@@ -1,0 +1,12 @@
+{
+  "title": "My favourite little name",
+  "caption": "Some names feel like home.",
+  "text": "message.txt",
+  "picture": "picture.webp",
+  "music": "music.wav",
+  "animation": "animation.json",
+  "signature": "With all my love, your person ♡",
+  "imageAlt": "Moonlit cherry blossoms reflected on a quiet lake",
+  "challenge": "challenge.json",
+  "challengeEnabled": false
+}
