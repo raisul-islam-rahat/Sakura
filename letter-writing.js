@@ -5,7 +5,7 @@
   cancelAnimationFrame(raf);const box=document.getElementById('message'),dialog=document.getElementById('letter'),paper=dialog.querySelector('.paper');
   paper.style.setProperty('--paper',themes[index%20]);paper.style.setProperty('--ink',`hsl(${(index*29+315)%360} 27% 25%)`);paper.dataset.paper=index%5;dialog.classList.add('birthday-paper');
   box.scrollLeft=box.scrollTop=0;box.replaceChildren();const accessible=document.createElement('span');accessible.className='sr-only';accessible.textContent=text;
-  const visual=document.createElement('span');visual.setAttribute('aria-hidden','true');const written=document.createElement('span'),remaining=document.createElement('span');remaining.style.visibility='hidden';remaining.textContent=text;visual.append(written,remaining);
+  const visual=document.createElement('span');visual.className='diary-writing';visual.setAttribute('aria-hidden','true');const written=document.createElement('span'),remaining=document.createElement('span');remaining.style.visibility='hidden';remaining.textContent=text;visual.append(written,remaining);
   const pen=document.createElement('span');pen.className='writing-pen';pen.textContent='✒';pen.setAttribute('aria-hidden','true');box.append(accessible,visual,pen);
   let skip=document.getElementById('finish-writing');if(!skip){skip=document.createElement('button');skip.id='finish-writing';skip.className='text-button';skip.textContent='Read the whole letter ♡';box.before(skip);}skip.hidden=false;
   let count=0,last=performance.now(),elapsed=0;

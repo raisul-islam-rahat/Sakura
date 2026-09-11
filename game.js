@@ -35,7 +35,17 @@ function actorSurface(im,settings){
  if(settings.chromaKey!=='green')return im;
  const layer=document.createElement('canvas');layer.width=im.width;layer.height=im.height;
  const gc=layer.getContext('2d');gc.drawImage(im,0,0);const pixels=gc.getImageData(0,0,layer.width,layer.height),d=pixels.data;
- for(let i=0;i<d.length;i+=4){const excess=d[i+1]-Math.max(d[i],d[i+2]);if(excess>30){d[i+3]*=1-clamp((excess-30)/65,0,1);d[i+1]=Math.min(d[i+1],Math.max(d[i],d[i+2])+15);}}
+ for(let i=0;i<d.length;i+=4){const neutral=Math.max(d[i],d[i+2]),excess=d[i+1]-neutral;if(settings.cleanEdges){
+  // Remove the green matte and its antialiased spill before canvas scaling.
+  if(excess>8)d[i+3]*=1-clamp((excess-8)/77,0,1);
+  if(excess>0)d[i+1]=neutral;
+  if(d[i+3]<4)d[i]=d[i+1]=d[i+2]=d[i+3]=0;
+ }else if(excess>30){d[i+3]*=1-clamp((excess-30)/65,0,1);d[i+1]=Math.min(d[i+1],neutral+15);}}
+ if(settings.alignWalkFrames&&settings.frames)for(const f of settings.frames){
+  let top=f.y+f.h,bottom=f.y-1;
+  for(let y=f.y;y<f.y+f.h;y++)for(let x=f.x;x<f.x+f.w;x++)if(d[(y*layer.width+x)*4+3]>128){top=Math.min(top,y);bottom=Math.max(bottom,y);}
+  if(bottom>=top){f.anchorY=bottom+1;f.referenceHeight=bottom-top+1;}
+ }
  gc.putImageData(pixels,0,0);return layer;
 }
 async function loadActor(folder,key){const actor=await get(`${folder}/actor.json`);assets[key]=actorSurface(await image(`${folder}/${actor.image}`),actor);actor.frames=actor.frames?.length?actor.frames:defaultFrames(assets[key],actor);meta[key]=actor;if(actor.pickup){const p=actor.pickup;let im=await image(folder+'/'+p.image);if(p.removeNeutralBackdrop){const layer=document.createElement('canvas');layer.width=im.width;layer.height=im.height;const gc=layer.getContext('2d');gc.drawImage(im,0,0);const pixels=gc.getImageData(0,0,layer.width,layer.height);for(let i=0;i<pixels.data.length;i+=4){const d=pixels.data,spread=Math.max(d[i],d[i+1],d[i+2])-Math.min(d[i],d[i+1],d[i+2]);if(d[i]<=d[i+1]+2&&d[i]<=d[i+2]+2)d[i+3]*=clamp((spread-14)/10,0,1);}gc.putImageData(pixels,0,0);im=layer;}assets['girl-pickup']=im;meta['girl-pickup']={...p,fixedScale:true};}if(actor.sheets){await Promise.all(Object.entries(actor.sheets).map(async([name,sheet])=>{assets[name]=actorSurface(await image(`${folder}/${sheet.image}`),sheet);meta[name]=sheet;}));}if(actor.coupleImage){assets.couple=actorSurface(await image(`${folder}/${actor.coupleImage}`),actor.couple);meta.couple=actor.couple;}return actor;}
@@ -228,7 +238,7 @@ window.visualViewport?.addEventListener('resize',fitDialogs);window.visualViewpo
 function glow(px,py,r,color){const g=ctx.createRadialGradient(px,py,0,px,py,r);g.addColorStop(0,color);g.addColorStop(1,'transparent');ctx.fillStyle=g;ctx.fillRect(px-r,py-r,r*2,r*2);}
 function sprite(name,frame,px,py,height,flip=false,rotation=0,alpha=1){
  const im=assets[name],m=meta[name];if(!im||!m)return null;const f=m.frames[clamp(frame,0,m.frames.length-1)];
- const scale=m.fixedScale?height/m.referenceHeight:height/f.h,w=f.w*scale,h=f.h*scale;
+ const scale=m.fixedScale?height/(f.referenceHeight||m.referenceHeight):height/f.h,w=f.w*scale,h=f.h*scale;
  const dx=m.fixedScale?(f.x-f.anchorX)*scale:-w/2,dy=m.fixedScale?(f.y-f.anchorY)*scale:-h;
  ctx.save();ctx.globalAlpha*=alpha;ctx.translate(px,py);if(flip)ctx.scale(-1,1);ctx.rotate(rotation);ctx.drawImage(im,f.x,f.y,f.w,f.h,dx,dy,w,h);ctx.restore();return {w,h};
 }
