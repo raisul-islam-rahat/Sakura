@@ -22,3 +22,5 @@ dialog{position:fixed;left:0;right:0;top:var(--dialog-top,50%);bottom:auto;margi
 
 .cake-knife{opacity:clamp(0,calc(var(--cut)*30),1)}.sliced .cake-knife{opacity:0}
 
+
+#letter.birthday-paper #message{font-size:14px;line-height:1.8;white-space:pre;overflow-wrap:normal;word-break:normal;overflow:auto;max-height:48svh;min-height:220px;max-width:100%;padding:8px 12px 22px 0;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#b2849c #b2849c18;touch-action:pan-x pan-y}#letter.birthday-paper h2{font-size:25px}#letter.birthday-paper #signature{font-size:15px}#end-reminder{position:absolute;z-index:7;top:24%;left:50%;transform:translateX(-50%);width:min(85%,390px);padding:22px;border:1px solid #ffe0b977;border-radius:24px;background:#251a36ed;color:#ffe1ed;text-align:center;font:18px/1.6 Georgia;box-shadow:0 10px 40px #08091966}
