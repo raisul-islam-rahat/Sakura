@@ -239,137 +239,153 @@
       ]
     },
     "couple-dance": {
-      "image": "anime-spin-dip-16-alpha.png",
+      "image": "dance-new-16.webp",
       "fixedScale": true,
-      "referenceHeight": 288,
+      "referenceHeight": 600,
       "frames": [
         {
           "x": 0,
           "y": 0,
-          "w": 320,
-          "h": 384,
-          "anchorX": 160,
-          "anchorY": 365
+          "w": 700,
+          "h": 700,
+          "anchorX": 353.5,
+          "anchorY": 671,
+          "referenceHeight": 589.9499999999999
         },
         {
-          "x": 320,
+          "x": 700,
           "y": 0,
-          "w": 320,
-          "h": 384,
-          "anchorX": 480,
-          "anchorY": 365
+          "w": 700,
+          "h": 700,
+          "anchorX": 1043,
+          "anchorY": 671,
+          "referenceHeight": 589.9499999999999
         },
         {
-          "x": 640,
+          "x": 1400,
           "y": 0,
-          "w": 320,
-          "h": 384,
-          "anchorX": 800,
-          "anchorY": 365
+          "w": 700,
+          "h": 700,
+          "anchorX": 1742.5,
+          "anchorY": 671,
+          "referenceHeight": 590.9
         },
         {
-          "x": 960,
+          "x": 2100,
           "y": 0,
-          "w": 320,
-          "h": 384,
-          "anchorX": 1120,
-          "anchorY": 365
-        },
-        {
-          "x": 1280,
-          "y": 0,
-          "w": 320,
-          "h": 384,
-          "anchorX": 1440,
-          "anchorY": 365
-        },
-        {
-          "x": 1600,
-          "y": 0,
-          "w": 320,
-          "h": 384,
-          "anchorX": 1760,
-          "anchorY": 365
-        },
-        {
-          "x": 1920,
-          "y": 0,
-          "w": 320,
-          "h": 384,
-          "anchorX": 2080,
-          "anchorY": 365
-        },
-        {
-          "x": 2240,
-          "y": 0,
-          "w": 320,
-          "h": 384,
-          "anchorX": 2400,
-          "anchorY": 365
+          "w": 700,
+          "h": 700,
+          "anchorX": 2428.5,
+          "anchorY": 671,
+          "referenceHeight": 590.9
         },
         {
           "x": 0,
-          "y": 384,
-          "w": 320,
-          "h": 384,
-          "anchorX": 160,
-          "anchorY": 749
+          "y": 700,
+          "w": 700,
+          "h": 700,
+          "anchorX": 340,
+          "anchorY": 1371,
+          "referenceHeight": 595.65
         },
         {
-          "x": 320,
-          "y": 384,
-          "w": 320,
-          "h": 384,
-          "anchorX": 480,
-          "anchorY": 749
+          "x": 700,
+          "y": 700,
+          "w": 700,
+          "h": 700,
+          "anchorX": 1017,
+          "anchorY": 1371,
+          "referenceHeight": 595.65
         },
         {
-          "x": 640,
-          "y": 384,
-          "w": 320,
-          "h": 384,
-          "anchorX": 800,
-          "anchorY": 749
+          "x": 1400,
+          "y": 700,
+          "w": 700,
+          "h": 700,
+          "anchorX": 1748.5,
+          "anchorY": 1371,
+          "referenceHeight": 595.65
         },
         {
-          "x": 960,
-          "y": 384,
-          "w": 320,
-          "h": 384,
-          "anchorX": 1120,
-          "anchorY": 749
+          "x": 2100,
+          "y": 700,
+          "w": 700,
+          "h": 700,
+          "anchorX": 2438,
+          "anchorY": 1371,
+          "referenceHeight": 595.65
         },
         {
-          "x": 1280,
-          "y": 384,
-          "w": 320,
-          "h": 384,
-          "anchorX": 1440,
-          "anchorY": 749
+          "x": 0,
+          "y": 1400,
+          "w": 700,
+          "h": 700,
+          "anchorX": 347.5,
+          "anchorY": 2071,
+          "referenceHeight": 589
         },
         {
-          "x": 1600,
-          "y": 384,
-          "w": 320,
-          "h": 384,
-          "anchorX": 1760,
-          "anchorY": 749
+          "x": 700,
+          "y": 1400,
+          "w": 700,
+          "h": 700,
+          "anchorX": 1032,
+          "anchorY": 2071,
+          "referenceHeight": 589
         },
         {
-          "x": 1920,
-          "y": 384,
-          "w": 320,
-          "h": 384,
-          "anchorX": 2080,
-          "anchorY": 749
+          "x": 1400,
+          "y": 1400,
+          "w": 700,
+          "h": 700,
+          "anchorX": 1755,
+          "anchorY": 2071,
+          "referenceHeight": 589
         },
         {
-          "x": 2240,
-          "y": 384,
-          "w": 320,
-          "h": 384,
-          "anchorX": 2400,
-          "anchorY": 749
+          "x": 2100,
+          "y": 1400,
+          "w": 700,
+          "h": 700,
+          "anchorX": 2453,
+          "anchorY": 2071,
+          "referenceHeight": 589
+        },
+        {
+          "x": 0,
+          "y": 2100,
+          "w": 700,
+          "h": 700,
+          "anchorX": 359,
+          "anchorY": 2771,
+          "referenceHeight": 591.85
+        },
+        {
+          "x": 700,
+          "y": 2100,
+          "w": 700,
+          "h": 700,
+          "anchorX": 1032.5,
+          "anchorY": 2771,
+          "referenceHeight": 591.85
+        },
+        {
+          "x": 1400,
+          "y": 2100,
+          "w": 700,
+          "h": 700,
+          "anchorX": 1727,
+          "anchorY": 2771,
+          "referenceHeight": 592.8
+        },
+        {
+          "x": 2100,
+          "y": 2100,
+          "w": 700,
+          "h": 700,
+          "anchorX": 2385,
+          "anchorY": 2771,
+          "referenceHeight": 592.8
         }
       ]
     },
@@ -468,73 +484,81 @@
       ]
     },
     "couple-hand-kiss": {
-      "image": "anime-hand-kiss-polished-alpha.png",
+      "image": "hand-kiss-new-8.webp",
       "fixedScale": true,
-      "referenceHeight": 424,
+      "referenceHeight": 600,
       "frames": [
         {
           "x": 0,
           "y": 0,
-          "w": 443,
-          "h": 443,
-          "anchorX": 222,
-          "anchorY": 437
+          "w": 700,
+          "h": 700,
+          "anchorX": 352.5,
+          "anchorY": 671,
+          "referenceHeight": 607
         },
         {
-          "x": 443,
+          "x": 700,
           "y": 0,
-          "w": 444,
-          "h": 443,
-          "anchorX": 665,
-          "anchorY": 437
+          "w": 700,
+          "h": 700,
+          "anchorX": 1052.5,
+          "anchorY": 671,
+          "referenceHeight": 607
         },
         {
-          "x": 887,
+          "x": 1400,
           "y": 0,
-          "w": 443,
-          "h": 443,
-          "anchorX": 1109,
-          "anchorY": 437
+          "w": 700,
+          "h": 700,
+          "anchorX": 1752.5,
+          "anchorY": 671,
+          "referenceHeight": 607
         },
         {
-          "x": 1330,
+          "x": 2100,
           "y": 0,
-          "w": 444,
-          "h": 443,
-          "anchorX": 1552,
-          "anchorY": 437
+          "w": 700,
+          "h": 700,
+          "anchorX": 2452.5,
+          "anchorY": 671,
+          "referenceHeight": 607
         },
         {
           "x": 0,
-          "y": 443,
-          "w": 443,
-          "h": 444,
-          "anchorX": 222,
-          "anchorY": 880
+          "y": 700,
+          "w": 700,
+          "h": 700,
+          "anchorX": 349,
+          "anchorY": 1371,
+          "referenceHeight": 592
         },
         {
-          "x": 443,
-          "y": 443,
-          "w": 444,
-          "h": 444,
-          "anchorX": 665,
-          "anchorY": 880
+          "x": 700,
+          "y": 700,
+          "w": 700,
+          "h": 700,
+          "anchorX": 1048,
+          "anchorY": 1371,
+          "referenceHeight": 592
         },
         {
-          "x": 887,
-          "y": 443,
-          "w": 443,
-          "h": 444,
-          "anchorX": 1109,
-          "anchorY": 880
+          "x": 1400,
+          "y": 700,
+          "w": 700,
+          "h": 700,
+          "anchorX": 1749,
+          "anchorY": 1371,
+          "referenceHeight": 593
         },
         {
-          "x": 1330,
-          "y": 443,
-          "w": 444,
-          "h": 444,
-          "anchorX": 1552,
-          "anchorY": 880
+          "x": 2100,
+          "y": 700,
+          "w": 700,
+          "h": 700,
+          "anchorX": 2448.5,
+          "anchorY": 1371,
+          "referenceHeight": 593
         }
       ]
     },
@@ -709,21 +733,6 @@
           "h": 438,
           "anchorX": 1576,
           "anchorY": 880
-        }
-      ]
-    },
-    "couple-hand-kiss-hd": {
-      "image": "hand-kiss-hd.webp",
-      "fixedScale": true,
-      "referenceHeight": 1225,
-      "frames": [
-        {
-          "x": 0,
-          "y": 0,
-          "w": 1254,
-          "h": 1254,
-          "anchorX": 627,
-          "anchorY": 1233
         }
       ]
     }
