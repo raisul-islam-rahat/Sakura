@@ -13,8 +13,8 @@ window.BIRTHDAY_CONFIG = {
     // Put your ending video here, or change this to its file path/URL.
     video: "video/1.mp4",
     danceCycles: 1,
-    // Dance poses per second: lower = slower; 4 plays the spin then dip in four seconds. Rendering stays at 60 FPS.
-    danceFPS: 4,
+    // Sixteen consecutive spin and lean poses over eight seconds; canvas motion stays at 60 FPS.
+    danceFPS: 2,
     handButton: "Hold his hand ♡",
     waitLine: "Wait… one more thing. ♡",
     candleButton: "Blow the candle",

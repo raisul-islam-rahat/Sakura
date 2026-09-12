@@ -1,0 +1,42 @@
+{
+  "activeImages": [
+    "anime-carry-alpha.png",
+    "anime-embrace-kiss-alpha.png",
+    "anime-hands-alpha.png",
+    "anime-poses-alpha.png",
+    "anime-rise-alpha.png",
+    "anime-walk-alpha.png",
+    "dance-lean-alpha-8.webp",
+    "dance-spin-alpha-8.webp",
+    "hand-kiss-approved-alpha-8.webp",
+    "intro-black-roses-alpha.png",
+    "intro-rose-handover-alpha.png"
+  ],
+  "archivedImages": [
+    "anime-carry.png",
+    "anime-dance-36.png",
+    "anime-dance.png",
+    "anime-embrace-kiss.png",
+    "anime-embrace.png",
+    "anime-hand-kiss-8.png",
+    "anime-hand-kiss-contact.png",
+    "anime-hand-kiss-polished-alpha.png",
+    "anime-hand-kiss-polished.png",
+    "anime-hands.png",
+    "anime-poses.png",
+    "anime-rise.png",
+    "anime-spin-dip-16-alpha.png",
+    "anime-spin-dip-16.png",
+    "anime-walk.png",
+    "dance-aligned-16.webp",
+    "dance-continuous-8.webp",
+    "dance-new-16.webp",
+    "hand-kiss-continuous-8.webp",
+    "hand-kiss-hd.webp",
+    "hand-kiss-new-8.webp",
+    "intro-black-roses.png",
+    "intro-rose-handover.png"
+  ],
+  "archivedReferences": "references/kiss-end-pose.png",
+  "note": "Unused by current game runtime. Historical artwork scripts and README may mention archived filenames."
+}

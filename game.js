@@ -180,7 +180,7 @@ function tick(dt){if(blocked())return;const previousBoy=cinematic.boy,previousPh
  else if(phase==='kneel'){if(clock>=1.5){cinematic.startGirl=cinematic.girl;setPhase('approach');}}
  else if(phase==='approach'){const duration=Math.max(.85,Math.abs(cinematic.boy-148-cinematic.startGirl)/115),old=cinematic.girl;cinematic.girl=mix(cinematic.startGirl,cinematic.boy-148,stroll(clock/duration));gait+=Math.abs(cinematic.girl-old)/210;if(clock>=duration+.1){setPhase('offer');$('live').textContent='He offers his hand.';}}
  else if(phase==='hold'){if(clock>=3.2){setPhase('handKiss');$('live').textContent='He gently lifts her hand and kisses it.'}}
- else if(phase==='handKiss'){if(clock>=6.4)setPhase('danceRise');}
+ else if(phase==='handKiss'){if(clock>=6.4)setPhase('dance');}
  else if(phase==='danceRise'){if(clock>=1.6){setPhase('dance');$('live').textContent="Together, they dance beneath the Moon's sakura tree.";}}
  else if(phase==='dance'){if(clock>=danceSettings().duration){setPhase('embrace');chime('heart');}}
  else if(phase==='embrace'){if(clock>=1.8){askLove();}}
@@ -308,7 +308,7 @@ function drawWorld(now){
 }
 function romancePhase(p=phase){return ['hold','handKiss','danceRise','dance','embrace','loveQuestion','kiss','release'].includes(p);}
 function danceSettings(){
- const frames=meta['couple-dance']?.frames.length||20;
+ const frames=(meta['couple-dance']?.frames.length||8)+(meta['couple-dance-lean']?.frames.length||0);
  const fps=clamp(Number(C.finale.danceFPS)||8,2,30),cycles=clamp(Math.round(Number(C.finale.danceCycles)||20),1,100);
  return {frames,fps,cycles,duration:frames/fps*cycles};
 }
@@ -329,10 +329,10 @@ function applyRomanceCamera(){
  ctx.translate(mix(center,V/2,strength),mix(focusY,610,strength));ctx.scale(zoom,zoom);ctx.translate(-center,-focusY);
 }
 function romancePose(){
- if(phase==='hold')return {sheet:'couple-rise',frame:0};
+ if(phase==='hold')return {sheet:'couple-hand-kiss',frame:0};
  if(phase==='handKiss'){const ends=[.65,1.3,2.05,2.95,4.05,4.95,5.65,6.4];return {sheet:'couple-hand-kiss',frame:reduce?4:Math.min(7,ends.findIndex(t=>clock<t)<0?7:ends.findIndex(t=>clock<t))};}
  if(phase==='danceRise')return {sheet:'couple-rise',frame:Math.min(3,Math.floor(clock/1.6*4))};
- if(phase==='dance'){const d=danceSettings();return {sheet:'couple-dance',frame:reduce?0:Math.floor(clock*d.fps)%d.frames};}
+ if(phase==='dance'){const d=danceSettings(),n=reduce?0:Math.floor(clock*d.fps)%d.frames,spin=meta['couple-dance']?.frames.length||8;return n<spin?{sheet:'couple-dance',frame:n}:{sheet:'couple-dance-lean',frame:n-spin};}
  if(phase==='embrace')return {sheet:'couple-embrace',frame:Math.min(2,Math.floor(clock/1.8*3))};
  if(phase==='loveQuestion')return {sheet:'couple-embrace',frame:2};
  if(phase==='kiss')return {sheet:'couple-embrace',frame:clock<1.8?3:4};
@@ -340,7 +340,7 @@ function romancePose(){
 }
 function drawRomance(now){
  const center=(cinematic.girl+cinematic.boy)/2,{sheet,frame}=romancePose();
- const sway=reduce?0:phase==='dance'?0:Math.sin(clock*1.4)*.6;
+ const sway=reduce||phase==='handKiss'?0:phase==='dance'?Math.sin(clock*Math.PI/2)*2:Math.sin(clock*1.4)*.6;
  const release=phase==='release'?ease((clock-2.4)/.8):0;
  const entry=phase==='hold'?ease(clock/.4):1;
  const alpha=entry*(1-release);

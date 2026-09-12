@@ -1,0 +1,23 @@
+const fs=require('fs'),sharp=require('C:/Users/Raisul/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/sharp');
+const root='C:/Users/Raisul/.codex/generated_images/01a08a2f-b023-70b3-9dbe-4aac1d6174c1/';
+const sources={kiss:'exec-22f72226-ee02-4918-8dc1-46de3c110d61.png',spin:'exec-fa60b244-b3a7-4299-90d2-57f4bbf79bc2.png',lean:'exec-f9f60d29-0a10-4efb-9dd1-22688f0547d1.png'};
+const W=640,H=640,base=610;
+// Remove connected neutral checkerboard regions, never key a green matte.
+// Costume whites are enclosed by colored outlines and remain opaque.
+function neutralAlpha(d,w,h){const seen=new Uint8Array(w*h),queue=new Int32Array(w*h);for(let p=0;p<w*h;p++){if(seen[p])continue;const eligible=p=>{const i=p*4;return Math.max(d[i],d[i+1],d[i+2])-Math.min(d[i],d[i+1],d[i+2])<=9&&d[i]>100;};if(!eligible(p)){seen[p]=1;continue;}let head=0,end=1;queue[0]=p;seen[p]=1;let border=false;while(head<end){const q=queue[head++],x=q%w,y=Math.floor(q/w);if(x===0||y===0||x===w-1||y===h-1)border=true;for(const n of [x? q-1:-1,x<w-1?q+1:-1,y?q-w:-1,y<h-1?q+w:-1])if(n>=0&&!seen[n]&&eligible(n)){seen[n]=1;queue[end++]=n;}}if(border||end>250)for(let k=0;k<end;k++){const i=queue[k]*4;d[i]=d[i+1]=d[i+2]=d[i+3]=0;}}}
+function keepCouple(d,w,h){const seen=new Uint8Array(w*h),q=new Int32Array(w*h);let best=[];for(let p=0;p<w*h;p++){if(seen[p]||d[p*4+3]<20)continue;let a=0,b=1;q[0]=p;seen[p]=1;while(a<b){const n=q[a++],x=n%w,y=Math.floor(n/w);for(const k of [x?n-1:-1,x<w-1?n+1:-1,y?n-w:-1,y<h-1?n+w:-1])if(k>=0&&!seen[k]&&d[k*4+3]>=20){seen[k]=1;q[b++]=k;}}if(b>best.length)best=Array.from(q.subarray(0,b));}const keep=new Uint8Array(w*h);for(const p of best){const x=p%w,y=Math.floor(p/w);for(let yy=Math.max(0,y-1);yy<=Math.min(h-1,y+1);yy++)for(let xx=Math.max(0,x-1);xx<=Math.min(w-1,x+1);xx++)keep[yy*w+xx]=1;}for(let p=0;p<w*h;p++)if(!keep[p])d[p*4]=d[p*4+1]=d[p*4+2]=d[p*4+3]=0;}
+async function build(kind){const file=root+sources[kind],m=await sharp(file).metadata(),out=[];if(kind==='kiss'&&!m.hasAlpha)throw Error('Approved kiss alpha missing');
+for(let j=0;j<8;j++){const left=Math.round(j%4*m.width/4),top=kind==='kiss'&&j===7?420:Math.round(Math.floor(j/4)*m.height/2),w=Math.round((j%4+1)*m.width/4)-left,h=Math.round((Math.floor(j/4)+1)*m.height/2)-top;
+const {data:d}=await sharp(file).extract({left,top,width:w,height:h}).ensureAlpha().raw().toBuffer({resolveWithObject:true});if(!m.hasAlpha)neutralAlpha(d,w,h);keepCouple(d,w,h);
+let bottom=0,topBody=h,sumX=0,count=0;
+for(let y=0;y<h;y++)for(let x=0;x<w;x++){const i=(y*w+x)*4;if(d[i+3]<180)continue;bottom=Math.max(bottom,y);if(kind==='kiss'&&x<w*.52)topBody=Math.min(topBody,y);if(kind!=='kiss'&&x>w*.64&&y<h*.3&&d[i]<155&&d[i+1]<115&&d[i]>d[i+1]+8)topBody=Math.min(topBody,y);}
+const scale=kind==='kiss'?430/(bottom-topBody+1):kind==='spin'?1.02:1.08;
+// Girl remains the visual pivot during the kiss; boy remains pivot during the dance.
+for(let y=topBody;y<Math.min(h,topBody+h*.22);y++)for(let x=0;x<w;x++){const i=(y*w+x)*4;if(d[i+3]>180&&(kind==='kiss'?x<w*.52:x>w*.64)&&d[i]>160&&d[i]>d[i+1]+12&&d[i+1]>80){sumX+=x;count++;}}
+const pivot=kind==='kiss'?230:390,px=kind==='kiss'&&count?sumX/count:w*.75;
+const nw=Math.round(w*scale),nh=Math.round(h*scale),x=Math.round(pivot-px*scale),y=Math.round(base-(bottom+1)*scale);
+if(x<0||y<0||x+nw>W||y+nh>H)throw Error('Insufficient padding '+kind+j+' '+[x,y,nw,nh]);
+const input=await sharp(d,{raw:{width:w,height:h,channels:4}}).resize(nw,nh).png().toBuffer();out.push(await sharp({create:{width:W,height:H,channels:4,background:'#00000000'}}).composite([{input,left:x,top:y}]).png().toBuffer());}
+return out;}
+(async()=>{const kiss=await build('kiss'),spin=await build('spin'),lean=await build('lean');spin[0]=kiss[7];lean[0]=spin[7];const a=JSON.parse(fs.readFileSync('characters/boy/actor.json'));for(const [key,name,frames] of [['couple-hand-kiss','hand-kiss-approved-alpha-8.webp',kiss],['couple-dance','dance-spin-alpha-8.webp',spin],['couple-dance-lean','dance-lean-alpha-8.webp',lean]]){await sharp({create:{width:W*4,height:H*2,channels:4,background:'#00000000'}}).composite(frames.map((input,i)=>({input,left:i%4*W,top:Math.floor(i/4)*H}))).webp({lossless:true,effort:6}).toFile('characters/boy/'+name);a.sheets[key]={image:name,fixedScale:true,referenceHeight:430,frames:frames.map((_,i)=>({x:i%4*W,y:Math.floor(i/4)*H,w:W,h:H,anchorX:i%4*W+320,anchorY:Math.floor(i/4)*H+base}))};}fs.writeFileSync('characters/boy/actor.json',JSON.stringify(a,null,2)+'\n');fs.writeFileSync('tools/transparent-romance-sources.json',JSON.stringify({mode:'built-in imagegen',sources},null,2));console.log('Exported approved kiss, spin and lean as lossless alpha WebP.');})();
+

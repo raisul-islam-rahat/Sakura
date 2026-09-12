@@ -86,3 +86,9 @@ dialog{position:fixed;left:0;right:0;top:var(--dialog-top,50%);bottom:auto;margi
 .gift-progress::-webkit-progress-value{background:linear-gradient(90deg,#e95168,#be1239);border-radius:20px;transition:width .15s}
 .gift-progress::-moz-progress-bar{background:linear-gradient(90deg,#e95168,#be1239);border-radius:20px}
 .gift-progress-label{font:12px/1.5 system-ui;color:#8b4960;margin:7px 0 12px}
+/* A fuller celebratory burst on the final gift tap. */
+.unwrapped .gift-sparkles i{animation-duration:1.25s;font-size:24px;text-shadow:0 0 6px #ffe19a,0 0 14px #fff5d7}
+.unwrapped .gift-sparkles i:nth-child(3n){color:#ef6a93;font-size:18px}
+.unwrapped .gift-sparkles i:nth-child(4n){color:#fff4b7;font-size:28px;text-shadow:0 0 5px #d88624,0 0 14px #ffd46e}
+.unwrapped .gift-glow{animation:gift-final-flash 1.3s ease-out both}
+@keyframes gift-final-flash{0%{opacity:0;transform:scale(.25)}20%{opacity:1;transform:scale(1.1)}100%{opacity:0;transform:scale(2.1)}}
