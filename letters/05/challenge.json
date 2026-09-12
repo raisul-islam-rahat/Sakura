@@ -1,10 +1,10 @@
 {
   "type": "question",
-  "title": "A name only we know",
+  "title": "A date only we know",
   "hint": "",
-  "question": "What little name does he call you?",
+  "question": "Can you recall the day, the date, the start when you first talked to him and opened your heart?",
   "answers": [
-    "muno"
+    "7 April"
   ],
-  "wrongMessage": "Think of your special little name. ♡"
+  "wrongMessage": "Hint: 1 January"
 }
