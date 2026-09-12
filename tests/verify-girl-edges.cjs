@@ -4,7 +4,7 @@ const src=fs.readFileSync('game.js','utf8'),c={clamp:(v,a,b)=>Math.max(a,Math.mi
 vm.createContext(c);vm.runInContext(src.slice(src.indexOf('function actorSurface'),src.indexOf('const ready=')),c);
 vm.runInContext(src.slice(src.indexOf('function sprite('),src.indexOf('function drawGirl(')),c);
 (async()=>{await c.loadActor('characters/girl','girl-walk');
-for(const name of ['girl-walk','girl-bouquet-walk','girl-bouquet-pickup']){const im=c.assets[name],d=im.getContext('2d').getImageData(0,0,im.width,im.height).data;
+for(const name of ['girl-walk','girl-bouquet-walk','girl-bouquet-pickup']){const im=c.assets[name],surface=createCanvas(im.width,im.height),gc=surface.getContext('2d');gc.drawImage(im,0,0);const d=gc.getImageData(0,0,im.width,im.height).data;
 for(let i=0;i<d.length;i+=4)if(d[i+3]>8)assert(d[i+1]<=Math.max(d[i],d[i+2])+2,name+' green fringe');
 if(c.meta[name].alignWalkFrames)for(const f of c.meta[name].frames)assert(f.referenceHeight>200&&f.anchorY<=f.y+f.h);}
 const out=createCanvas(1000,360);c.ctx=out.getContext('2d');c.ctx.fillStyle='#152039';c.ctx.fillRect(0,0,1000,360);

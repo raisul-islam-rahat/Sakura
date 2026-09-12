@@ -1,5 +1,5 @@
 {
-  "image": "walk-padded-alpha.png",
+  "image": "walk-colour-matched.webp",
   "columns": 4,
   "rows": 2,
   "displayHeight": 245,
@@ -186,7 +186,7 @@
   },
   "sheets": {
     "girl-bouquet-walk": {
-      "image": "bouquet-walk-fixed-alpha.png",
+      "image": "bouquet-walk-colour-matched.webp",
       "fixedScale": true,
       "referenceHeight": 280,
       "cycleSeconds": 1.28,
