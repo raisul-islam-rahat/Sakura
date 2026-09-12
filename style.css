@@ -108,3 +108,5 @@ dialog{position:fixed;left:0;right:0;top:var(--dialog-top,50%);bottom:auto;margi
 #gift-treasure .gift-read-letter{display:block;margin:22px auto 0}
 #gift-treasure .gift-sticker{filter:drop-shadow(0 7px 12px #0005)}
 #gift-treasure .gift-box:active{scale:.97}
+
+.water-flower{position:absolute;left:17%;top:77%;width:66%;height:17%;border:1px solid #ffd4e5;border-radius:30px;color:#472f48;background:linear-gradient(#fff1f5,#eab3d0);font:16px system-ui;touch-action:none;user-select:none}.water-flower:active{transform:scale(.97)}

@@ -1,7 +1,5 @@
 {
-  "type": "treasure",
-  "title": "A secret sealed with love",
-  "hint": "Tap the treasure until it opens.",
-  "minTaps": 8,
-  "maxTaps": 13
+  "type": "bloom",
+  "title": "Let our little flower bloom",
+  "hint": "Hold the water button to grow a flower. Let go to pause, then keep watering. ♡"
 }
