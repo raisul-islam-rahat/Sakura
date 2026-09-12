@@ -81,3 +81,8 @@ dialog{position:fixed;left:0;right:0;top:var(--dialog-top,50%);bottom:auto;margi
 @keyframes gift-sparkle{0%{opacity:0;transform:scale(.1)}18%{opacity:1}100%{opacity:0;transform:translate(var(--spark-x),var(--spark-y)) scale(.2) rotate(90deg)}}
 @keyframes gift-launch{0%{opacity:0;transform:translate(var(--launch-x),var(--launch-y)) scale(.06) rotate(-12deg)}15%{opacity:1}68%{opacity:1;transform:translate(0,-24px) scale(1.08) rotate(var(--sticker-turn))}100%{opacity:1;transform:translate(0,0) scale(1) rotate(var(--sticker-turn))}}
 @media(prefers-reduced-motion:reduce){#letter-gift.gift-launched .gift-sticker{opacity:1}.gift-sparkles{display:none}}
+.gift-progress{display:block;width:170px;height:9px;margin:14px auto 0;appearance:none;border:0;border-radius:20px;overflow:hidden;background:#c98e9e30;accent-color:#d51e44}
+.gift-progress::-webkit-progress-bar{background:#c98e9e30;border-radius:20px}
+.gift-progress::-webkit-progress-value{background:linear-gradient(90deg,#e95168,#be1239);border-radius:20px;transition:width .15s}
+.gift-progress::-moz-progress-bar{background:linear-gradient(90deg,#e95168,#be1239);border-radius:20px}
+.gift-progress-label{font:12px/1.5 system-ui;color:#8b4960;margin:7px 0 12px}

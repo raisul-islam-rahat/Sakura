@@ -15,9 +15,10 @@ let flowerIntro={state:'idle',boy:0,start:0,from:START};
 let pointer=null,keys=new Set(),modalLetter=null,toastTimer,pickup=null;
 let cinematic={girl:0,boy:0,startGirl:0,boyStart:0},petals=[],stars=[],sparks=[],rockets=[],fireworkTimer=0,wind=0,mini=null,fireworkBeat=0,blooms=[],petalBursts=[],lastEffectCamera=0;
 const finaleVideo=$('finale-video');
-const bg=new Audio(C.backgroundMusic),song=new Audio(),audioFiles=[bg,song];bg.loop=song.loop=true;bg.volume=C.musicVolume??.22;song.volume=.25;let ac;
+const bg=new Audio(C.backgroundMusic),song=new Audio(),audioFiles=[bg,song];bg.loop=true;song.loop=false;bg.volume=C.musicVolume??.22;song.volume=.25;let ac;
+song.addEventListener('ended',()=>{if(modalLetter)modalLetter.audioFinished=true;});
 function play(a){const p=a.play();if(p)p.catch(()=>{});}
-function soundSync(){if(phase==='video'){audioFiles.forEach(a=>a.pause());if(document.hidden||manualPause)finaleVideo.pause();return;}audioFiles.forEach(a=>{a.muted=muted;});if(!active||document.hidden||manualPause||muted){audioFiles.forEach(a=>a.pause());return;}if(modalLetter?.music){bg.pause();play(song);}else{song.pause();play(bg);}}
+function soundSync(){if(phase==='video'){audioFiles.forEach(a=>a.pause());if(document.hidden||manualPause)finaleVideo.pause();return;}audioFiles.forEach(a=>{a.muted=muted;});if(!active||document.hidden||manualPause||muted){audioFiles.forEach(a=>a.pause());return;}if(modalLetter?.music){bg.pause();if(!modalLetter.audioFinished&&!song.ended)play(song);}else{song.pause();play(bg);}}
 function chime(kind='heart'){
  if(muted||reduce)return;
  try{ac??=new (window.AudioContext||window.webkitAudioContext)();if(ac.state==='suspended')ac.resume();const t=ac.currentTime;
@@ -469,5 +470,6 @@ function frame(ms){
 requestAnimationFrame(frame);
 if(document.modelContext?.registerTool){const lifecycle=new AbortController();try{Promise.resolve(document.modelContext.registerTool({name:'read_birthday_adventure',title:'Read adventure progress',description:'Read the current birthday adventure stage and completed letter challenges.',inputSchema:{type:'object',properties:{},additionalProperties:false},annotations:{readOnlyHint:true},execute(input){if(!input||typeof input!=='object'||Array.isArray(input)||Object.keys(input).length)throw new Error('Expected an empty object.');return {started:active,stage:phase,collected:collected.size,letters:letters.length,bouquet:carrying,completed};}},{signal:lifecycle.signal})).catch(()=>{});}catch{}window.addEventListener('pagehide',()=>lifecycle.abort(),{once:true});}
 })();
+
 
 

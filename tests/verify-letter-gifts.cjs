@@ -11,17 +11,18 @@ assert(await page.locator('#challenge').evaluate(e=>e.open));assert.equal(await 
 await page.evaluate(()=>journeyQA.winChallenge());await page.waitForSelector('#letter[open]');
 assert(await page.locator('.gift-box').isVisible());assert(await page.locator('#gift-reveal').isHidden());
 await page.screenshot({path:'output/letter-gift-wrapped.png'});
-await page.locator('.gift-box').click();await page.waitForFunction(()=>document.querySelector('#gift-reveal img').naturalWidth>0);await page.waitForTimeout(1200);
+for(let tap=0,limit=await page.locator('.gift-progress').evaluate(e=>e.max);tap<limit;tap++)await page.locator('.gift-box').click();await page.waitForFunction(()=>document.querySelector('#gift-reveal img').naturalWidth>0);await page.waitForTimeout(1200);
 assert.equal(await page.locator('.gift-box').getAttribute('aria-expanded'),'true');await page.locator('#gift-reveal').scrollIntoViewIfNeeded();await page.screenshot({path:'output/letter-gift-unwrapped.png'});
 const giftNumbers=[5,10,11,12,13,14,15,16,17,18,19];
 for(let number=1;number<=20;number++){
  await page.evaluate(n=>{journeyQA.closeLetter();journeyQA.openLetter(n-1);},number);
- if(giftNumbers.includes(number)){assert(await page.locator('#letter-gift').isVisible());assert(await page.locator('#gift-reveal').isHidden());await page.locator('.gift-box').click();await page.waitForFunction(()=>[...document.querySelectorAll('#gift-reveal img')].every(im=>im.complete&&im.naturalWidth>0));assert.equal(await page.locator('#gift-reveal img').count(),({5:4,10:1,11:4,12:1,13:2,14:2,15:2,16:1,17:2,18:2,19:1})[number]);assert((await page.locator('#gift-reveal img').first().getAttribute('src')).endsWith('gift-'+String(number).padStart(2,'0')+'-1.webp'));}
+ if(giftNumbers.includes(number)){assert(await page.locator('#letter-gift').isVisible());assert(await page.locator('#gift-reveal').isHidden());for(let tap=0,limit=await page.locator('.gift-progress').evaluate(e=>e.max);tap<limit;tap++)await page.locator('.gift-box').click();await page.waitForFunction(()=>[...document.querySelectorAll('#gift-reveal img')].every(im=>im.complete&&im.naturalWidth>0));assert.equal(await page.locator('#gift-reveal img').count(),({5:4,10:1,11:4,12:1,13:2,14:2,15:2,16:1,17:2,18:2,19:1})[number]);assert((await page.locator('#gift-reveal img').first().getAttribute('src')).endsWith('gift-'+String(number).padStart(2,'0')+'-1.webp'));}
  else assert(await page.locator('#letter-gift').isHidden());
 }
-await page.evaluate(()=>journeyQA.closeLetter());await page.emulateMedia({reducedMotion:'reduce'});await page.evaluate(()=>journeyQA.openLetter(9));await page.locator('.gift-box').click();assert.equal(await page.locator('#gift-reveal').evaluate(e=>getComputedStyle(e).animationName),'none');
+await page.evaluate(()=>journeyQA.closeLetter());await page.emulateMedia({reducedMotion:'reduce'});await page.evaluate(()=>journeyQA.openLetter(9));for(let tap=0,limit=await page.locator('.gift-progress').evaluate(e=>e.max);tap<limit;tap++)await page.locator('.gift-box').click();assert.equal(await page.locator('#gift-reveal').evaluate(e=>getComputedStyle(e).animationName),'none');
 assert.equal(errors.length,0,errors.join('\n'));console.log('PASS: challenge completion unlocks box, 11 correct gifts unwrap, direct letters and 20 have none, reopen resets, reduced motion, no browser errors.');
 }finally{await browser?.close();server.close();}})().catch(e=>{console.error(e);process.exitCode=1});`;
 new Function('require',setup+checks)(require);
+
 
 
