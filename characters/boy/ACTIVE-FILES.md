@@ -1,15 +1,15 @@
-# Files loaded by the current game
+# Active character files
 
-actor.json selects these images. Older artwork is retained as backup.
+The current actor.json and game loader use these images. Older artwork is stored in unused.
 
-| File | Use |
-| --- | --- |
-| anime-poses-alpha.png | Base boy poses |
-| anime-walk-alpha.png | boy-walk |
-| anime-carry-alpha.png | boy-carry |
-| unified-spin.webp | couple-dance |
-| unified-embrace.webp | couple-embrace |
-| unified-handKiss.webp | couple-hand-kiss |
-| intro-black-roses-alpha.png | intro-boy |
-| unified-intro.webp | intro-giving |
-| unified-lean.webp | couple-dance-lean |
+- anime-carry-alpha.png
+- anime-poses-alpha.png
+- anime-walk-alpha.png
+- intro-black-roses-alpha.png
+- unified-embrace.webp
+- unified-handKiss.webp
+- unified-intro.webp
+- unified-lean.webp
+- unified-spin.webp
+
+Keep actor.json and README.md alongside these assets.

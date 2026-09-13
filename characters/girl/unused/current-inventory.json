@@ -1,0 +1,28 @@
+{
+  "activeImages": [
+    "bouquet-walk-alpha-v3.webp",
+    "unified-bouquetPickup.webp",
+    "unified-pickup.webp",
+    "unified-walk.webp"
+  ],
+  "movedThisPass": [
+    null
+  ],
+  "archivedImages": [
+    "bouquet-pickup-fixed.png",
+    "bouquet-pickup-standing-fixed-alpha.png",
+    "bouquet-pickup-standing-fixed.png",
+    "bouquet-pickup.png",
+    "bouquet-walk-alpha-v2.webp",
+    "bouquet-walk-colour-matched.webp",
+    "bouquet-walk-fixed-alpha.png",
+    "bouquet-walk-fixed.png",
+    "bouquet-walk.png",
+    "pickup.png",
+    "unified-bouquetWalk.webp",
+    "walk-colour-matched.webp",
+    "walk-padded-alpha.png",
+    "walk-padded.png",
+    "walk.webp"
+  ]
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "original": "bouquet-pickup-fixed.png",
+    "archived": "unused/bouquet-pickup-fixed.png"
+  },
+  {
+    "original": "bouquet-pickup-standing-fixed-alpha.png",
+    "archived": "unused/bouquet-pickup-standing-fixed-alpha.png"
+  },
+  {
+    "original": "bouquet-pickup-standing-fixed.png",
+    "archived": "unused/bouquet-pickup-standing-fixed.png"
+  },
+  {
+    "original": "bouquet-pickup.png",
+    "archived": "unused/bouquet-pickup.png"
+  },
+  {
+    "original": "bouquet-walk-colour-matched.webp",
+    "archived": "unused/bouquet-walk-colour-matched.webp"
+  },
+  {
+    "original": "bouquet-walk-fixed-alpha.png",
+    "archived": "unused/bouquet-walk-fixed-alpha.png"
+  },
+  {
+    "original": "bouquet-walk-fixed.png",
+    "archived": "unused/bouquet-walk-fixed.png"
+  },
+  {
+    "original": "bouquet-walk.png",
+    "archived": "unused/bouquet-walk.png"
+  },
+  {
+    "original": "pickup.png",
+    "archived": "unused/pickup.png"
+  },
+  {
+    "original": "walk-colour-matched.webp",
+    "archived": "unused/walk-colour-matched.webp"
+  },
+  {
+    "original": "walk-padded-alpha.png",
+    "archived": "unused/walk-padded-alpha.png"
+  },
+  {
+    "original": "walk-padded.png",
+    "archived": "unused/walk-padded.png"
+  },
+  {
+    "original": "walk.webp",
+    "archived": "unused/walk.webp"
+  },
+  {
+    "original": "references/",
+    "archived": "unused/references/"
+  },
+  {
+    "original": "unified-bouquetWalk.webp",
+    "archived": "unused/unified-bouquetWalk.webp"
+  }
+]
