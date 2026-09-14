@@ -1,0 +1,34 @@
+/* Warm birthday stationery and compact touch controls. Artwork remains unchanged. */
+:root{--line:#b7658633;--glass:#fff5edec}
+dialog:not(#journey-help),.gate,.journey-help-card,.cut-card{color:#60384d;background:linear-gradient(145deg,#fffdf5,#ffe6ef 72%,#f5e8ff);border-color:#edc3d0;box-shadow:0 16px 55px #67304f30,inset 0 1px #fff}
+dialog::backdrop{background:#4b264e50;backdrop-filter:blur(5px)}
+.gate{border-radius:44px;padding-top:30px}.gate p span,.gate .feedback,.eyebrow,.flower,.text-button{color:#963f66}.gate .flower{text-shadow:0 0 18px #ffd48d}
+.primary{background:linear-gradient(120deg,#b63d69,#923563);color:#fffaf5;border-color:#b65076;box-shadow:0 5px 18px #b74b7330}.glass,.round{background:#fff7edf2;color:#803c5b;border-color:#e6b7c8}.round[aria-pressed=true]{background:#f8cbdc}
+input{background:#fffdfa;color:#633b50;border-color:#dcb3c4}button:focus-visible,input:focus-visible{outline-color:#8e3764}
+.close{background:#f4d7e3;color:#803351;width:40px;height:40px;z-index:3}.paper{background:radial-gradient(ellipse at top,#fff9dbb0,transparent 65%)}
+#challenge-hint,#challenge-status,#love-plea,.journey-help-card p{color:#714558}.journey-help-card h2{color:#873c60}.journey-help-card{top:10%;padding:24px;max-height:calc(100svh - 240px)}
+#journal-list button{background:#fffaf6;color:#74364f;border-color:#e3bdcb}#journal-list button:disabled{opacity:.6}
+#playfield{background:radial-gradient(ellipse at bottom,#fae4af,#f5dfec 70%);border:1px solid #dfb9cb}
+#mini-buttons .memory-card,#mini-buttons .melody-pad,#mini-buttons .mini-text{background:linear-gradient(#fff7e6,#edbfd7)!important;color:#783453;border-color:#c98ea9!important}.memory-card.flipped{box-shadow:0 0 18px #e092aa55}#mini-buttons .maze-tile{background:#ebc4d8;color:#6e365b}#mini-buttons .maze-tile.current{background:#e897b8}.water-flower{color:#633b50;background:#fff8e9}
+#speech,#toast,#end-reminder{background:#fff6eaf5;color:#73354e;border-color:#d6a3b8;text-shadow:none}#speech{white-space:normal;max-width:min(80vw,300px)}
+#gift-treasure{background:linear-gradient(150deg,#fff8df,#ffe4ed 65%,#f1e4ff);border-color:#e2b77d}
+#gift-treasure #letter-gift{background:radial-gradient(circle at top,#fffbe6,transparent 70%)}#gift-treasure .gift-invitation,#gift-treasure #gift-reveal strong{color:#8f3d62}#gift-treasure #gift-reveal figcaption,#gift-treasure .gift-progress-label{color:#704454}
+#gift-treasure .gift-sticker{filter:drop-shadow(0 7px 10px #98537126)}
+#letter.birthday-paper .paper[data-paper]{border-color:#c69b6538;box-shadow:inset 0 0 55px #fff9dc88}#letter.birthday-paper #signature{color:#8b4065}
+#controls{left:max(12px,env(safe-area-inset-left));bottom:calc(8px + env(safe-area-inset-bottom))}
+#joystick{width:108px;height:clamp(44px,calc(13.3svh - env(safe-area-inset-bottom) - 16px),68px);background:#fff4e8cf;border-color:#f3ccdb;box-shadow:0 3px 12px #63344f24;backdrop-filter:blur(3px)}
+#joystick button{color:#8a4765;min-width:44px}#stick{width:36px;height:36px;left:36px;top:calc(50% - 18px);background:linear-gradient(#fff8e9,#efb3cb);color:#983e68;border-color:#fff8}
+#action{right:max(12px,env(safe-area-inset-right));bottom:calc(12px + env(safe-area-inset-bottom));max-width:calc(100% - 140px);padding:10px 16px;min-height:44px}
+#joystick-pointer{color:#7d3555;text-shadow:0 1px 3px #fff}#joystick-pointer span{background:#fff5e8;padding:6px 12px;border-radius:20px}
+/* Decorations occupy a separate strip, never the diary's scrolling text. */
+.keepsake-decor{height:90px;margin:0 auto 14px;position:relative;max-width:330px;pointer-events:none;overflow:hidden;isolation:isolate}
+.party-balloon{position:absolute;left:var(--x);top:8px;width:31px;height:39px;border-radius:50% 50% 47% 47%;background:radial-gradient(circle at 30% 24%,#fff9,transparent 25%),var(--balloon,#ee9bb9);box-shadow:inset -5px -4px 9px #96366322;animation:party-bob 4s ease-in-out var(--delay) infinite}
+.party-balloon:before{content:'';position:absolute;bottom:-5px;left:12px;border-left:4px solid transparent;border-right:4px solid transparent;border-bottom:5px solid var(--balloon,#ee9bb9)}.party-balloon:after{content:'';position:absolute;top:44px;left:15px;width:12px;height:34px;border-left:1px solid #a97981;border-radius:50%}
+.party-candle{position:absolute;bottom:8px;left:var(--x);height:37px;width:20px;border-radius:5px 5px 3px 3px;background:repeating-linear-gradient(135deg,#ffefcd 0 8px,#f5cfad 8px 12px);box-shadow:0 4px 7px #96652c20}
+.party-candle:before{content:'';position:absolute;left:6px;top:-23px;width:9px;height:20px;background:linear-gradient(#fffbc0,#ffb759);border-radius:70% 30% 60% 40%;box-shadow:0 0 14px 7px #ffd78670;animation:candle-glimmer 2s ease-in-out infinite alternate}.party-candle:after{content:'';position:absolute;left:9px;top:-5px;height:6px;border-left:2px solid #8e604c}
+.keepsake-caption{position:absolute;left:25%;right:25%;top:30px;text-align:center;font:italic 14px/1.5 Georgia;color:#975275}
+.party-burst{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:2}.party-burst .party-balloon{top:auto;bottom:-80px;animation:balloon-release 3s ease-out var(--delay) both}
+@keyframes party-bob{50%{transform:translateY(7px) rotate(5deg)}}@keyframes candle-glimmer{to{transform:scale(.9) rotate(5deg);opacity:.85}}@keyframes balloon-release{0%{transform:translateY(0);opacity:0}15%{opacity:1}100%{transform:translateY(-600px) rotate(12deg);opacity:0}}
+@media(max-height:550px){.journey-help-card{top:3%;max-height:72svh;padding:12px 20px}.journey-help-card p{font-size:14px;line-height:1.45}#joystick-pointer{display:none}.keepsake-decor{height:65px}.party-candle{height:27px}}
+@media(prefers-reduced-motion:reduce){.party-balloon,.party-candle:before{animation:none}.party-burst{display:none}}
+.keepsake-caption{left:30%;right:30%;font-size:13px;top:24px} #gift-treasure{position:relative}

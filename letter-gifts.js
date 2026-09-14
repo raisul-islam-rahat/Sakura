@@ -31,7 +31,7 @@
    const caption=document.createElement('figcaption'),heading=document.createElement('strong'),note=document.createElement('p');heading.textContent=gifts[number][0];note.textContent=gifts[number][1];caption.append(heading,note);art.append(tray,caption);
    const sparkles=document.createElement('span');sparkles.className='gift-sparkles';sparkles.setAttribute('aria-hidden','true');for(let i=0;i<42;i++){const star=document.createElement('i'),angle=i*Math.PI*2/42;star.textContent='✦';star.style.setProperty('--spark-x',Math.cos(angle)*(70+i%5*20)+'px');star.style.setProperty('--spark-y',Math.sin(angle)*(70+i%5*20)+'px');star.style.setProperty('--spark-delay',i%7*.04+'s');sparkles.append(star);}
    const read=document.createElement('button');read.type='button';read.className='primary gift-read-letter';read.textContent='Open my letter ♡';read.disabled=true;read.onclick=()=>{if(read.disabled)return;read.disabled=true;received.add(number);dialog.close();onRead();};
-   section.append(close,hint,sparkles,art,read);dialog.showModal();dialog.scrollTop=0;revealTimer=setTimeout(()=>{if(dialog.open)read.disabled=false;},matchMedia('(prefers-reduced-motion: reduce)').matches?0:2100);
+   section.append(close,hint,sparkles,art,read);window.decorateKeepsake?.(section,number);window.decorateKeepsake?.(dialog,number,true);dialog.showModal();dialog.scrollTop=0;revealTimer=setTimeout(()=>{if(dialog.open)read.disabled=false;},matchMedia('(prefers-reduced-motion: reduce)').matches?0:2100);
   });return true;
  };
 })();
