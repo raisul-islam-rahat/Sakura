@@ -32,3 +32,10 @@ input{background:#fffdfa;color:#633b50;border-color:#dcb3c4}button:focus-visible
 @media(max-height:550px){.journey-help-card{top:3%;max-height:72svh;padding:12px 20px}.journey-help-card p{font-size:14px;line-height:1.45}#joystick-pointer{display:none}.keepsake-decor{height:65px}.party-candle{height:27px}}
 @media(prefers-reduced-motion:reduce){.party-balloon,.party-candle:before{animation:none}.party-burst{display:none}}
 .keepsake-caption{left:30%;right:30%;font-size:13px;top:24px} #gift-treasure{position:relative}
+.treasure-twinkle{position:absolute;left:50%;top:50%;font:22px Georgia;color:#c58720;opacity:0;text-shadow:0 0 7px #fff1b0;animation:treasure-twinkle 1.8s ease-out var(--delay) both}.treasure-twinkle:nth-child(3n){color:#d04f83}.treasure-twinkle:nth-child(4n){font-size:15px;color:#a679bf}@keyframes treasure-twinkle{0%{opacity:0;transform:scale(.1)}20%{opacity:1}75%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(100deg) scale(.2)}}
+/* A quiet note from the sender, drifting independently in the sky. */
+#letter-thanks{position:absolute;left:50%;top:29%;transform:translate(-50%,-50%);width:min(90vw,380px);z-index:4;text-align:center;padding:0;border:0;border-radius:0;background:none;color:#fff5de;box-shadow:none;pointer-events:none;animation:none;text-shadow:0 1px 3px #42203ce0,0 0 9px #ffdcaaa0,0 0 20px #f5aec780;will-change:transform,opacity}
+#letter-thanks span{display:block;font:italic 14px/1.6 Georgia;letter-spacing:.015em;text-wrap:balance}
+#letter-thanks small{display:block;margin-top:5px;font:11px/1.5 Georgia;color:#fff0dd;letter-spacing:.05em;opacity:.85}
+@media(max-width:400px){#letter-thanks span{font-size:13px}}
+@media(prefers-reduced-motion:reduce){.treasure-twinkle,#letter-thanks{animation:none}.party-burst{display:none}}

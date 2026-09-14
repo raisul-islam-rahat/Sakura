@@ -140,9 +140,33 @@ function pickupPose(){
  return Math.round(bend*7);
 }
 function openLetter(i){stop();if(window.offerLetterGift?.(i+1,letters[i].challengeEnabled!==false&&passed.has(i),()=>openLetter(i)))return;modalLetter={...letters[i],i};const l=modalLetter;collected.add(i);passed.add(i);$('letter-number').textContent=`${String(i+1).padStart(2,'0')} / ${letters.length} · FOR ${C.nickname.toUpperCase()}`;$('letter-title').textContent=l.title;$('message').textContent=l.message.replaceAll('{{nickname}}',C.nickname).replaceAll('{{name}}',C.recipientName).replaceAll('{{sender}}',C.senderName);$('signature').textContent=l.signature||`With love, ${C.senderName}`;$('photo').hidden=!l.picture;if(l.picture){$('photo-img').src=l.picture;$('photo-img').alt=l.imageAlt||'Our little memory';}$('caption').textContent=l.caption||'';$('letter-animation').hidden=!l.animation.file;if(l.animation.file)$('letter-animation').src=`${l.folder}/${l.animation.file}`;$('continue').textContent=i===letters.length-1?'A little further… ♡':'Keep it in my heart ♡';$('letter').showModal();$('letter').scrollTop=0;window.writeBirthdayLetter?.($('message').textContent,i);if(l.music){song.src=l.music;song.load();}soundSync();updateCount();updateAction();}
-function closeLetter(){$('letter').close();}$('close-letter').onclick=closeLetter;$('continue').onclick=closeLetter;$('letter').addEventListener('close',()=>{if($('letter').open)return;modalLetter=null;soundSync();updateAction();});$('photo-img').onerror=()=>{$('photo').hidden=true;};$('letter-animation').onerror=()=>{$('letter-animation').hidden=true;};song.onerror=()=>{if(modalLetter){modalLetter.music=null;soundSync();}};
+const letterThankYous=[
+'Thank you for holding my first little wish. ♡',
+'Every little step feels sweeter with you. ♡',
+'Thanks for finding the love between my words. ♡',
+'My little kingdom is brighter with you in it. ♡',
+'Thank you for making room for my wishes. ♡',
+'You make every little note worth writing. ♡',
+'Your smile is my favourite thank-you. ♡',
+'Thank you for colouring my world with you. ♡',
+'Another little memory, safe in your heart. ♡',
+'Sending you a hug between these letters. ♡',
+'Thank you for hearing the stories I missed. ♡',
+'I hope my words made you feel precious. ♡',
+'A little more of my heart is yours now. ♡',
+'Thanks for sharing this little adventure. ♡',
+'Every wish brings me a little closer to you. ♡',
+'Thank you for being my favourite moonlight. ♡',
+'I love where this little journey is taking us. ♡',
+'Thanks for following these wishes toward me. ♡',
+'Just one more wish, my precious girl. ♡',
+'Thank you for listening to my whole heart. ♡'];
+let thanksRemaining=0;
+function showLetterThanks(i){if(phase!=='explore'&&phase!=='pickup')return;const el=$('letter-thanks'),left=Math.max(0,letters.length-collected.size);el.querySelector('span').textContent=letterThankYous[i%letterThankYous.length];el.querySelector('small').textContent=left?left+' little '+(left===1?'step':'steps')+' closer to me ♡':'Every wish found you. Meet me on the Moon. ♡';thanksRemaining=5.5;el.hidden=false;el.style.opacity='0';updateLetterThanks(0);}
+function updateLetterThanks(dt){const el=$('letter-thanks');if(!thanksRemaining)return;if(!['explore','pickup'].includes(phase)){thanksRemaining=0;el.hidden=true;return;}if(blocked()){el.hidden=true;return;}el.hidden=false;thanksRemaining=Math.max(0,thanksRemaining-dt);const elapsed=5.5-thanksRemaining,wave=reduce?0:Math.sin(elapsed*1.45)*5,drift=reduce?0:-elapsed*2;el.style.left='50%';el.style.top=Math.max(110,H*.29)+'px';el.style.transform='translate(calc(-50% + '+wave+'px), calc(-50% + '+drift+'px))';el.style.opacity=String(Math.min(1,elapsed/.7,thanksRemaining/1.2));if(!thanksRemaining)el.hidden=true;}
+function closeLetter(){$('letter').close();}$('close-letter').onclick=closeLetter;$('continue').onclick=closeLetter;$('letter').addEventListener('close',()=>{if($('letter').open)return;const closed=modalLetter;modalLetter=null;if(closed)showLetterThanks(closed.i);soundSync();updateAction();});$('photo-img').onerror=()=>{$('photo').hidden=true;};$('letter-animation').onerror=()=>{$('letter-animation').hidden=true;};song.onerror=()=>{if(modalLetter){modalLetter.music=null;soundSync();}};
 function showJournal(){stop();$('journal-title').textContent=`${letters.length} little letters`;$('journal-list').replaceChildren();letters.forEach((l,i)=>{const b=document.createElement('button');b.disabled=!collected.has(i);b.textContent=collected.has(i)?`♡  ${l.title}`:`✧  Letter ${i+1}`;b.onclick=()=>{$('journal').close();openLetter(i);};$('journal-list').append(b);});$('reset-confirm').hidden=true;$('journal').showModal();updateAction();}
-$('journal-button').onclick=showJournal;$('ending-journal').onclick=showJournal;$('close-journal').onclick=()=>$('journal').close();$('journal').addEventListener('close',updateAction);$('restart').onclick=()=>{$('reset-confirm').hidden=false;};$('reset-no').onclick=()=>{$('reset-confirm').hidden=true;};$('reset-yes').onclick=()=>{collected.clear();passed.clear();window.resetLetterGifts?.();carrying=false;completed=false;x=START;camera=0;bg.src=C.backgroundMusic;bg.load();$('journal').close();setPhase('explore');updateCount();soundSync();beginFlowerIntro();};$('replay').onclick=()=>{completed=false;beginCinema();};
+$('journal-button').onclick=showJournal;$('ending-journal').onclick=showJournal;$('close-journal').onclick=()=>$('journal').close();$('journal').addEventListener('close',updateAction);$('restart').onclick=()=>{$('reset-confirm').hidden=false;};$('reset-no').onclick=()=>{$('reset-confirm').hidden=true;};$('reset-yes').onclick=()=>{thanksRemaining=0;$('letter-thanks').hidden=true;collected.clear();passed.clear();window.resetLetterGifts?.();carrying=false;completed=false;x=START;camera=0;bg.src=C.backgroundMusic;bg.load();$('journal').close();setPhase('explore');updateCount();soundSync();beginFlowerIntro();};$('replay').onclick=()=>{completed=false;beginCinema();};
 function togglePause(){manualPause=!manualPause;$('pause-screen').hidden=!manualPause;$('pause').setAttribute('aria-pressed',String(manualPause));$('pause').setAttribute('aria-label',manualPause?'Continue adventure':'Pause adventure');stop();soundSync();updateAction();}$('pause').onclick=togglePause;$('resume').onclick=togglePause;
 function setInput(n){input=n;$('stick').style.transform=`translateX(${n*22}px)`;}
 function touchMove(e){if(e.pointerId!==pointer)return;const r=$('joystick').getBoundingClientRect(),dx=e.clientX-r.left-r.width/2;setInput(Math.abs(dx)<7?0:Math.sign(dx));}
@@ -468,7 +492,7 @@ function frame(ms){
  if(ms<nextDraw)return;
  const drawDt=clamp((ms-previousDraw)/1000||0,0,.08);previousDraw=ms;
  const interval=1000/(!reduce&&(romancePhase()||carrying||phase==='pickup')?60:45);nextDraw+=interval;if(nextDraw<ms)nextDraw=ms+interval-((ms-nextDraw)%interval);
- if(!manualPause){tick(drawDt);miniTick(drawDt);}ctx.clearRect(0,0,V,1000);drawWorld(total);effects(manualPause?0:drawDt,total);
+ if(!manualPause){tick(drawDt);miniTick(drawDt);}ctx.clearRect(0,0,V,1000);drawWorld(total);updateLetterThanks(manualPause?0:drawDt);effects(manualPause?0:drawDt,total);
 }
 requestAnimationFrame(frame);
 if(document.modelContext?.registerTool){const lifecycle=new AbortController();try{Promise.resolve(document.modelContext.registerTool({name:'read_birthday_adventure',title:'Read adventure progress',description:'Read the current birthday adventure stage and completed letter challenges.',inputSchema:{type:'object',properties:{},additionalProperties:false},annotations:{readOnlyHint:true},execute(input){if(!input||typeof input!=='object'||Array.isArray(input)||Object.keys(input).length)throw new Error('Expected an empty object.');return {started:active,stage:phase,collected:collected.size,letters:letters.length,bouquet:carrying,completed};}},{signal:lifecycle.signal})).catch(()=>{});}catch{}window.addEventListener('pagehide',()=>lifecycle.abort(),{once:true});}
