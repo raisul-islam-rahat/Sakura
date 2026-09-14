@@ -87,14 +87,14 @@ dialog#gift-treasure{background:linear-gradient(145deg,#a97991,#815e81 68%,#6558
 @keyframes kiss-scatter{from{opacity:1;transform:scale(.5)}to{opacity:0;transform:translate(var(--dx),var(--dy)) scale(1.2)}}@keyframes kiss-wrong{25%{translate:-4px 0}75%{translate:4px 0}}
 @media(prefers-reduced-motion:reduce){.kiss-choice,.kiss-choice i{animation:none;transition:none}.kiss-choice i{display:none}}
 /* Each character glimmers independently, like distant stars. */
-#sky-love-line{position:absolute;left:clamp(var(--sky-half,175px),var(--sky-x,50%),calc(100% - var(--sky-half,175px)));width:max-content;max-width:calc(100% - 40px);z-index:3;color:#fff4df;font:400 16px/1.8 Calibri,Candara,"Segoe UI",Arial,sans-serif;letter-spacing:.2em;white-space:normal;text-wrap:balance;pointer-events:none;text-align:center;will-change:opacity,transform}
+.sky-love-line{position:absolute;left:clamp(var(--sky-half,175px),var(--sky-x,50%),calc(100% - var(--sky-half,175px)));width:max-content;max-width:calc(100% - 40px);z-index:3;color:#fff4df;font:400 16px/1.8 Calibri,Candara,"Segoe UI",Arial,sans-serif;letter-spacing:.2em;white-space:normal;text-wrap:balance;pointer-events:none;text-align:center;will-change:opacity,transform}
 /* Fixed glow textures: only opacity animates, never shadow blur or color. */
-#sky-love-line .sky-letter{display:inline-block;position:relative;color:#e3d6ea;text-shadow:0 1px 3px #221d3e;animation:sky-letter-breathe var(--glow-duration,4s) ease-in-out var(--glow-delay,0s) infinite}
-#sky-love-line .sky-letter::before{content:attr(data-char);position:absolute;inset:0;color:#fffef1;text-shadow:0 0 4px #fffce8,0 0 10px #ffe7a8,0 0 19px #efc2ff;opacity:0;will-change:opacity;animation:sky-glow-peak var(--glow-duration,4s) ease-in-out var(--glow-delay,0s) infinite}
+.sky-love-line .sky-letter{display:inline-block;position:relative;color:#e3d6ea;text-shadow:0 1px 3px #221d3e;animation:sky-letter-breathe var(--glow-duration,4s) ease-in-out var(--glow-delay,0s) infinite}
+.sky-love-line .sky-letter::before{content:attr(data-char);position:absolute;inset:0;color:#fffef1;text-shadow:0 0 4px #fffce8,0 0 10px #ffe7a8,0 0 19px #efc2ff;opacity:0;will-change:opacity;animation:sky-glow-peak var(--glow-duration,4s) ease-in-out var(--glow-delay,0s) infinite}
 @keyframes sky-letter-breathe{0%,100%{opacity:.5}35%,65%{opacity:.8}48%,52%{opacity:1}}
 @keyframes sky-glow-peak{0%,100%{opacity:0}35%,65%{opacity:.18}48%,52%{opacity:1}}
-#sky-love-line .star-tip::after{content:'';position:absolute;width:7px;height:7px;right:-2px;top:1px;background:#fffbe5;clip-path:polygon(50% 0,60% 40%,100% 50%,60% 60%,50% 100%,40% 60%,0 50%,40% 40%);animation:sky-star-tip var(--glow-duration,4s) ease-in-out var(--glow-delay,0s) infinite}
+.sky-love-line .star-tip::after{content:'';position:absolute;width:7px;height:7px;right:-2px;top:1px;background:#fffbe5;clip-path:polygon(50% 0,60% 40%,100% 50%,60% 60%,50% 100%,40% 60%,0 50%,40% 40%);animation:sky-star-tip var(--glow-duration,4s) ease-in-out var(--glow-delay,0s) infinite}
 @keyframes sky-star-tip{0%,35%,65%,100%{opacity:0;transform:scale(.2)}50%{opacity:.9;transform:scale(1)}}
-#sky-love-line .sky-word{display:inline-block;white-space:nowrap}
-@media(prefers-reduced-motion:reduce){#sky-love-line .sky-letter{animation:none;opacity:1}#sky-love-line .sky-letter::before{animation:none;opacity:.25;will-change:auto}#sky-love-line .star-tip::after{display:none}}
+.sky-love-line .sky-word{display:inline-block;white-space:nowrap}
+@media(prefers-reduced-motion:reduce){.sky-love-line .sky-letter{animation:none;opacity:1}.sky-love-line .sky-letter::before{animation:none;opacity:.25;will-change:auto}.sky-love-line .star-tip::after{display:none}}
 #toast.flower-note{top:34%;max-width:84%}
