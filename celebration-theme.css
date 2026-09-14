@@ -177,3 +177,21 @@ dialog#letter::backdrop{backdrop-filter:none;background:#080e23a8}
 #letter .aurora-moon path:nth-of-type(2){stroke:#9da3ab;stroke-opacity:.45}
 #letter .aurora-moon path:nth-of-type(3){stroke:#fff;stroke-opacity:.9}
 @keyframes moon-white-pulse{0%,100%{opacity:.45}50%{opacity:1}}
+
+/* Slim rounded scroll handles, without a solid track or square buttons. */
+dialog:not(#journey-help),.journey-help-card,#letter.birthday-paper #message{scrollbar-width:thin;scrollbar-color:#b7aacb transparent}
+@supports selector(::-webkit-scrollbar){
+ dialog:not(#journey-help),.journey-help-card,#letter.birthday-paper #message{scrollbar-width:auto;scrollbar-color:auto}
+ dialog:not(#journey-help)::-webkit-scrollbar,.journey-help-card::-webkit-scrollbar,#letter #message::-webkit-scrollbar{width:5px;height:5px}
+ dialog:not(#journey-help)::-webkit-scrollbar-track,.journey-help-card::-webkit-scrollbar-track,#letter #message::-webkit-scrollbar-track{background:transparent;margin:18px;border-radius:99px}
+ dialog:not(#journey-help)::-webkit-scrollbar-thumb,.journey-help-card::-webkit-scrollbar-thumb,#letter #message::-webkit-scrollbar-thumb{background:#b7aacbaa;border:1px solid transparent;background-clip:padding-box;border-radius:99px;min-height:24px}
+ dialog:not(#journey-help)::-webkit-scrollbar-button,.journey-help-card::-webkit-scrollbar-button,#letter #message::-webkit-scrollbar-button{display:none;width:0;height:0}
+ #letter #message::-webkit-scrollbar-corner{background:transparent}
+}
+
+/* Compact horizontal handle for long diary lines. */
+@supports selector(::-webkit-scrollbar){
+ #letter.birthday-paper #message::-webkit-scrollbar:horizontal{height:4px}
+ #letter.birthday-paper #message::-webkit-scrollbar-thumb:horizontal{border:0;border-radius:99px;background:#b7aacb99}
+ #letter.birthday-paper #message::-webkit-scrollbar-track:horizontal{background:transparent;margin:0 14px;border-radius:99px}
+}
