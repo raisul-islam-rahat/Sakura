@@ -1,5 +1,5 @@
 window.BIRTHDAY_CONFIG = {
-  recipientName: "mowmita akter mohona",
+  recipientName: "Mowmita Akter Mohona",
   nickname: "Muno",
   secretAnswer: "muno",
   senderName: "Your person",
@@ -18,7 +18,7 @@ window.BIRTHDAY_CONFIG = {
     handButton: "Hold his hand ♡",
     waitLine: "Wait… one more thing. ♡",
     candleButton: "Blow the candle",
-    birthdayTitle: "Happy birthday, Muno.",
+    birthdayTitle: "Happy Birthday, Muno.",
     birthdayLine: "Under every sky, I choose you."
   },
   // Lower to 0.6 for fewer particles on an older phone, maximum 1.5.
