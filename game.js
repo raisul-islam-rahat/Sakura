@@ -511,7 +511,7 @@ function frame(ms){
  if(ms<nextDraw)return;
  const drawDt=clamp((ms-previousDraw)/1000||0,0,.08);previousDraw=ms;
  const interval=1000/(!reduce&&(romancePhase()||carrying||phase==='pickup')?60:45);nextDraw+=interval;if(nextDraw<ms)nextDraw=ms+interval-((ms-nextDraw)%interval);
- if(!manualPause){tick(drawDt);miniTick(drawDt);}ctx.clearRect(0,0,V,1000);drawWorld(total);updateLetterThanks(manualPause?0:drawDt);effects(manualPause?0:drawDt,total);
+ if(!manualPause){tick(drawDt);miniTick(drawDt);}ctx.clearRect(0,0,V,1000);drawWorld(total);updateLetterThanks(manualPause?0:drawDt);window.updateSkyLove?.(drawDt,active&&!blocked()&&!thanksRemaining&&!['entrance','video','finished','cutCake'].includes(phase));effects(manualPause?0:drawDt,total);
 }
 requestAnimationFrame(frame);
 if(document.modelContext?.registerTool){const lifecycle=new AbortController();try{Promise.resolve(document.modelContext.registerTool({name:'read_birthday_adventure',title:'Read adventure progress',description:'Read the current birthday adventure stage and completed letter challenges.',inputSchema:{type:'object',properties:{},additionalProperties:false},annotations:{readOnlyHint:true},execute(input){if(!input||typeof input!=='object'||Array.isArray(input)||Object.keys(input).length)throw new Error('Expected an empty object.');return {started:active,stage:phase,collected:collected.size,letters:letters.length,bouquet:carrying,completed};}},{signal:lifecycle.signal})).catch(()=>{});}catch{}window.addEventListener('pagehide',()=>lifecycle.abort(),{once:true});}
