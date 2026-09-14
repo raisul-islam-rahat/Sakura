@@ -56,9 +56,29 @@ input{background:#fffdfa;color:#633b50;border-color:#dcb3c4}button:focus-visible
 #challenge:not(.gift-encounter) .maze-tile:disabled{background:#060c1b;border-color:transparent}
 #challenge:not(.gift-encounter) .maze-tile.current{background:#995a7b}
 #challenge:not(.gift-encounter) .water-flower{color:#472f48;background:linear-gradient(#fff1f5,#eab3d0)}
-#challenge.gift-encounter #playfield{background:transparent;border:0;box-shadow:none}
+#challenge.gift-encounter #playfield{background:transparent;border:7px solid #e7bd96;border-radius:24px;box-shadow:0 7px 18px #87516c28,inset 0 0 0 2px #fff4df;outline:1px solid #ba8772;outline-offset:-2px}
+#challenge.gift-encounter #playfield::after{content:'';position:absolute;inset:5px;border:1px solid #d3a681;border-radius:13px;pointer-events:none;z-index:2}
 /* Dusty rose behind the white-edged reward stickers. */
 #gift-treasure{background:linear-gradient(145deg,#ead0cb,#c68ca7 68%,#bda0ce);border-color:#d6ac87}
 #gift-treasure #letter-gift{background:radial-gradient(circle at top,#fff0dc40,transparent 65%)}
 #gift-treasure .gift-invitation,#gift-treasure #gift-reveal strong{color:#67324c}
 #gift-treasure #gift-reveal figcaption,#gift-treasure .gift-progress-label{color:#543447}
+/* A real opening through every card layer, revealing the scene inside the frame. */
+#challenge.gift-encounter{background:transparent;box-shadow:none;isolation:isolate}
+#challenge.gift-encounter::backdrop{background:#35203e26;backdrop-filter:none}
+#challenge.gift-encounter .challenge-paper{background:transparent;isolation:isolate}
+#challenge.gift-encounter .challenge-paper::before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(145deg,#fffdf5,#ffe6ef 72%,#f5e8ff);clip-path:polygon(evenodd,0 0,100% 0,100% 100%,0 100%,0 0,var(--window-left,20px) var(--window-top,300px),var(--window-left,20px) var(--window-bottom,300px),var(--window-right,20px) var(--window-bottom,300px),var(--window-right,20px) var(--window-top,300px),var(--window-left,20px) var(--window-top,300px))}
+/* Left-side card scrolling; reading order inside each card stays unchanged. */
+dialog:not(#journey-help),.journey-help-card{direction:rtl;scrollbar-width:thin;scrollbar-color:#bd829e #f3dece55}
+dialog:not(#journey-help)>*,.journey-help-card>*{direction:ltr}
+dialog:not(#journey-help)::-webkit-scrollbar,.journey-help-card::-webkit-scrollbar{width:8px;height:8px}
+dialog:not(#journey-help)::-webkit-scrollbar-track,.journey-help-card::-webkit-scrollbar-track{background:#f3dece55;border-radius:20px;margin:18px 0}
+dialog:not(#journey-help)::-webkit-scrollbar-thumb,.journey-help-card::-webkit-scrollbar-thumb{background:linear-gradient(#efc8a2,#bd829e,#9a6489);border:2px solid #f8e7df;border-radius:20px}
+dialog:not(#journey-help)::-webkit-scrollbar-button,.journey-help-card::-webkit-scrollbar-button{display:none}
+dialog:not(#journey-help)::-webkit-scrollbar-corner{background:transparent}
+dialog#gift-treasure{background:linear-gradient(145deg,#a97991,#815e81 68%,#655879);border-color:#d7b28f;scrollbar-color:#efc3a3 #583f6540}
+#gift-treasure #letter-gift{background:radial-gradient(circle at top,#ffeac21a,transparent 65%)}
+#gift-treasure .gift-invitation,#gift-treasure #gift-reveal strong{color:#fff0d9}
+#gift-treasure #gift-reveal figcaption,#gift-treasure .gift-progress-label{color:#fff0f5}
+#gift-treasure .keepsake-caption{color:#ffecdf}
+

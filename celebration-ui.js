@@ -10,3 +10,8 @@
 })();
 
 
+(()=>{
+ const dialog=document.getElementById('challenge'),paper=dialog.querySelector('.challenge-paper'),field=document.getElementById('playfield');
+ function alignTreasureWindow(){if(!dialog.open||!dialog.classList.contains('gift-encounter'))return;const left=field.offsetLeft+7,top=field.offsetTop+7;paper.style.setProperty('--window-left',left+'px');paper.style.setProperty('--window-top',top+'px');paper.style.setProperty('--window-right',left+field.clientWidth+'px');paper.style.setProperty('--window-bottom',top+field.clientHeight+'px');}
+ new ResizeObserver(alignTreasureWindow).observe(paper);new ResizeObserver(alignTreasureWindow).observe(field);new MutationObserver(()=>requestAnimationFrame(alignTreasureWindow)).observe(dialog,{attributes:true,attributeFilter:['open','class']});
+})();
