@@ -115,7 +115,7 @@ $('video-play').onclick=playFinaleVideo;
 $('video-continue').onclick=finishFinaleVideo;
 finaleVideo.addEventListener('ended',finishFinaleVideo);
 finaleVideo.addEventListener('error',()=>{if(phase!=='video')return;$('video-status').textContent='The video could not load. You can try again or continue.';$('video-play').hidden=false;});
-function updateAction(){let text=null;if(phase==='explore'&&near==='bouquet')text='Accept his flowers ♡';if(phase==='offer')text=C.finale.handButton;if(phase==='cake')text=C.finale.candleButton;$('action').hidden=!text||blocked();if(text)$('action').textContent=text;$('action').classList.toggle('cinematic',phase!=='explore');}
+function updateAction(){let text=null;if(phase==='explore'&&near==='bouquet')text='Accept his flowers ♡';if(phase==='explore'&&Number.isInteger(near))text=collected.has(near)?'Read your letter ♡':'Pick up your letter ♡';if(phase==='offer')text=C.finale.handButton;if(phase==='cake')text=C.finale.candleButton;$('action').hidden=!text||blocked();if(text)$('action').textContent=text;$('action').classList.toggle('cinematic',phase!=='explore');}
 function findNear(){near=null;if(!carrying&&flowerIntro.state==='waiting'&&Math.abs(x-(BOUQUET-75))<50)near='bouquet';else{let d=140;letters.forEach((l,i)=>{if(Math.abs(x-l.x)<d){near=i;d=Math.abs(x-l.x);}});}updateAction();}
 $('action').onclick=()=>{if(blocked())return;if(phase==='explore'&&near==='bouquet'){acceptIntroFlowers();}else if(phase==='explore'&&Number.isInteger(near)){requestLetter(near);}else if(phase==='offer'){setPhase('hold');chime('win');for(let i=0;i<160*density;i++)petals.push(makePetal(true));}else if(phase==='cake'){setPhase('blow');chime('wind');wind=1;}};
 function requestLetter(i){if(phase!=='explore'||blocked()||!carrying)return;beginPickup(i);}
@@ -155,9 +155,9 @@ function beginFlowerIntro(){flowerIntro={state:'arriving',boy:camera+V+160,start
 function acceptIntroFlowers(){if(flowerIntro.state!=='waiting'||blocked())return;flowerIntro.from=x;flowerIntro.state='giving';setPhase('flowerAccept');}
 function tickFlowerIntro(dt){
  if(phase==='flowerArrival'){flowerIntro.boy=mix(flowerIntro.start,BOUQUET+45,stroll(clock/3.8));if(clock>=3.8)setPhase('flowerKneel');}
- else if(phase==='flowerKneel'){if(clock>=1.6){flowerIntro.state='waiting';setPhase('explore');toast('Come closer, my precious girl. These roses are for you. ♡');}}
+ else if(phase==='flowerKneel'){if(clock>=1.6){flowerIntro.state='waiting';setPhase('explore');}}
  else if(phase==='flowerAccept'){const old=x;x=mix(flowerIntro.from,BOUQUET-75,ease(clock/.5));gait+=Math.abs(x-old)/(meta['girl-walk']?.strideDistance||150);if(clock>=4.8){carrying=true;flowerIntro.state='farewell';setPhase('flowerFarewell');chime('win');}}
- else if(phase==='flowerFarewell'&&clock>=1.3){flowerIntro.state='done';setPhase('explore');toast('Keep these roses close. Your letter journey begins now. ♡',true);}
+ else if(phase==='flowerFarewell'&&clock>=1.3){flowerIntro.state='done';setPhase('explore');}
 }
 function drawFlowerIntro(now){
  if(phase==='flowerArrival'||phase==='flowerKneel'){drawGirl(x-camera,false,now);const frame=phase==='flowerArrival'?Math.floor(clock*6)%8:Math.min(11,8+Math.floor(clock/1.6*4));sprite('intro-boy',frame,flowerIntro.boy-camera,BASE,260,true);return;}
@@ -482,7 +482,7 @@ function miniTick(dt){if(!mini||!$('challenge').open||manualPause||document.hidd
  if(mini.type==='constellation'){mc.strokeStyle='#f5b6d1';mc.lineWidth=2;mc.shadowColor='#ffb5d9';mc.shadowBlur=12;mc.beginPath();for(let j=0;j<mini.step;j++){const [px,py]=mini.points[j];if(j===0)mc.moveTo(px,py);else mc.lineTo(px,py);}if(mini.step===5)mc.closePath();mc.stroke();mc.shadowBlur=0;}
  mini.particles=mini.particles.filter(p=>p.life>0);for(const p of mini.particles){p.life-=dt;p.x+=p.vx*dt;p.y+=p.vy*dt;mc.globalAlpha=Math.max(0,p.life);mc.fillStyle='#ffd0df';mc.font='16px Georgia';mc.fillText('♡',p.x,p.y);}mc.globalAlpha=1;
 }
-canvas.addEventListener('pointerup',e=>{if(phase!=='explore'||blocked())return;const r=canvas.getBoundingClientRect(),px=(e.clientX-r.left)/S,py=(e.clientY-r.top)/S;if(py<BASE-130||py>BASE+60)return;const target=!carrying&&Math.abs(px-(BOUQUET-camera))<80?'bouquet':letters.findIndex(l=>Math.abs(px-(l.x-camera))<60);if(target==='bouquet'&&Math.abs(x-BOUQUET)<155){near='bouquet';$('action').click();}else if(Number.isInteger(target)&&target>=0){if(Math.abs(x-letters[target].x)<140)requestLetter(target);else toast('Come a little closer. ♡');}});
+canvas.addEventListener('pointerup',e=>{if(phase!=='explore'||blocked())return;const r=canvas.getBoundingClientRect(),px=(e.clientX-r.left)/S,py=(e.clientY-r.top)/S;if(py<BASE-130||py>BASE+60)return;const target=!carrying&&Math.abs(px-(BOUQUET-camera))<80?'bouquet':letters.findIndex(l=>Math.abs(px-(l.x-camera))<60);if(target==='bouquet'&&Math.abs(x-BOUQUET)<155){near='bouquet';$('action').click();}else if(Number.isInteger(target)&&target>=0){if(Math.abs(x-letters[target].x)<140)requestLetter(target);else toast('Come a little closer. ♡',true);}});
 resize();fitDialogs();let previousDraw=0,nextDraw=0;
 function frame(ms){
  requestAnimationFrame(frame);

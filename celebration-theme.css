@@ -128,7 +128,7 @@ dialog#letter.birthday-paper{background:#0c142b;color:#f5eaff;border-color:#afc8
 /* Page-wide constellations, with the crescent engraved in the upper corner. */
 #letter.birthday-paper .paper[data-paper]{isolation:isolate;padding-top:82px}
 #letter .aurora-keepsake{position:absolute;inset:0;height:auto;margin:0;z-index:-1;overflow:hidden;border-radius:12px}
-#letter .aurora-moon{left:auto;right:43px;top:12px;width:67px;height:67px}
+#letter .aurora-moon{left:auto;right:30px;top:32px;width:94px;height:94px}
 #letter .aurora-star{font-size:10px}
 #letter .aurora-balloon{top:72%;opacity:.5}
 #letter .aurora-balloon:nth-last-child(1){top:36%}
@@ -138,3 +138,20 @@ dialog#letter.birthday-paper{background:#0c142b;color:#f5eaff;border-color:#afc8
 @keyframes letter-glyph-twinkle{0%,100%{opacity:.82}45%,60%{opacity:1}}
 @keyframes letter-glyph-glow{0%,30%,75%,100%{opacity:0}48%,54%{opacity:.9}}
 @media(prefers-reduced-motion:reduce){#letter .letter-glyph,#letter .letter-glyph::after{animation:none!important}}
+
+/* The page unfolds first; the wand appears only when writing begins. */
+#letter.birthday-paper{transform-origin:center}
+#letter.birthday-paper .magic-wand{width:3px;height:38px;background:linear-gradient(#fff6cf,#bea0e7 55%,#786499);border-radius:4px;transform:rotate(-36deg);transform-origin:top center;filter:none;box-shadow:0 0 5px #ead4fa99;transition:left 60ms linear,top 60ms linear;z-index:3;pointer-events:none}
+.magic-wand .wand-star{position:absolute;left:-9px;top:-15px;font:23px/1 Georgia;color:#fff7cf;text-shadow:0 0 6px #fff0bb,0 0 13px #c7abff;animation:wand-shimmer 1.1s ease-in-out infinite}
+.magic-wand .wand-spark{position:absolute;left:-4px;top:-7px;font:14px/1 Georgia;color:#e9caff;animation:wand-dust 1.2s ease-out infinite}
+.magic-wand .wand-spark:nth-child(3){animation-delay:-.4s;color:#a5f5e3;--spark-x:18px}
+.magic-wand .wand-spark:nth-child(4){animation-delay:-.8s;color:#ffe8a8;--spark-x:-24px}
+@keyframes wand-shimmer{0%,100%{opacity:.65;transform:scale(.85)}50%{opacity:1;transform:scale(1.1)}}
+@keyframes wand-dust{from{opacity:1;transform:translate(0,0) scale(.8)}to{opacity:0;transform:translate(var(--spark-x,-16px),-24px) scale(.2)}}
+
+/* Reveal in place: no inherited entrance translation or scaling. */
+dialog#letter[open]{animation:none;transform:none;translate:none}
+
+/* Explicit viewport centring, independent of the page reveal animation. */
+dialog#letter[open]{position:fixed;inset:50% auto auto 50%;margin:0;transform:translate(-50%,-50%);translate:none;width:min(96vw,600px);max-height:calc(100dvh - 32px);max-height:calc(100svh - 32px);overflow-y:auto}
+#toast.flower-note{top:50%;transform:translate(-50%,-50%)}
