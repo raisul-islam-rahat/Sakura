@@ -170,3 +170,10 @@ dialog#letter[open]{position:fixed;inset:50% auto auto 50%;margin:0;transform:tr
 @keyframes gentle-ink-glint{0%,80%,100%{opacity:0}89%{opacity:.45}}
 /* Avoid repeatedly clipping a scrolling, decorated dialog on mobile. */
 dialog#letter::backdrop{backdrop-filter:none;background:#080e23a8}
+
+/* White moonlight, with the engraved detail kept in neutral silver. */
+#letter .aurora-moon{width:112px;height:112px;filter:drop-shadow(0 0 14px #ffffffaa);animation:moon-white-pulse 6s ease-in-out infinite}
+#letter .aurora-moon path:first-of-type{fill:#fff;stroke:#fff}
+#letter .aurora-moon path:nth-of-type(2){stroke:#9da3ab;stroke-opacity:.45}
+#letter .aurora-moon path:nth-of-type(3){stroke:#fff;stroke-opacity:.9}
+@keyframes moon-white-pulse{0%,100%{opacity:.45}50%{opacity:1}}
