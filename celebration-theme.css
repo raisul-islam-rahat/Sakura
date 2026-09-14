@@ -155,3 +155,18 @@ dialog#letter[open]{animation:none;transform:none;translate:none}
 /* Explicit viewport centring, independent of the page reveal animation. */
 dialog#letter[open]{position:fixed;inset:50% auto auto 50%;margin:0;transform:translate(-50%,-50%);translate:none;width:min(96vw,600px);max-height:calc(100dvh - 32px);max-height:calc(100svh - 32px);overflow-y:auto}
 #toast.flower-note{top:50%;transform:translate(-50%,-50%)}
+
+/* Aurora treasure card; preserve its transparent chest window and reward card. */
+#challenge.gift-encounter .challenge-paper::before{background:radial-gradient(ellipse at 5% 12%,#389e8b45,transparent 44%),radial-gradient(ellipse at 95% 32%,#9164b849,transparent 45%),linear-gradient(145deg,#0b2631,#121b36 45%,#261b3a)}
+#challenge.gift-encounter .challenge-paper{color:#eee9fa}
+#challenge.gift-encounter #challenge-title{color:#f7e8d5}
+#challenge.gift-encounter #challenge-hint,#challenge.gift-encounter #challenge-status,#challenge.gift-encounter .keepsake-caption{color:#dec9e9}
+#challenge.gift-encounter .eyebrow{color:#b4dcd9}
+#challenge.gift-encounter .close{color:#eee9fa;background:#bba4da1c}
+/* Most ink stays steady; occasional characters give a single soft pulse. */
+#letter .letter-glyph{animation:none}
+#letter .letter-glyph::after{content:none;animation:none}
+#letter .letter-glyph.gentle-glint::after{content:attr(data-char);text-shadow:0 0 4px #e7cdef;animation:gentle-ink-glint var(--duration) ease-in-out var(--delay) infinite}
+@keyframes gentle-ink-glint{0%,80%,100%{opacity:0}89%{opacity:.45}}
+/* Avoid repeatedly clipping a scrolling, decorated dialog on mobile. */
+dialog#letter::backdrop{backdrop-filter:none;background:#080e23a8}
