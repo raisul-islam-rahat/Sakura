@@ -1,15 +1,17 @@
 {
-  "type": "question",
-  "title": "A wish just for you",
-  "hint": "A special day, a cake, and twenty little letters.",
-  "question": "What special day are we celebrating?",
-  "answers": [
-    "birthday",
-    "my birthday",
-    "your birthday",
-    "muno birthday",
-    "muno’s birthday",
-    "muno's birthday"
+  "type": "kiss-sequence",
+  "title": "Kothay kiss korbo?",
+  "hint": "Ekta ekta kore beche nao, jaan. ♡",
+  "choices": [
+    "Amar kopal",
+    "Amar dan chokh",
+    "Amar bam chokh",
+    "Amar nak",
+    "Amar dan gal",
+    "Amar bam gal",
+    "Amar thutni",
+    "Amar thot"
   ],
-  "wrongMessage": "It is your special day. ♡"
+  "wrongMessage": "No You are wrong try again jaan",
+  "sound": "kiss.wav"
 }

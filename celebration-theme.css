@@ -82,3 +82,9 @@ dialog#gift-treasure{background:linear-gradient(145deg,#a97991,#815e81 68%,#6558
 #gift-treasure #gift-reveal figcaption,#gift-treasure .gift-progress-label{color:#fff0f5}
 #gift-treasure .keepsake-caption{color:#ffecdf}
 
+#challenge.kiss-sequence #playfield{aspect-ratio:auto;min-height:285px;overflow:visible;background:transparent;border:0}
+#challenge.kiss-sequence #mini-buttons{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:10px 0;min-height:285px;align-content:center}
+#challenge.kiss-sequence #mini-buttons .kiss-choice{position:relative;inset:auto;min-height:52px;padding:12px 8px;border:1px solid #cb91b566;border-radius:16px;background:linear-gradient(135deg,#503354,#28213d);color:#ffe5ef;font:15px/1.4 Georgia;overflow:visible;transition:opacity .5s,transform .5s}
+.kiss-choice.kiss-chosen{opacity:0;transform:scale(.8);pointer-events:none}.kiss-choice i{position:absolute;left:50%;top:50%;font:17px Georgia;color:#ffe1a1;pointer-events:none;animation:kiss-scatter .6s ease-out both}.kiss-wrong{animation:kiss-wrong .3s ease-in-out}
+@keyframes kiss-scatter{from{opacity:1;transform:scale(.5)}to{opacity:0;transform:translate(var(--dx),var(--dy)) scale(1.2)}}@keyframes kiss-wrong{25%{translate:-4px 0}75%{translate:4px 0}}
+@media(prefers-reduced-motion:reduce){.kiss-choice,.kiss-choice i{animation:none;transition:none}.kiss-choice i{display:none}}
