@@ -15,8 +15,8 @@
  window.updateSkyLove=(dt,visible)=>{
   if(!visible||!lines.length){slots.forEach(s=>s.el.hidden=true);return;}
   untilNext-=dt;paintAge+=dt;
-  // Start the next sentence before the current sentence's 1.8-second fade ends.
-  if(untilNext<=0){showLine();untilNext=5.2;}
+  // Finish the seven-second sentence, then leave a short 0.6-second pause.
+  if(untilNext<=0){showLine();untilNext=7.6;}
   const paint=paintAge>=1/24;if(paint)paintAge=0;
   for(const slot of slots){const el=slot.el;if(slot.age>=7){el.hidden=true;continue;}slot.age+=dt;el.hidden=false;
    if(slot.needsFit){el.style.setProperty('--sky-half',(el.getBoundingClientRect().width/2+18)+'px');slot.needsFit=false;}
