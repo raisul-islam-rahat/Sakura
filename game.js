@@ -26,7 +26,7 @@ function chime(kind='heart'){
  const notes=kind==='win'?[523,659,784,1047]:kind==='tap'?[660]:[784,988];notes.forEach((f,i)=>{const osc=ac.createOscillator(),gain=ac.createGain();osc.type='sine';osc.frequency.value=f;gain.gain.setValueAtTime(.0001,t+i*.1);gain.gain.exponentialRampToValueAtTime(.07,t+i*.1+.01);gain.gain.exponentialRampToValueAtTime(.0001,t+i*.1+.8);osc.connect(gain);gain.connect(ac.destination);osc.start(t+i*.1);osc.stop(t+i*.1+.9);});
  }catch{}
 }
-function toast(t){$('toast').textContent=t;$('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('show'),3300);}
+function toast(t,flowerNote=false){$('toast').classList.toggle('flower-note',flowerNote);$('toast').textContent=t;$('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('show'),3300);}
 function norm(a){return String(a).trim().toLowerCase().replace(/\s+/g,' ');}
 async function get(url,type='json'){const r=await fetch(url,{cache:'no-cache'});if(!r.ok)throw new Error(`${url}: ${r.status}`);return type==='json'?r.json():r.text();}
 function image(src){return new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(img);img.onerror=()=>reject(new Error(`Missing image: ${src}`));img.src=src;});}
@@ -178,7 +178,7 @@ function tickFlowerIntro(dt){
  if(phase==='flowerArrival'){flowerIntro.boy=mix(flowerIntro.start,BOUQUET+45,stroll(clock/3.8));if(clock>=3.8)setPhase('flowerKneel');}
  else if(phase==='flowerKneel'){if(clock>=1.6){flowerIntro.state='waiting';setPhase('explore');toast('Come closer, my precious girl. These roses are for you. ♡');}}
  else if(phase==='flowerAccept'){const old=x;x=mix(flowerIntro.from,BOUQUET-75,ease(clock/.5));gait+=Math.abs(x-old)/(meta['girl-walk']?.strideDistance||150);if(clock>=4.8){carrying=true;flowerIntro.state='farewell';setPhase('flowerFarewell');chime('win');}}
- else if(phase==='flowerFarewell'&&clock>=1.3){flowerIntro.state='done';setPhase('explore');toast('Keep these roses close. Your letter journey begins now. ♡');}
+ else if(phase==='flowerFarewell'&&clock>=1.3){flowerIntro.state='done';setPhase('explore');toast('Keep these roses close. Your letter journey begins now. ♡',true);}
 }
 function drawFlowerIntro(now){
  if(phase==='flowerArrival'||phase==='flowerKneel'){drawGirl(x-camera,false,now);const frame=phase==='flowerArrival'?Math.floor(clock*6)%8:Math.min(11,8+Math.floor(clock/1.6*4));sprite('intro-boy',frame,flowerIntro.boy-camera,BASE,260,true);return;}

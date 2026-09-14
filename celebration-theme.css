@@ -90,10 +90,9 @@ dialog#gift-treasure{background:linear-gradient(145deg,#a97991,#815e81 68%,#6558
 @media(prefers-reduced-motion:reduce){.kiss-choice,.kiss-choice i{animation:none;transition:none}.kiss-choice i{display:none}}
 /* Each character glimmers independently, like distant stars. */
 #sky-love-line{position:absolute;left:clamp(var(--sky-half,175px),var(--sky-x,50%),calc(100% - var(--sky-half,175px)));width:max-content;max-width:calc(100% - 40px);z-index:3;color:#fff4df;font:400 16px/1.8 Calibri,Candara,"Segoe UI",Arial,sans-serif;letter-spacing:.2em;white-space:normal;text-wrap:balance;pointer-events:none;text-align:center;will-change:opacity,transform}
-#sky-love-line .sky-letter{display:inline-block;position:relative;animation:sky-letter-twinkle var(--glow-duration,4s) ease-in-out var(--glow-delay,0s) infinite;text-shadow:0 1px 3px #221d3e}
-@keyframes sky-letter-twinkle{0%,100%{opacity:.5;color:#e3d6ea;text-shadow:0 1px 3px #221d3e,0 0 2px #f4d8ff40}35%,65%{opacity:.8;color:#fff2da;text-shadow:0 1px 3px #221d3e,0 0 5px #ffe4bba0}48%,52%{opacity:1;color:#fffef1;text-shadow:0 1px 2px #221d3e,0 0 4px #fffce8,0 0 10px #ffe7a8,0 0 19px #efc2ff}}
-#sky-love-line .star-tip::after{content:'';position:absolute;width:7px;height:7px;right:-2px;top:1px;background:#fffbe5;clip-path:polygon(50% 0,60% 40%,100% 50%,60% 60%,50% 100%,40% 60%,0 50%,40% 40%);animation:sky-star-tip var(--glow-duration,4s) ease-in-out var(--glow-delay,0s) infinite}
-@keyframes sky-star-tip{0%,35%,65%,100%{opacity:0;transform:scale(.2)}50%{opacity:.9;transform:scale(1)}}
-@media(prefers-reduced-motion:reduce){#sky-love-line .sky-letter{animation:none;opacity:1;text-shadow:0 1px 3px #221d3e,0 0 6px #ffe5bc80}#sky-love-line .star-tip::after{display:none}}
-
+#sky-love-line .sky-letter{display:inline-block;position:relative;opacity:.85;text-shadow:0 1px 3px #221d3e,0 0 6px #f5d9b880}
+#sky-love-line .sky-glint{animation:sky-light-twinkle var(--glow-duration,4s) ease-in-out var(--glow-delay,0s) infinite;will-change:opacity;text-shadow:0 1px 3px #221d3e,0 0 8px #ffe5ba}
+@keyframes sky-light-twinkle{0%,100%{opacity:.4}50%{opacity:1}}
 #sky-love-line .sky-word{display:inline-block;white-space:nowrap}
+@media(prefers-reduced-motion:reduce){#sky-love-line .sky-glint{animation:none;will-change:auto}}
+#toast.flower-note{top:34%;max-width:84%}
