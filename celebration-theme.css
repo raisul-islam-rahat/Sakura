@@ -98,3 +98,43 @@ dialog#gift-treasure{background:linear-gradient(145deg,#a97991,#815e81 68%,#6558
 .sky-love-line .sky-word{display:inline-block;white-space:nowrap}
 @media(prefers-reduced-motion:reduce){.sky-love-line .sky-letter{animation:none;opacity:1}.sky-love-line .sky-letter::before{animation:none;opacity:.25;will-change:auto}.sky-love-line .star-tip::after{display:none}}
 #toast.flower-note{top:34%;max-width:84%}
+
+/* Aurora diary: fixed gradients and small opacity layers keep the night gentle. */
+dialog#letter.birthday-paper{background:#0c142b;color:#f5eaff;border-color:#afc8ed66;box-shadow:0 24px 80px #03081799;scrollbar-color:#a5bddc #172138}
+#letter.birthday-paper .paper[data-paper]{background:radial-gradient(ellipse at 5% 12%,#389e8b45,transparent 44%),radial-gradient(ellipse at 95% 32%,#9164b849,transparent 45%),linear-gradient(145deg,#0b2631,#121b36 45%,#261b3a);border:4px double #b8d9d94d;border-radius:16px;padding:32px 18px 26px;box-shadow:inset 0 0 45px #7aaed112;color:#eee9fa;--ink:#eee9fa}
+#letter.birthday-paper h2{color:#f7e8d5;text-shadow:0 0 14px #d9c5ff55;font-weight:400}
+#letter.birthday-paper .eyebrow{color:#a7d9d9}
+#letter.birthday-paper #signature{color:#ebc8ed;text-shadow:0 0 8px #d7a6ec55}
+#letter.birthday-paper .close{color:#f4e9ff;background:#bba4da1c;border:1px solid #c0c5ea44}
+#letter.birthday-paper #message{color:#f0e8fc;scrollbar-color:#a7bed5 #ffffff0b}
+#letter.birthday-paper .diary-writing{border-left-color:#c6a6d94a;background:repeating-linear-gradient(to bottom,transparent 0,transparent 22px,#bbcfec24 22px,#bbcfec24 23px,transparent 23px,transparent 24px);text-shadow:0 0 5px #b7e1f04d}
+#letter.birthday-paper .diary-writing>span:first-child{animation:aurora-ink 4.8s ease-in-out infinite}
+#letter.birthday-paper .writing-pen{color:#f4ddb7;filter:none}
+#letter.birthday-paper #continue{background:linear-gradient(120deg,#294d60,#514064);border:1px solid #b6ced477;color:#fff0e2;box-shadow:0 3px 22px #a5b9e619}
+.aurora-keepsake{height:155px;position:relative;margin:-8px 0 14px;pointer-events:none;isolation:isolate}
+.aurora-keepsake::before{content:'';position:absolute;inset:10px 0;background:radial-gradient(ellipse,#67dfbe25,transparent 65%);animation:aurora-luminous 7s ease-in-out infinite}
+.aurora-moon{position:absolute;width:108px;height:108px;left:calc(50% - 54px);top:9px;transform:rotate(-24deg);filter:drop-shadow(0 0 12px #b9e8df88);animation:aurora-luminous 5.8s ease-in-out infinite}
+.aurora-star{position:absolute;font:15px Georgia;font-style:normal;color:var(--star-a);text-shadow:0 0 7px currentColor;animation:aurora-star-a var(--duration) ease-in-out var(--delay) infinite}
+.aurora-star::after{content:'✦';position:absolute;inset:0;color:var(--star-b);text-shadow:0 0 7px currentColor;animation:aurora-star-b var(--duration) ease-in-out var(--delay) infinite}
+.aurora-balloon{position:absolute;top:58px;width:25px;height:33px;border-radius:50% 50% 46% 46%;border:1px solid #e3d5fa88;background:radial-gradient(circle at 30% 25%,#fff8,#d5a8eb33 25%,#a6cbef12 70%);box-shadow:inset -4px -3px 9px #9a97db22,0 0 14px #e3b0ed22;animation:aurora-float 7s ease-in-out var(--delay) infinite}
+.aurora-balloon::after{content:'';position:absolute;top:32px;left:11px;width:9px;height:43px;border-left:1px solid #d7c9ef66;border-radius:50%;transform:rotate(-9deg)}
+@keyframes aurora-ink{0%,100%{opacity:.84}45%,55%{opacity:1}50%{opacity:.94}}
+@keyframes aurora-luminous{0%,100%{opacity:.45}50%{opacity:1}}
+@keyframes aurora-star-a{0%,100%{opacity:.18}25%,75%{opacity:1}50%{opacity:.35}}
+@keyframes aurora-star-b{0%,25%,100%{opacity:0}65%,80%{opacity:1}}
+@keyframes aurora-float{0%,100%{transform:translateY(4px) rotate(-6deg);opacity:.65}50%{transform:translateY(-6px) rotate(5deg);opacity:1}}
+@media(prefers-reduced-motion:reduce){.aurora-keepsake *,.aurora-keepsake::before,#letter.birthday-paper .diary-writing>span:first-child{animation:none!important}}
+
+/* Page-wide constellations, with the crescent engraved in the upper corner. */
+#letter.birthday-paper .paper[data-paper]{isolation:isolate;padding-top:82px}
+#letter .aurora-keepsake{position:absolute;inset:0;height:auto;margin:0;z-index:-1;overflow:hidden;border-radius:12px}
+#letter .aurora-moon{left:auto;right:43px;top:12px;width:67px;height:67px}
+#letter .aurora-star{font-size:10px}
+#letter .aurora-balloon{top:72%;opacity:.5}
+#letter .aurora-balloon:nth-last-child(1){top:36%}
+#letter.birthday-paper .diary-writing>span:first-child{animation:none}
+#letter .letter-glyph{display:inline-block;position:relative;animation:letter-glyph-twinkle var(--duration) ease-in-out var(--delay) infinite}
+#letter .letter-glyph::after{content:attr(data-char);position:absolute;inset:0;font:inherit;line-height:inherit;letter-spacing:inherit;color:#fffbe3;text-shadow:0 0 4px #fff4cf,0 0 9px #d9b5ed;pointer-events:none;opacity:0;animation:letter-glyph-glow var(--duration) ease-in-out var(--delay) infinite}
+@keyframes letter-glyph-twinkle{0%,100%{opacity:.82}45%,60%{opacity:1}}
+@keyframes letter-glyph-glow{0%,30%,75%,100%{opacity:0}48%,54%{opacity:.9}}
+@media(prefers-reduced-motion:reduce){#letter .letter-glyph,#letter .letter-glyph::after{animation:none!important}}
