@@ -34,10 +34,8 @@ input{background:#fffdfa;color:#633b50;border-color:#dcb3c4}button:focus-visible
 .keepsake-caption{left:30%;right:30%;font-size:13px;top:24px} #gift-treasure{position:relative}
 .treasure-twinkle{position:absolute;left:50%;top:50%;font:22px Georgia;color:#c58720;opacity:0;text-shadow:0 0 7px #fff1b0;animation:treasure-twinkle 1.8s ease-out var(--delay) both}.treasure-twinkle:nth-child(3n){color:#d04f83}.treasure-twinkle:nth-child(4n){font-size:15px;color:#a679bf}@keyframes treasure-twinkle{0%{opacity:0;transform:scale(.1)}20%{opacity:1}75%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(100deg) scale(.2)}}
 /* A quiet note from the sender, drifting independently in the sky. */
-#letter-thanks{position:absolute;left:50%;top:29%;transform:translate(-50%,-50%);width:min(90vw,380px);z-index:4;text-align:center;padding:0;border:0;border-radius:0;background:none;color:#fff5de;box-shadow:none;pointer-events:none;animation:none;text-shadow:0 1px 3px #42203ce0,0 0 9px #ffdcaaa0,0 0 20px #f5aec780;will-change:transform,opacity}
-#letter-thanks span{display:block;font:italic 14px/1.6 Georgia;letter-spacing:.015em;text-wrap:balance}
-#letter-thanks small{display:block;margin-top:5px;font:11px/1.5 Georgia;color:#fff0dd;letter-spacing:.05em;opacity:.85}
-@media(max-width:400px){#letter-thanks span{font-size:13px}}
+#letter-thanks{position:absolute;left:50%;top:29%;transform:translate(-50%,-50%);width:min(90vw,380px);z-index:4;text-align:center;padding:0;border:0;border-radius:0;background:none;color:#fff5de;box-shadow:none;pointer-events:none;animation:none;text-shadow:none;will-change:transform,opacity}
+#letter-thanks small{display:block;margin-top:0;font:12px/1.5 Calibri,"Segoe UI",sans-serif;color:#fff0dd;letter-spacing:.05em;opacity:.85}
 @media(prefers-reduced-motion:reduce){.treasure-twinkle,#letter-thanks{animation:none}.party-burst{display:none}}
 /* Challenges retain their original moonlit palette; gift encounters stay warm. */
 #challenge:not(.gift-encounter){background:#111b2c;color:#ffedf5;border-color:#ffe0ec40;box-shadow:0 24px 110px #01091980}
@@ -90,9 +88,13 @@ dialog#gift-treasure{background:linear-gradient(145deg,#a97991,#815e81 68%,#6558
 @media(prefers-reduced-motion:reduce){.kiss-choice,.kiss-choice i{animation:none;transition:none}.kiss-choice i{display:none}}
 /* Each character glimmers independently, like distant stars. */
 #sky-love-line{position:absolute;left:clamp(var(--sky-half,175px),var(--sky-x,50%),calc(100% - var(--sky-half,175px)));width:max-content;max-width:calc(100% - 40px);z-index:3;color:#fff4df;font:400 16px/1.8 Calibri,Candara,"Segoe UI",Arial,sans-serif;letter-spacing:.2em;white-space:normal;text-wrap:balance;pointer-events:none;text-align:center;will-change:opacity,transform}
-#sky-love-line .sky-letter{display:inline-block;position:relative;opacity:.85;text-shadow:0 1px 3px #221d3e,0 0 6px #f5d9b880}
-#sky-love-line .sky-glint{animation:sky-light-twinkle var(--glow-duration,4s) ease-in-out var(--glow-delay,0s) infinite;will-change:opacity;text-shadow:0 1px 3px #221d3e,0 0 8px #ffe5ba}
-@keyframes sky-light-twinkle{0%,100%{opacity:.4}50%{opacity:1}}
+/* Fixed glow textures: only opacity animates, never shadow blur or color. */
+#sky-love-line .sky-letter{display:inline-block;position:relative;color:#e3d6ea;text-shadow:0 1px 3px #221d3e;animation:sky-letter-breathe var(--glow-duration,4s) ease-in-out var(--glow-delay,0s) infinite}
+#sky-love-line .sky-letter::before{content:attr(data-char);position:absolute;inset:0;color:#fffef1;text-shadow:0 0 4px #fffce8,0 0 10px #ffe7a8,0 0 19px #efc2ff;opacity:0;will-change:opacity;animation:sky-glow-peak var(--glow-duration,4s) ease-in-out var(--glow-delay,0s) infinite}
+@keyframes sky-letter-breathe{0%,100%{opacity:.5}35%,65%{opacity:.8}48%,52%{opacity:1}}
+@keyframes sky-glow-peak{0%,100%{opacity:0}35%,65%{opacity:.18}48%,52%{opacity:1}}
+#sky-love-line .star-tip::after{content:'';position:absolute;width:7px;height:7px;right:-2px;top:1px;background:#fffbe5;clip-path:polygon(50% 0,60% 40%,100% 50%,60% 60%,50% 100%,40% 60%,0 50%,40% 40%);animation:sky-star-tip var(--glow-duration,4s) ease-in-out var(--glow-delay,0s) infinite}
+@keyframes sky-star-tip{0%,35%,65%,100%{opacity:0;transform:scale(.2)}50%{opacity:.9;transform:scale(1)}}
 #sky-love-line .sky-word{display:inline-block;white-space:nowrap}
-@media(prefers-reduced-motion:reduce){#sky-love-line .sky-glint{animation:none;will-change:auto}}
+@media(prefers-reduced-motion:reduce){#sky-love-line .sky-letter{animation:none;opacity:1}#sky-love-line .sky-letter::before{animation:none;opacity:.25;will-change:auto}#sky-love-line .star-tip::after{display:none}}
 #toast.flower-note{top:34%;max-width:84%}
