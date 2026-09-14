@@ -166,8 +166,8 @@ dialog#letter[open]{position:fixed;inset:50% auto auto 50%;margin:0;transform:tr
 /* Most ink stays steady; occasional characters give a single soft pulse. */
 #letter .letter-glyph{animation:none}
 #letter .letter-glyph::after{content:none;animation:none}
-#letter .letter-glyph.gentle-glint::after{content:attr(data-char);text-shadow:0 0 4px #e7cdef;animation:gentle-ink-glint var(--duration) ease-in-out var(--delay) infinite}
-@keyframes gentle-ink-glint{0%,80%,100%{opacity:0}89%{opacity:.45}}
+#letter .letter-glyph.gentle-glint::after{content:attr(data-char);text-shadow:0 0 4px #fff5dc,0 0 8px #e7cdef99;animation:gentle-ink-glint var(--duration) ease-in-out var(--delay) infinite}
+@keyframes gentle-ink-glint{0%,72%,100%{opacity:0}84%,90%{opacity:.8}}
 /* Avoid repeatedly clipping a scrolling, decorated dialog on mobile. */
 dialog#letter::backdrop{backdrop-filter:none;background:#080e23a8}
 
