@@ -39,3 +39,26 @@ input{background:#fffdfa;color:#633b50;border-color:#dcb3c4}button:focus-visible
 #letter-thanks small{display:block;margin-top:5px;font:11px/1.5 Georgia;color:#fff0dd;letter-spacing:.05em;opacity:.85}
 @media(max-width:400px){#letter-thanks span{font-size:13px}}
 @media(prefers-reduced-motion:reduce){.treasure-twinkle,#letter-thanks{animation:none}.party-burst{display:none}}
+/* Challenges retain their original moonlit palette; gift encounters stay warm. */
+#challenge:not(.gift-encounter){background:#111b2c;color:#ffedf5;border-color:#ffe0ec40;box-shadow:0 24px 110px #01091980}
+#challenge:not(.gift-encounter) .paper{background:radial-gradient(ellipse at top,#f9b2d419,transparent 65%)}
+#challenge:not(.gift-encounter) .eyebrow{color:#f2bed7}
+#challenge:not(.gift-encounter) #challenge-hint,#challenge:not(.gift-encounter) #challenge-status{color:#eed2e2}
+#challenge:not(.gift-encounter) .close{background:#ffffff11;color:#ffe0ef}
+#challenge:not(.gift-encounter) input{background:#09112480;color:#fff6fa;border-color:#ffcee633}
+#challenge:not(.gift-encounter) .primary{color:#452c43;background:linear-gradient(120deg,#ffe3ec,#f4b9d7);border-color:#ffe0ee4d}
+#challenge:not(.gift-encounter) #playfield{background:radial-gradient(ellipse at bottom,#45406244,#06132980);border-color:transparent}
+#challenge:not(.gift-encounter) .memory-card{background:linear-gradient(135deg,#493d67,#171e3f)!important;border-color:#ffcee640!important;color:#ffcfdf}
+#challenge:not(.gift-encounter) .memory-card.flipped{background:linear-gradient(135deg,#f5c0d655,#72537f77)!important}
+#challenge:not(.gift-encounter) .melody-pad,#challenge:not(.gift-encounter) .mini-text{background:#3e3159!important;color:#ffe2ef;border-color:#ffcee666!important}
+#challenge:not(.gift-encounter) .melody-pad.lit{background:#ffcee6!important;color:#312044}
+#challenge:not(.gift-encounter) .maze-tile{background:#73568155;color:#ffdeee;border-color:#ffcee633}
+#challenge:not(.gift-encounter) .maze-tile:disabled{background:#060c1b;border-color:transparent}
+#challenge:not(.gift-encounter) .maze-tile.current{background:#995a7b}
+#challenge:not(.gift-encounter) .water-flower{color:#472f48;background:linear-gradient(#fff1f5,#eab3d0)}
+#challenge.gift-encounter #playfield{background:transparent;border:0;box-shadow:none}
+/* Dusty rose behind the white-edged reward stickers. */
+#gift-treasure{background:linear-gradient(145deg,#ead0cb,#c68ca7 68%,#bda0ce);border-color:#d6ac87}
+#gift-treasure #letter-gift{background:radial-gradient(circle at top,#fff0dc40,transparent 65%)}
+#gift-treasure .gift-invitation,#gift-treasure #gift-reveal strong{color:#67324c}
+#gift-treasure #gift-reveal figcaption,#gift-treasure .gift-progress-label{color:#543447}
