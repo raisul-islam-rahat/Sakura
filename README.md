@@ -154,3 +154,7 @@ Latest polish: realistic-jaan-cake.png replaces the illustrated cake with photor
 
 Opening bouquet scene: after the welcome instructions, the boy arrives in black, kneels, and waits for the girl. Walk close and choose Accept his flowers to play the handover. Letter collection unlocks after the handover. Restarting repeats this scene. Verified with tests/verify-flower-intro.cjs.
 
+
+## Archived development files
+
+Old artwork, unused letter pictures and disabled challenges, character backups, generation scripts, tests and preview outputs are now in `Archive/cleanup-2026-09-14/`, preserving their original folder paths. See its `move-plan.json` for the inventory. Historical paths in older documentation refer to those archived files. Keep Archive out of a deployment upload when you only need the playable site. Active artwork, letters, music, video, configuration and local-launch helpers remain in place.
