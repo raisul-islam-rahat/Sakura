@@ -82,7 +82,7 @@ async function playFinaleVideo(){
  try{await finaleVideo.play();}catch(e){
   if(phase!=='video')return;
   $('video-play').hidden=false;
-  $('video-status').textContent=e.name==='NotAllowedError'?'Tap play to watch your surprise. ♡':'The video could not play. You can try again or continue.';
+  $('video-status').textContent=e.name==='NotAllowedError'?'Tap play to watch your surprise. ♡':'The video could not play. Please try playing it again.';
  }
 }
 function startFinaleVideo(){
@@ -112,9 +112,9 @@ function tickCakeCut(dt){
 
 function finishFinaleVideo(){if(phase!=='video')return;completed=true;setPhase('finished');$('ending-journal').focus();}
 $('video-play').onclick=playFinaleVideo;
-$('video-continue').onclick=finishFinaleVideo;
+
 finaleVideo.addEventListener('ended',finishFinaleVideo);
-finaleVideo.addEventListener('error',()=>{if(phase!=='video')return;$('video-status').textContent='The video could not load. You can try again or continue.';$('video-play').hidden=false;});
+finaleVideo.addEventListener('error',()=>{if(phase!=='video')return;$('video-status').textContent='The video could not load. Please try playing it again.';$('video-play').hidden=false;});
 function updateAction(){let text=null;if(phase==='explore'&&near==='bouquet')text='Accept his flowers ♡';if(phase==='explore'&&Number.isInteger(near))text=collected.has(near)?'Read your letter ♡':'Pick up your letter ♡';if(phase==='offer')text=C.finale.handButton;if(phase==='cake')text=C.finale.candleButton;$('action').hidden=!text||blocked();if(text)$('action').textContent=text;$('action').classList.toggle('cinematic',phase!=='explore');}
 function findNear(){near=null;if(!carrying&&flowerIntro.state==='waiting'&&Math.abs(x-(BOUQUET-75))<50)near='bouquet';else{let d=140;letters.forEach((l,i)=>{if(Math.abs(x-l.x)<d){near=i;d=Math.abs(x-l.x);}});}updateAction();}
 $('action').onclick=()=>{if(blocked())return;if(phase==='explore'&&near==='bouquet'){acceptIntroFlowers();}else if(phase==='explore'&&Number.isInteger(near)){requestLetter(near);}else if(phase==='offer'){setPhase('hold');chime('win');for(let i=0;i<160*density;i++)petals.push(makePetal(true));}else if(phase==='cake'){setPhase('blow');chime('wind');wind=1;}};
@@ -143,7 +143,7 @@ function openLetter(i){stop();if(window.offerLetterGift?.(i+1,letters[i].challen
 let thanksRemaining=0;
 function showLetterThanks(i){if(phase!=='explore'&&phase!=='pickup')return;const el=$('letter-thanks'),left=Math.max(0,letters.length-collected.size);el.querySelector('small').textContent=left+' '+(left===1?'step':'steps')+' left ♡';thanksRemaining=5.5;el.hidden=false;el.style.opacity='0';updateLetterThanks(0);}
 function updateLetterThanks(dt){const el=$('letter-thanks');if(!thanksRemaining)return;if(!['explore','pickup'].includes(phase)){thanksRemaining=0;el.hidden=true;return;}if(blocked()){el.hidden=true;return;}el.hidden=false;thanksRemaining=Math.max(0,thanksRemaining-dt);const elapsed=5.5-thanksRemaining,wave=reduce?0:Math.sin(elapsed*1.45)*5,drift=reduce?0:-elapsed*2;el.style.left='50%';el.style.top=Math.max(110,H*.34)+'px';el.style.transform='translate(calc(-50% + '+wave+'px), calc(-50% + '+drift+'px))';el.style.opacity=String(Math.min(1,elapsed/.7,thanksRemaining/1.2));if(!thanksRemaining)el.hidden=true;}
-function closeLetter(){$('letter').close();}$('close-letter').onclick=closeLetter;$('continue').onclick=closeLetter;$('letter').addEventListener('close',()=>{if($('letter').open)return;const closed=modalLetter;modalLetter=null;if(closed)showLetterThanks(closed.i);soundSync();updateAction();});$('photo-img').onerror=()=>{$('photo').hidden=true;};$('letter-animation').onerror=()=>{$('letter-animation').hidden=true;};song.onerror=()=>{if(modalLetter){modalLetter.music=null;soundSync();}};
+function closeLetter(){$('letter').close();}$('continue').onclick=closeLetter;$('letter').addEventListener('close',()=>{if($('letter').open)return;const closed=modalLetter;modalLetter=null;if(closed)showLetterThanks(closed.i);soundSync();updateAction();});$('photo-img').onerror=()=>{$('photo').hidden=true;};$('letter-animation').onerror=()=>{$('letter-animation').hidden=true;};song.onerror=()=>{if(modalLetter){modalLetter.music=null;soundSync();}};
 function showJournal(){stop();$('journal-title').textContent=`${letters.length} little letters`;$('journal-list').replaceChildren();letters.forEach((l,i)=>{const b=document.createElement('button');b.disabled=!collected.has(i);b.textContent=collected.has(i)?`♡  ${l.title}`:`✧  Letter ${i+1}`;b.onclick=()=>{$('journal').close();openLetter(i);};$('journal-list').append(b);});$('reset-confirm').hidden=true;$('journal').showModal();updateAction();}
 $('journal-button').onclick=showJournal;$('ending-journal').onclick=showJournal;$('close-journal').onclick=()=>$('journal').close();$('journal').addEventListener('close',updateAction);$('restart').onclick=()=>{$('reset-confirm').hidden=false;};$('reset-no').onclick=()=>{$('reset-confirm').hidden=true;};$('reset-yes').onclick=()=>{thanksRemaining=0;$('letter-thanks').hidden=true;collected.clear();passed.clear();window.resetLetterGifts?.();carrying=false;completed=false;x=START;camera=0;bg.src=C.backgroundMusic;bg.load();$('journal').close();setPhase('explore');updateCount();soundSync();beginFlowerIntro();};$('replay').onclick=()=>{completed=false;beginCinema();};
 function togglePause(){manualPause=!manualPause;$('pause-screen').hidden=!manualPause;$('pause').setAttribute('aria-pressed',String(manualPause));$('pause').setAttribute('aria-label',manualPause?'Continue adventure':'Pause adventure');stop();soundSync();updateAction();}$('pause').onclick=togglePause;$('resume').onclick=togglePause;
