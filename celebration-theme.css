@@ -195,3 +195,25 @@ dialog:not(#journey-help),.journey-help-card,#letter.birthday-paper #message{scr
  #letter.birthday-paper #message::-webkit-scrollbar-thumb:horizontal{border:0;border-radius:99px;background:#b7aacb99}
  #letter.birthday-paper #message::-webkit-scrollbar-track:horizontal{background:transparent;margin:0 14px;border-radius:99px}
 }
+
+/* Custom left scroll indicator for Safari and Android. */
+dialog.custom-scroll{scrollbar-width:none!important}
+dialog.custom-scroll::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
+.card-scroll-rail{position:sticky;top:0;height:0;width:0;z-index:50;float:left;pointer-events:none;direction:ltr}
+.card-scroll-thumb{position:absolute;left:3px;top:0;width:4px;height:40px;border-radius:99px;background:#c6c0dfaa;pointer-events:auto;touch-action:none}
+.sky-love-line{width:calc(100% - 40px);max-width:560px;left:50%;text-wrap:wrap}
+dialog#gift-treasure{background:radial-gradient(ellipse at top left,#286e6c,transparent 65%),linear-gradient(145deg,#102536,#24203c);border-color:#b5dce077;box-shadow:0 0 30px #b9dfea30,0 20px 65px #050a21aa}
+#gift-treasure #letter-gift{padding:24px 18px 18px;background:transparent}
+#gift-treasure .gift-invitation{font-size:18px;margin:8px 25px 10px}
+#gift-treasure .keepsake-decor{height:48px;margin-bottom:4px}
+#gift-treasure .keepsake-caption{font-size:11px}
+#gift-treasure #gift-reveal{margin:8px 0}
+#gift-treasure #gift-reveal strong{font-size:17px;line-height:1.25}
+#gift-treasure #gift-reveal figcaption p{font-size:12px;line-height:1.4;margin:6px 0}
+#gift-treasure .gift-stickers{position:relative;isolation:isolate;max-height:38svh}
+#gift-treasure .gift-stickers::before{content:'';position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse,#ffffffaa, #ffffff24 40%,transparent 70%);animation:gift-white-light 5s ease-in-out infinite;pointer-events:none}
+#gift-treasure .gift-sticker{max-height:28svh;object-fit:contain}
+#gift-treasure .gift-read-letter{margin-top:12px;padding:10px 18px;min-height:42px}
+@keyframes gift-white-light{0%,100%{opacity:.25}50%{opacity:.85}}
+#letter .letter-glyph.gentle-glint::after{text-shadow:0 0 4px #fff,0 0 10px #efd2ff;animation-name:visible-ink-glint}
+@keyframes visible-ink-glint{0%,65%,100%{opacity:0}78%,87%{opacity:1}}
