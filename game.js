@@ -18,7 +18,7 @@ const finaleVideo=$('finale-video');
 const bg=new Audio(C.backgroundMusic),song=new Audio(),audioFiles=[bg,song];bg.loop=true;song.loop=false;bg.volume=C.musicVolume??.22;song.volume=.25;let ac;
 song.addEventListener('ended',()=>{if(modalLetter)modalLetter.audioFinished=true;});
 function play(a){const p=a.play();if(p)p.catch(()=>{});}
-function soundSync(){if(mini?.kissAudio){mini.kissAudio.muted=muted;if(document.hidden||manualPause)mini.kissAudio.pause();else if(mini.busy)play(mini.kissAudio);}if(phase==='video'){audioFiles.forEach(a=>a.pause());if(document.hidden||manualPause)finaleVideo.pause();return;}audioFiles.forEach(a=>{a.muted=muted;});if(!active||document.hidden||manualPause||muted){audioFiles.forEach(a=>a.pause());return;}if(modalLetter?.music){bg.pause();if(!modalLetter.audioFinished&&!song.ended)play(song);}else{song.pause();play(bg);}}
+function soundSync(){bg.volume=mini?.i===19&&mini.type==='kiss-sequence'&&$('challenge').open?Math.min(.1,C.musicVolume??.22):(C.musicVolume??.22);if(mini?.kissAudio){mini.kissAudio.muted=muted;if(document.hidden||manualPause)mini.kissAudio.pause();else if(mini.busy)play(mini.kissAudio);}if(phase==='video'){audioFiles.forEach(a=>a.pause());if(document.hidden||manualPause)finaleVideo.pause();return;}audioFiles.forEach(a=>{a.muted=muted;});if(!active||document.hidden||manualPause||muted){audioFiles.forEach(a=>a.pause());return;}if(modalLetter?.music){bg.pause();if(!modalLetter.audioFinished&&!song.ended)play(song);}else{song.pause();play(bg);}}
 function chime(kind='heart'){
  if(muted||reduce)return;
  try{ac??=new (window.AudioContext||window.webkitAudioContext)();if(ac.state==='suspended')ac.resume();const t=ac.currentTime;
@@ -438,7 +438,7 @@ mini.growth=0;mini.watering=false;const b=make('water-flower','Hold to water the
  else if(['melody','maze','timing'].includes(gate.type)){startExtraChallenge(make);}
  else if(gate.type==='question'){$('question-label').textContent=gate.question;$('question-answer').value='';$('question-answer').removeAttribute('aria-invalid');}
  else {$('challenge-status').textContent='This challenge needs a valid type in its folder.';}
- $('challenge').showModal();if(gate.type==='question')$('question-answer').focus();updateAction();
+ $('challenge').showModal();soundSync();if(gate.type==='question')$('question-answer').focus();updateAction();
 }
 window.startGiftTreasure=(number,onGift)=>{startChallenge(number-1,{type:'treasure',title:'A treasure, just for you ♡',hint:'Tap the treasure chest to discover your gift.',minTaps:2,maxTaps:13},onGift);$('challenge-number').textContent='YOUR BIRTHDAY GIFT';window.decorateKeepsake?.($('challenge').querySelector('.paper'),number);};
 function startExtraChallenge(make){
@@ -468,7 +468,7 @@ function updateStars(){if(!mini)return;[...$('mini-buttons').children].forEach((
 function miniBurst(px,py){for(let j=0;j<20*density;j++)mini.particles.push({x:px,y:py,vx:(Math.random()-.5)*160,vy:(Math.random()-.5)*150,life:1.2});}
 function winChallenge(){if(!mini||mini.won)return;mini.won=true;mini.winAge=0;if(mini.onGift)window.decorateKeepsake?.($('challenge').querySelector('.paper'),mini.i,true);if(!mini.onGift)passed.add(mini.i);$('challenge-status').textContent=mini.onGift?'Your gift is waiting inside! ♡':'This little letter is yours. ♡';chime('win');miniBurst(200,180);}
 $('question-form').onsubmit=e=>{e.preventDefault();if(!mini||mini.type!=='question'||mini.won)return;const gate=letters[mini.i].gate,answers=Array.isArray(gate.answers)?gate.answers:[];if(answers.some(a=>norm(a)===norm($('question-answer').value))){$('question-answer').removeAttribute('aria-invalid');winChallenge();}else{$('question-answer').setAttribute('aria-invalid','true');$('challenge-status').textContent=gate.wrongMessage||'Not quite, my love. Try again. ♡';}};
-$('close-challenge').onclick=()=>$('challenge').close();$('challenge').addEventListener('close',()=>{if($('challenge').open)return;mini?.cancelKiss?.();mini=null;updateAction();});
+$('close-challenge').onclick=()=>$('challenge').close();$('challenge').addEventListener('close',()=>{if($('challenge').open)return;mini?.cancelKiss?.();mini=null;soundSync();updateAction();});
 function miniTick(dt){if(!mini||!$('challenge').open||manualPause||document.hidden)return;mini.t+=dt;mini.shake=Math.max(0,mini.shake-dt*4);if(mini.won){mini.winAge+=dt;if(mini.winAge>1.05){const i=mini.i,onGift=mini.onGift;$('challenge').close();if(onGift)onGift();else openLetter(i);return;}}if(mini.type==='memory'&&mini.flipped.length===2){mini.flipAge+=dt;if(mini.flipAge>.95){for(const j of mini.flipped){const b=$('mini-buttons').children[j];b.classList.remove('flipped');b.textContent='✧';}mini.flipped=[];}}
  if(mini.type==='bloom'&&!mini.won&&mini.watering){mini.growth=Math.min(2.4,mini.growth+dt);$('challenge-status').textContent=`Your flower is growing… ${Math.round(mini.growth/2.4*100)}%`;if(mini.growth>=2.4)winChallenge();}
  tickExtraChallenge(dt);
