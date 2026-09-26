@@ -15,7 +15,7 @@ let flowerIntro={state:'idle',boy:0,start:0,from:START};
 let pointer=null,keys=new Set(),modalLetter=null,toastTimer,pickup=null;
 let cinematic={girl:0,boy:0,startGirl:0,boyStart:0},petals=[],stars=[],sparks=[],rockets=[],fireworkTimer=0,wind=0,mini=null,fireworkBeat=0,blooms=[],petalBursts=[],lastEffectCamera=0;
 const finaleVideo=$('finale-video');
-const bg=new Audio(C.backgroundMusic),song=new Audio(),audioFiles=[bg,song];bg.loop=true;song.loop=false;bg.volume=C.musicVolume??.22;song.volume=.25;let ac;
+const bg=new Audio(C.backgroundMusic),song=new Audio(),cakeCheer=new Audio("assets/cake-celebration.wav"),audioFiles=[bg,song,cakeCheer];bg.loop=true;song.loop=false;bg.volume=C.musicVolume??.22;song.volume=.25;let ac;
 song.addEventListener('ended',()=>{if(modalLetter)modalLetter.audioFinished=true;});
 function play(a){const p=a.play();if(p)p.catch(()=>{});}
 function soundSync(){bg.volume=C.musicVolume??.22;if(mini?.kissAudio){mini.kissAudio.muted=muted;if(document.hidden||manualPause)mini.kissAudio.pause();else if(mini.busy)play(mini.kissAudio);}if(phase==='video'){audioFiles.forEach(a=>a.pause());if(document.hidden||manualPause)finaleVideo.pause();return;}audioFiles.forEach(a=>{a.muted=muted;});if(!active||document.hidden||manualPause||muted){audioFiles.forEach(a=>a.pause());return;}if(mini?.i===19&&mini.type==='kiss-sequence'&&$('challenge').open){bg.pause();song.pause();return;}if(modalLetter?.music){bg.pause();if(!modalLetter.audioFinished&&!song.ended)play(song);}else{song.pause();play(bg);}}
@@ -107,8 +107,8 @@ cutButton.addEventListener('keyup',e=>{if([' ','Enter'].includes(e.key)){e.preve
 window.addEventListener('blur',endCut);document.addEventListener('visibilitychange',endCut);$('pause').addEventListener('click',endCut);$('journal-button').addEventListener('click',endCut);
 function tickCakeCut(dt){
  if(cutProgress<1){if(cutHeld)cutProgress=Math.min(1,cutProgress+dt/3);$('cake-art').style.setProperty('--cut',cutProgress);$('cut-progress').value=cutProgress;
- if(cutProgress>=1){endCut();$('cake-cutting').classList.add('sliced');$('cut-button').disabled=true;$('cut-status').textContent='A little slice of happiness, just for you. ♡';chime('win');}}
- else {cutFinishTime+=dt;if(cutFinishTime>=1.8)setPhase('tilt');}
+ if(cutProgress>=1){endCut();$('cake-cutting').classList.add('sliced');$('cut-button').disabled=true;$('cut-status').textContent='A little slice of happiness, just for you. ♡';cakeCheer.currentTime=0;cakeCheer.volume=.65;cakeCheer.muted=muted;if(!muted)play(cakeCheer);}}
+ else {cutFinishTime+=dt;if(cutFinishTime>=4.2)setPhase('tilt');}
 }
 
 function finishFinaleVideo(){if(phase!=='video')return;completed=true;setPhase('finished');$('ending-journal').focus();}
@@ -192,7 +192,7 @@ function tick(dt){if(blocked())return;const previousBoy=cinematic.boy,previousPh
  else if(phase==='wait'){$('speech').hidden=false;$('speech').textContent=C.finale.waitLine;$('speech').style.left=`${cinematic.boy/V*100}%`;$('speech').style.top='57%';if(clock>=1.8){cinematic.boyStart=cinematic.boy;setPhase('walkAway');}}
  else if(phase==='walkAway'){const duration=strollDuration(cinematic.boyStart,V+180);cinematic.boy=mix(cinematic.boyStart,V+180,stroll(clock/duration));if(clock>=duration+.1)setPhase('fetch');}
  else if(phase==='fetch'){if(clock>=.65)setPhase('return');}
- else if(phase==='return'){const duration=strollDuration(V+180,cinematic.girl+180);cinematic.boy=mix(V+180,cinematic.girl+180,stroll(clock/duration));if(clock>=duration+.2){setPhase('cakeReveal');bg.src=C.finaleMusic;bg.load();soundSync();chime('win');}}
+ else if(phase==='return'){const duration=strollDuration(V+180,cinematic.girl+180);cinematic.boy=mix(V+180,cinematic.girl+180,stroll(clock/duration));if(clock>=duration+.2){setPhase('cakeReveal');soundSync();chime('win');}}
  else if(phase==='cakeReveal'){if(clock>=1.7){setPhase('cake');$('live').textContent='Make a wish, then blow out the candle.';}}
  else if(phase==='blow'){if(clock>=2.5)beginCakeCut();}
  else if(phase==='cutCake'){tickCakeCut(dt);}

@@ -6,7 +6,7 @@ window.BIRTHDAY_CONFIG = {
   title: "For Muno · A Night to Remember",
   letters: ["letters/01","letters/02","letters/03","letters/04","letters/05","letters/06","letters/07","letters/08","letters/09","letters/10","letters/11","letters/12","letters/13","letters/14","letters/15","letters/16","letters/17","letters/18","letters/19","letters/20"],
   backgroundMusic: "assets/birthday-music.wav",
-  finaleMusic: "letters/20/music.wav",
+  finaleMusic: null,
   musicVolume: 0.22,
   storageKey: "muno-sakura-cinematic-v2",
   finale: {

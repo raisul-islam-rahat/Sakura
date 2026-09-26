@@ -335,7 +335,7 @@
       "registrationNote": "Manual cleaned sheet: individual frame scale/anchors matched to prior rendered poses; lean row split 508."
     },
     "couple-embrace": {
-      "image": "unified-embrace.webp",
+      "image": "unified-embrace.webp?v=20260926",
       "fixedScale": true,
       "referenceHeight": 480,
       "frames": [
